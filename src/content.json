@@ -7,12 +7,12 @@
   "guestbook": {
     "intro": "패치가 도움이 되셨다면 한마디 남겨주세요. 응원은 큰 힘이 됩니다.",
     "firebase": {
-      "apiKey": "",
-      "authDomain": "",
-      "projectId": "",
-      "storageBucket": "",
-      "messagingSenderId": "",
-      "appId": ""
+      "apiKey": "AIzaSyDtMku_CmYI5Wok3F2k5errluzD4I-gGdw",
+      "authDomain": "wanderer-arbor.firebaseapp.com",
+      "projectId": "wanderer-arbor",
+      "storageBucket": "wanderer-arbor.firebasestorage.app",
+      "messagingSenderId": "634939258989",
+      "appId": "1:634939258989:web:2c44b0ead3e7b863806764"
     }
   },
   "patch": {
