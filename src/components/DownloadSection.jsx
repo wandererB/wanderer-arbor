@@ -39,9 +39,13 @@ export default function DownloadSection() {
 
         <div style={{ display: "grid", gap: 16 }}>
           {downloads.map((d, i) => {
-            const meta = [d.version && `v${d.version}`, d.date, d.size]
-              .filter(Boolean)
-              .join(" · ");
+            // 버전이 숫자로 시작할 때만 "v" 접두사 (예: 70 → v70). "준비중입니다" 같은 글자는 그대로.
+            const ver = d.version
+              ? /^\d/.test(d.version)
+                ? `v${d.version}`
+                : d.version
+              : null;
+            const meta = [ver, d.date, d.size].filter(Boolean).join(" · ");
             return (
               <div
                 key={i}
@@ -83,16 +87,23 @@ export default function DownloadSection() {
                     ↓ 다운로드
                   </CTA>
                 ) : (
-                  <CTA
-                    primary
-                    onClick={() =>
-                      alert(
-                        `${d.title}의 다운로드 링크가 아직 설정되지 않았습니다.\nsrc/content.json 의 해당 항목 "url" 에 GitHub Releases 주소를 넣으면 버튼이 실제 링크로 바뀝니다.`
-                      )
-                    }
+                  // url이 비어 있으면(아직 미배포) 클릭 안 되는 '준비 중' 표시
+                  <span
+                    style={{
+                      padding: "12px 26px",
+                      borderRadius: 8,
+                      fontSize: 15,
+                      fontWeight: 600,
+                      letterSpacing: 1,
+                      color: C.textDim,
+                      background: "rgba(20,16,11,0.4)",
+                      border: `1px dashed ${C.line}`,
+                      display: "inline-block",
+                      cursor: "default",
+                    }}
                   >
-                    ↓ 다운로드
-                  </CTA>
+                    준비 중
+                  </span>
                 )}
               </div>
             );
@@ -107,8 +118,7 @@ export default function DownloadSection() {
             lineHeight: 1.7,
           }}
         >
-          설치 전 원본 게임 백업을 권장합니다. 각 패치의 <code>url</code>을 GitHub
-          Releases 링크로 채우면 버튼이 실제 다운로드로 연결됩니다.
+          설치 전 원본 게임 백업을 권장합니다.
         </p>
       </div>
     </section>
