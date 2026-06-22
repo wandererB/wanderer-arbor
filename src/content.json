@@ -4,6 +4,17 @@
     "tagline": "비공식 팬 번역 프로젝트",
     "reportUrl": "https://docs.google.com/forms/d/e/1FAIpQLSczfOU4REn87Ss4ThLYioBYguaQcjBd-Cn-wbZFmQosP2iB_Q/viewform?usp=publish-editor"
   },
+  "guestbook": {
+    "intro": "패치가 도움이 되셨다면 한마디 남겨주세요. 응원은 큰 힘이 됩니다.",
+    "firebase": {
+      "apiKey": "",
+      "authDomain": "",
+      "projectId": "",
+      "storageBucket": "",
+      "messagingSenderId": "",
+      "appId": ""
+    }
+  },
   "patch": {
     "title": "마장기신 한글패치",
     "subtitle": "Masou Kishin · The Lord of Elemental",
