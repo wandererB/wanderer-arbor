@@ -5,28 +5,20 @@ import content from "../content.json";
 export default function Hero({ setView }) {
   return (
     <header style={{ position: "relative", overflow: "hidden" }}>
-      <div style={{ position: "relative" }}>
+      <div style={{ position: "relative", textAlign: "center" }}>
+        {/* 액자형 원본 그림을 '잘라내지 않고' 통째로 표시.
+            세로는 화면 높이에 맞춰 축소(가로 잘림 방지), 가로는 100%까지.
+            → 어떤 화면 너비에서도 "방랑자" 글씨가 잘리지 않음. */}
         <img
           src={asset("images/hero.jpg")}
           alt="한글패치 by 방랑자"
           style={{
-            width: "100%",
             display: "block",
-            objectFit: "cover",
-            maxHeight: "82vh",
+            margin: "0 auto",
+            maxWidth: "100%",
+            maxHeight: "88vh",
+            height: "auto",
             filter: "saturate(0.95)",
-          }}
-        />
-        {/* 하단 가장자리만 살짝 페이드 — 인물/원본 글씨는 가리지 않음 */}
-        <div
-          style={{
-            position: "absolute",
-            left: 0,
-            right: 0,
-            bottom: 0,
-            height: "22%",
-            background: `linear-gradient(180deg, transparent, ${C.ink})`,
-            pointerEvents: "none",
           }}
         />
       </div>
