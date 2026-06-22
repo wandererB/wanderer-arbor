@@ -1,4 +1,8 @@
 {
+  "site": {
+    "name": "방랑자의 그늘쉼터",
+    "tagline": "비공식 팬 번역 프로젝트"
+  },
   "patch": {
     "title": "마장기신 한글패치",
     "subtitle": "Masou Kishin · The Lord of Elemental",

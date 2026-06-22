@@ -1,4 +1,5 @@
 import { C, asset } from "../theme.js";
+import content from "../content.json";
 
 export default function Footer() {
   return (
@@ -16,7 +17,7 @@ export default function Footer() {
       />
       <div style={{ textAlign: "center", padding: "24px 20px 40px" }}>
         <p style={{ color: C.textDim, fontSize: 12, lineHeight: 1.8 }}>
-          한글패치 by 방랑자 · 비공식 팬 번역 프로젝트
+          {content.site.name} · {content.site.tagline}
           <br />본 사이트의 데이터는 브라우저 안에서만 처리됩니다.
         </p>
       </div>

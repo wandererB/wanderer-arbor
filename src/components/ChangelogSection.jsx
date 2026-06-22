@@ -39,9 +39,8 @@ export default function ChangelogSection() {
                   fontWeight: 700,
                 }}
               >
-                v{c.v}
+                {c.date}
               </span>
-              <span style={{ color: C.textDim, fontSize: 13 }}>{c.date}</span>
             </div>
             <ul
               style={{

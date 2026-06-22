@@ -1,4 +1,5 @@
 import { C, serif, sans, asset } from "../theme.js";
+import content from "../content.json";
 
 export default function Nav({ view, setView }) {
   return (
@@ -34,7 +35,7 @@ export default function Nav({ view, setView }) {
           alt="방랑자"
           style={{ width: 38, height: 38, borderRadius: "50%" }}
         />
-        <span style={{ fontSize: 19, letterSpacing: 1 }}>방랑자 한글패치</span>
+        <span style={{ fontSize: 19, letterSpacing: 1 }}>{content.site.name}</span>
       </button>
       <div style={{ display: "flex", gap: 6 }}>
         <NavBtn active={view === "home"} onClick={() => setView("home")}>
