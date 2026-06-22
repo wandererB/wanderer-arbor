@@ -3,6 +3,7 @@ import { CTA } from "./ui.jsx";
 import content from "../content.json";
 
 export default function Hero({ setView }) {
+  const reportUrl = content.site.reportUrl;
   return (
     <header style={{ position: "relative", overflow: "hidden" }}>
       <div style={{ position: "relative", textAlign: "center" }}>
@@ -53,6 +54,19 @@ export default function Hero({ setView }) {
           >
             패치 받기
           </CTA>
+          {reportUrl ? (
+            <CTA href={reportUrl}>오류 제보</CTA>
+          ) : (
+            <CTA
+              onClick={() =>
+                alert(
+                  "오류 제보 폼이 아직 연결되지 않았습니다.\ncontent.json 의 site.reportUrl 에 구글 폼 주소를 넣으면 이 버튼이 폼으로 연결됩니다."
+                )
+              }
+            >
+              오류 제보
+            </CTA>
+          )}
           <CTA onClick={() => setView("workspace")}>작업공간 →</CTA>
         </div>
       </div>
