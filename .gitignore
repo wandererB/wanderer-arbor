@@ -1,0 +1,18 @@
+# dependencies
+node_modules
+
+# build output
+dist
+dist-ssr
+
+# 원본 디자인 소스 (대용량 PNG·프로토타입). 저장소에는 올리지 않음.
+_source/
+
+# local / editor
+*.local
+.vite
+.DS_Store
+Thumbs.db
+.vscode/*
+!.vscode/extensions.json
+.idea

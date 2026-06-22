@@ -1,0 +1,21 @@
+{
+  "name": "wanderer-site",
+  "private": true,
+  "version": "0.4.0",
+  "type": "module",
+  "description": "방랑자 한글패치 — 마장기신 THE LORD OF ELEMENTAL 배포 + 작업공간 사이트",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "idb-keyval": "^6.2.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "vite": "^6.0.7"
+  }
+}
