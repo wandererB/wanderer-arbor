@@ -41,8 +41,8 @@ export default function Nav({ view, setView }) {
         <NavBtn active={view === "home"} onClick={() => setView("home")}>
           패치
         </NavBtn>
-        <NavBtn active={view === "workspace"} onClick={() => setView("workspace")}>
-          작업공간
+        <NavBtn active={view === "guestbook"} onClick={() => setView("guestbook")}>
+          방명록
         </NavBtn>
       </div>
     </nav>
