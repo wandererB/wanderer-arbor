@@ -4,7 +4,7 @@ import content from "../content.json";
 
 export default function ChangelogSection() {
   return (
-    <Section eyebrow="Changelog" title="변경 이력">
+    <Section eyebrow="Progress" title="진행 이력">
       <div style={{ position: "relative", paddingLeft: 26 }}>
         <div
           style={{
