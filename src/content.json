@@ -9,12 +9,24 @@
       { "n": "JP → KR", "l": "직접 번역" }
     ]
   },
-  "download": {
-    "version": "0.4.0",
-    "date": "2026-06-10",
-    "size": "약 12MB",
-    "url": ""
-  },
+  "downloads": [
+    {
+      "title": "마장기신 1 한글패치",
+      "subtitle": "Masou Kishin I",
+      "version": "0.4.0",
+      "date": "2026-06-10",
+      "size": "약 12MB",
+      "url": ""
+    },
+    {
+      "title": "마장기신 2 한글패치",
+      "subtitle": "Masou Kishin II · The Lord of Elemental",
+      "version": "0.4.0",
+      "date": "2026-06-10",
+      "size": "약 12MB",
+      "url": ""
+    }
+  ],
   "changelog": [
     {
       "v": "0.4.0",
