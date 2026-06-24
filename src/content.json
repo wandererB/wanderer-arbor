@@ -1,7 +1,7 @@
 {
   "notice": {
     "show": true,
-    "text": "v70 버전이 맵병기 사용후 폰트깨짐이 있어 수정중입니다. 조금만 기다려주세요!",
+    "text": "v72 업데이트. 맵병기 사용후 버그와 추가 전투대사 패치입니다.",
     "link": "",
     "linkLabel": ""
   },
@@ -46,10 +46,14 @@
       "version": "70",
       "date": "2026-06-22",
       "size": "약 5MB",
-      "url": "https://github.com/wandererB/wanderer-arbor/releases/download/mk2-v70/MasouKishin2_KR_v70.zip"
+      "url": "https://github.com/wandererB/wanderer-arbor/releases/download/mk2-v72/MasouKishin2_KR_v72.zip"
     }
   ],
   "changelog": [
+    {
+      "date": "2026-06-24",
+      "notes": ["마장기신2 맵병기 오류수정 v72 패치"]
+    },
     {
       "date": "2026-06-22",
       "notes": ["마장기신2 패치 배포"]
