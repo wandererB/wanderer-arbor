@@ -1,7 +1,7 @@
 {
   "notice": {
     "show": true,
-    "text": "v74 업데이트. 대사 등에서 인물,기체,무기명 통일 및 시작부 프롤로그 텍스처도입.",
+    "text": "마장기신F Coffin of The End 1.0 배포",
     "link": "",
     "linkLabel": ""
   },
@@ -24,7 +24,7 @@
   "patch": {
     "title": "마장기신 한글패치",
     "subtitle": "Masou Kishin · The Lord of Elemental",
-    "intro": "PSP 마장기신 1&2의 비공식 한글 번역 패치입니다. 게임 엔진 제어코드를 보존하며, 마장기신 특유의 분위기를 살려 최대한 자연스럽게 다듬고 있습니다. 비영리 개인작업이며, 이 패치를 사용하시는 분들의 정품구매를 권장합니다.",
+    "intro": "PSP 마장기신 1&2, PS3 마장기신F 의 비공식 한글 번역 패치입니다. 게임 엔진 제어코드를 보존하며, 마장기신 특유의 분위기를 살려 최대한 자연스럽게 다듬고 있습니다. 비영리 개인작업이며, 이 패치를 사용하시는 분들의 정품구매를 권장합니다.",
     "stats": [
       { "n": "29,000+", "l": "전체 대사 행" },
       { "n": "1990s~2000s", "l": "더빙 어조 기준" },
@@ -50,7 +50,7 @@
     },
     {
       "title": "마장기신F 한글패치",
-      "subtitle": "Masou Kishin F · The Lord of Elemental",
+      "subtitle": "Masou Kishin F · Coffin of The End",
       "version": "1.0",
       "date": "2026-06-30",
       "size": "약 4.4MB",
