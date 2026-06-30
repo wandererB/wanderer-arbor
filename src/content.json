@@ -1,7 +1,7 @@
 {
   "notice": {
     "show": true,
-    "text": "v73 업데이트. 맵병기 사용후 버그와 추가 전투대사 패치입니다.",
+    "text": "v74 업데이트. 대사 등에서 인물,기체,무기명 통일 및 시작부 프롤로그 텍스처도입.",
     "link": "",
     "linkLabel": ""
   },
@@ -43,13 +43,17 @@
     {
       "title": "마장기신 2 한글패치",
       "subtitle": "Masou Kishin II · Revelation of Evil God",
-      "version": "73",
-      "date": "2026-06-24",
+      "version": "74",
+      "date": "2026-06-30",
       "size": "약 5MB",
-      "url": "https://github.com/wandererB/wanderer-arbor/releases/download/mk2-v73/MasouKishin2_KR_v73.zip"
+      "url": "https://github.com/wandererB/wanderer-arbor/releases/download/mk2-v74/MasouKishin2_KR_v74.zip"
     }
   ],
   "changelog": [
+    {
+      "date": "2026-06-30",
+      "notes": ["마장기신2 인물명,기체명 통일 무기명 수정 등 v74 패치"]
+    },
     {
       "date": "2026-06-24",
       "notes": ["마장기신2 맵병기 오류수정 v73 패치"]
