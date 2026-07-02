@@ -1,7 +1,7 @@
 {
   "notice": {
     "show": true,
-    "text": "마장기신F Coffin of The End 1.1 업데이트, 마장기신2 v75 업데이트 ",
+    "text": "마장기신F Coffin of The End 1.3 업데이트, 마장기신2 v82 업데이트 ",
     "link": "",
     "linkLabel": ""
   },
@@ -43,18 +43,18 @@
     {
       "title": "마장기신 2 한글패치",
       "subtitle": "Masou Kishin II · Revelation of Evil God",
-      "version": "75",
-      "date": "2026-07-01",
-      "size": "약 5MB",
-      "url": "https://github.com/wandererB/wanderer-arbor/releases/download/mk2-v75/MasouKishin2_KR_v75.zip"
+      "version": "82",
+      "date": "2026-07-02",
+      "size": "약 8.2MB",
+      "url": "https://github.com/wandererB/wanderer-arbor/releases/download/mk2-v82/MasouKishin2_KR_v82.zip"
     },
     {
       "title": "마장기신F 한글패치",
       "subtitle": "Masou Kishin F · Coffin of The End",
-      "version": "1.1",
-      "date": "2026-07-1",
+      "version": "1.3",
+      "date": "2026-07-2",
       "size": "약 4.4MB",
-      "url": "https://github.com/wandererB/wanderer-arbor/releases/download/mkf-v1.1/MasouKishinF_KR.v1.1.zip"
+      "url": "https://github.com/wandererB/wanderer-arbor/releases/download/mkf-v1.3/MasouKishinF_KR.v1.3.zip"
     }
   ],
   "changelog": [
