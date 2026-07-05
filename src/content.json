@@ -1,7 +1,7 @@
 {
   "notice": {
     "show": true,
-    "text": "마장기신F Coffin of The End 1.41 마이너 업데이트",
+    "text": "마장기신1 1.0 배포, 마장기신F Coffin of The End 1.41 마이너 업데이트",
     "link": "",
     "linkLabel": ""
   },
@@ -35,10 +35,10 @@
     {
       "title": "마장기신 1 한글패치",
       "subtitle": "Masou Kishin I · The Lord of Elemental",
-      "version": "준비중입니다",
-      "date": "2026-06-10",
-      "size": "약 12MB",
-      "url": ""
+      "version": "1.0",
+      "date": "2026-07-05",
+      "size": "약 3MB",
+      "url": "https://github.com/wandererB/wanderer-arbor/releases/download/mk1-v1.0/MasouKishin1_KR_v1.0.zip"
     },
     {
       "title": "마장기신 2 한글패치",
@@ -58,6 +58,10 @@
     }
   ],
   "changelog": [
+    {
+      "date": "2026-07-05",
+      "notes": ["마장기신1 한글패치 v1.0 배포 (본편 + 전투대사 전편)"]
+    }
     {
       "date": "2026-06-30",
       "notes": ["마장기신F 한글패치 v1.0 배포 (본편 + 전투대사 전편)",
