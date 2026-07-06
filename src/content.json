@@ -1,7 +1,7 @@
 {
   "notice": {
     "show": true,
-    "text": "마장기신1 1.1 배포(실기대응), 18화 진입 크래시 해결중입니다.",
+    "text": "마장기신1 1.2 배포 - 16,18화 공통루트 '흔들린 맘' 크래시 해결.",
     "link": "",
     "linkLabel": ""
   },
@@ -35,10 +35,10 @@
     {
       "title": "마장기신 1 한글패치",
       "subtitle": "Masou Kishin I · The Lord of Elemental",
-      "version": "1.1",
+      "version": "1.2",
       "date": "2026-07-06",
       "size": "약 6MB",
-      "url": "https://github.com/wandererB/wanderer-arbor/releases/download/mk1-v1.1/MasouKishin1_KR_v1.1.zip"
+      "url": "https://github.com/wandererB/wanderer-arbor/releases/download/mk1-v1.2/MasouKishin1_KR_v1.2.zip"
     },
     {
       "title": "마장기신 2 한글패치",
