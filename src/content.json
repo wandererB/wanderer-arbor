@@ -1,7 +1,7 @@
 {
   "notice": {
     "show": true,
-    "text": "마장기신1 1.0 배포, 실기구동 오류라 수정중입니다.",
+    "text": "마장기신1 1.1 배포 - 실기구동 대응 및 프롤로그 자막 텍스처 도입.",
     "link": "",
     "linkLabel": ""
   },
@@ -35,10 +35,10 @@
     {
       "title": "마장기신 1 한글패치",
       "subtitle": "Masou Kishin I · The Lord of Elemental",
-      "version": "1.0",
-      "date": "2026-07-05",
-      "size": "약 3MB",
-      "url": "https://github.com/wandererB/wanderer-arbor/releases/download/mk1-v1.0/MasouKishin1_KR_v1.0.zip"
+      "version": "1.1",
+      "date": "2026-07-06",
+      "size": "약 6MB",
+      "url": "https://github.com/wandererB/wanderer-arbor/releases/download/mk1-v1.1/MasouKishin1_KR_v1.1.zip"
     },
     {
       "title": "마장기신 2 한글패치",
