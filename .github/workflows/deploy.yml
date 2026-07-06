@@ -10,10 +10,11 @@ permissions:
   pages: write
   id-token: write
 
-# 동시에 한 번만 배포 (진행 중이던 배포는 취소)
+# 동시에 한 번만 배포. 진행 중인 배포는 취소하지 않고 끝까지 완료(GitHub 공식 권장).
+# 취소가 끼면 github-pages 환경이 꼬여 "Deployment failed, try again later" 실패가 잦음.
 concurrency:
   group: pages
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   build:
