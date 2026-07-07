@@ -1,7 +1,7 @@
 {
   "notice": {
     "show": true,
-    "text": "마장기신2 v84 업데이트, 마장기신1 1.2 배포 - 16,18화 공통루트 '흔들린 맘' 크래시 해결.",
+    "text": "마장기신2 v86 업데이트",
     "link": "",
     "linkLabel": ""
   },
@@ -43,10 +43,10 @@
     {
       "title": "마장기신 2 한글패치",
       "subtitle": "Masou Kishin II · Revelation of Evil God",
-      "version": "84",
+      "version": "86",
       "date": "2026-07-07",
       "size": "약 19MB",
-      "url": "https://github.com/wandererB/wanderer-arbor/releases/download/mk2-v84/MasouKishin2_KR_v84.zip"
+      "url": "https://github.com/wandererB/wanderer-arbor/releases/download/mk2-86/MasouKishin2_KR_v86.zip"
     },
     {
       "title": "마장기신 3 한글패치",
