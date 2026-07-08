@@ -1,7 +1,7 @@
 {
   "notice": {
     "show": true,
-    "text": "마장기신1 v1.22(무기프리징)필수 업데이트, 마장기신2 v86 업데이트",
+    "text": "마장기신1 v1.23 업데이트, 마장기신2 v94 업데이트",
     "link": "",
     "linkLabel": ""
   },
@@ -35,18 +35,18 @@
     {
       "title": "마장기신 1 한글패치",
       "subtitle": "Masou Kishin I · The Lord of Elemental",
-      "version": "1.22",
+      "version": "1.23",
       "date": "2026-07-08",
       "size": "약 6MB",
-      "url": "https://github.com/wandererB/wanderer-arbor/releases/download/mk1-v1.22/MasouKishin1_KR_v1.22.zip"
+      "url": "https://github.com/wandererB/wanderer-arbor/releases/download/mk1-v1.23/MasouKishin1_KR_v1.23.zip"
     },
     {
       "title": "마장기신 2 한글패치",
       "subtitle": "Masou Kishin II · Revelation of Evil God",
-      "version": "86",
-      "date": "2026-07-07",
+      "version": "94",
+      "date": "2026-07-08",
       "size": "약 19MB",
-      "url": "https://github.com/wandererB/wanderer-arbor/releases/download/mk2-86/MasouKishin2_KR_v86.zip"
+      "url": "https://github.com/wandererB/wanderer-arbor/releases/download/mk2-94/MasouKishin2_KR_v94.zip"
     },
     {
       "title": "마장기신 3 한글패치",
