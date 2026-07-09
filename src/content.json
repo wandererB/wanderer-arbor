@@ -1,7 +1,7 @@
 {
   "notice": {
     "show": true,
-    "text": "마장기신1 v1.23 업데이트, 마장기신2 v94 업데이트",
+    "text": "마장기신1 v1.24 업데이트",
     "link": "",
     "linkLabel": ""
   },
@@ -35,10 +35,10 @@
     {
       "title": "마장기신 1 한글패치",
       "subtitle": "Masou Kishin I · The Lord of Elemental",
-      "version": "1.23",
-      "date": "2026-07-08",
+      "version": "1.24",
+      "date": "2026-07-09",
       "size": "약 6MB",
-      "url": "https://github.com/wandererB/wanderer-arbor/releases/download/mk1-v1.23/MasouKishin1_KR_v1.23.zip"
+      "url": "https://github.com/wandererB/wanderer-arbor/releases/download/mk1-v1.24/MasouKishin1_KR_v1.24.zip"
     },
     {
       "title": "마장기신 2 한글패치",
