@@ -1,7 +1,7 @@
 {
   "notice": {
     "show": true,
-    "text": "마장기신F 1.43 업데이트, 마장기신1 v1.24 업데이트",
+    "text": "마장기신3(PS Vita, PS3) v1.0 배포, 마장기신F 1.43 업데이트",
     "link": "",
     "linkLabel": ""
   },
@@ -51,18 +51,18 @@
     {
       "title": "마장기신 3 한글패치 (PS Vita)",
       "subtitle": "Masou Kishin III · Pride of Justice",
-      "version": "준비중입니다",
-      "date": "",
-      "size": "",
-      "url": ""
+      "version": "1.0",
+      "date": "2026-07-13",
+      "size": "4MB",
+      "url": "https://github.com/wandererB/wanderer-arbor/releases/download/mk3v-v1.0/MasouKishin3_KR_Vita_v1.0.zip"
     },
     {
       "title": "마장기신 3 한글패치 (PS3)",
       "subtitle": "Masou Kishin III · Pride of Justice",
-      "version": "준비중입니다",
-      "date": "",
-      "size": "",
-      "url": ""
+      "version": "1.0",
+      "date": "2026-07-13",
+      "size": "약 2.1MB",
+      "url": "https://github.com/wandererB/wanderer-arbor/releases/download/mk3p-v1.0/MasouKishin3_KR_PS3_v1.0.zip"
     },
     {
       "title": "마장기신F 한글패치",
@@ -75,8 +75,12 @@
   ],
   "changelog": [
     {
+      "date": "2026-07-13",
+      "notes": ["마장기신3 한글패치 v1.0 배포 (PS Vita, PS3)"]
+    },
+    {
       "date": "2026-07-05",
-      "notes": ["마장기신1 한글패치 v1.0 배포 (본편 + 전투대사 전편)"]
+      "notes": ["마장기신1 한글패치 v1.0 배포 (본편 + 전투대사 전편)", "마장기신3 분석 시작"]
     },
     {
       "date": "2026-06-30",
