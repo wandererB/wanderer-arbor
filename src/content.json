@@ -49,12 +49,20 @@
       "url": "https://github.com/wandererB/wanderer-arbor/releases/download/mk2-v94/MasouKishin2_KR_v94.zip"
     },
     {
-      "title": "마장기신 3 한글패치",
+      "title": "마장기신 3 한글패치 (PS Vita)",
       "subtitle": "Masou Kishin III · Pride of Justice",
-      "version": "준비중입니다",
-      "date": "",
-      "size": "",
-      "url": ""
+      "version": "1.0",
+      "date": "2026-07-13",
+      "size": "약 6.8MB",
+      "url": "https://github.com/wandererB/wanderer-arbor/releases/download/mk3-v1.0/MasouKishin3_KR_Vita_v1.0.zip"
+    },
+    {
+      "title": "마장기신 3 한글패치 (PS3)",
+      "subtitle": "Masou Kishin III · Pride of Justice",
+      "version": "1.0",
+      "date": "2026-07-13",
+      "size": "약 2.3MB",
+      "url": "https://github.com/wandererB/wanderer-arbor/releases/download/mk3-v1.0/MasouKishin3_KR_PS3_v1.0.zip"
     },
     {
       "title": "마장기신F 한글패치",
