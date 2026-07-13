@@ -1,7 +1,7 @@
 {
   "notice": {
     "show": true,
-    "text": "마장기신F 1.43 업데이트, 마장기신1 v1.24 업데이트",
+    "text": "마장기신3 한글패치 v1.0 배포 - PS Vita · PS3 동시 공개. (마장기신F v1.43 · 마장기신1 v1.24 업데이트)",
     "link": "",
     "linkLabel": ""
   },
@@ -24,7 +24,7 @@
   "patch": {
     "title": "마장기신 한글패치",
     "subtitle": "Masou Kishin · The Lord of Elemental",
-    "intro": "PSP 마장기신 1&2, PS3 마장기신F 의 비공식 한글 번역 패치입니다. 게임 엔진 제어코드를 보존하며, 마장기신 특유의 분위기를 살려 최대한 자연스럽게 다듬고 있습니다. 비영리 개인작업이며, 이 패치를 사용하시는 분들의 정품구매를 권장합니다.",
+    "intro": "PSP 마장기신 1&2, PS Vita·PS3 마장기신3, PS3 마장기신F 의 비공식 한글 번역 패치입니다. 게임 엔진 제어코드를 보존하며, 마장기신 특유의 분위기를 살려 최대한 자연스럽게 다듬고 있습니다. 비영리 개인작업이며, 이 패치를 사용하시는 분들의 정품구매를 권장합니다.",
     "stats": [
       { "n": "29,000+", "l": "전체 대사 행" },
       { "n": "1990s~2000s", "l": "더빙 어조 기준" },
@@ -53,7 +53,7 @@
       "subtitle": "Masou Kishin III · Pride of Justice",
       "version": "1.0",
       "date": "2026-07-13",
-      "size": "약 6.8MB",
+      "size": "약 6.7MB",
       "url": "https://github.com/wandererB/wanderer-arbor/releases/download/mk3-v1.0/MasouKishin3_KR_Vita_v1.0.zip"
     },
     {
