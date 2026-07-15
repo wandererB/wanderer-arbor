@@ -1,7 +1,7 @@
 {
   "notice": {
     "show": true,
-    "text": "마장기신3(PS Vita, PS3) v1.1 업데이트, 마장기신2 v96, 마장기신1 v1.28 업데이트",
+    "text": "마장기신3(PS Vita, PS3) v1.1 업데이트,마장기신1 v1.29(20화 크래시 해결) 업데이트",
     "link": "",
     "linkLabel": ""
   },
@@ -35,10 +35,10 @@
     {
       "title": "마장기신 1 한글패치",
       "subtitle": "Masou Kishin I · The Lord of Elemental",
-      "version": "1.28",
-      "date": "2026-07-14",
+      "version": "1.29",
+      "date": "2026-07-15",
       "size": "약 6MB",
-      "url": "https://github.com/wandererB/wanderer-arbor/releases/download/mk1-v1.28/MasouKishin1_KR_v1.28.zip"
+      "url": "https://github.com/wandererB/wanderer-arbor/releases/download/mk1-v1.29/MasouKishin1_KR_v1.29.zip"
     },
     {
       "title": "마장기신 2 한글패치",
