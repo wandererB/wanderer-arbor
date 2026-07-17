@@ -1,7 +1,7 @@
 {
   "notice": {
     "show": true,
-    "text": "마장기신1 v1.33 업데이트",
+    "text": "마장기신1 v1.33 업데이트","마장기신2 v97 업데이트",
     "link": "",
     "linkLabel": ""
   },
@@ -43,10 +43,10 @@
     {
       "title": "마장기신 2 한글패치",
       "subtitle": "Masou Kishin II · Revelation of Evil God",
-      "version": "96",
-      "date": "2026-07-13",
+      "version": "97",
+      "date": "2026-07-18",
       "size": "약 19MB",
-      "url": "https://github.com/wandererB/wanderer-arbor/releases/download/mk2-v96/MasouKishin2_KR_v96.zip"
+      "url": "https://github.com/wandererB/wanderer-arbor/releases/download/mk2-v97/MasouKishin2_KR_v97.zip"
     },
     {
       "title": "마장기신 3 한글패치 (PS Vita)",
