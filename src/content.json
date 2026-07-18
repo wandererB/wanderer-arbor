@@ -1,7 +1,7 @@
 {
   "notice": {
     "show": true,
-    "text": "마장기신1 v1.33 · 마장기신2 v97 · 마장기신3 v1.2 업데이트",
+    "text": "마장기신1 v1.33 · 마장기신2 v97 · 마장기신3 v1.2 · 마장기신F v1.45 업데이트",
     "link": "",
     "linkLabel": ""
   },
@@ -67,10 +67,10 @@
     {
       "title": "마장기신F 한글패치",
       "subtitle": "Masou Kishin F · Coffin of The End",
-      "version": "1.44",
-      "date": "2026-07-14",
+      "version": "1.45",
+      "date": "2026-07-18",
       "size": "약 5.1MB",
-      "url": "https://github.com/wandererB/wanderer-arbor/releases/download/mkf-v1.44/MasouKishinF_KR.v1.44.zip"
+      "url": "https://github.com/wandererB/wanderer-arbor/releases/download/mkf-v1.45/MasouKishinF_KR.v1.45.zip"
     }
   ],
   "changelog": [
