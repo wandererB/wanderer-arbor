@@ -1,7 +1,7 @@
 {
   "notice": {
     "show": true,
-    "text": "마장기신1 v1.33 · 마장기신2 v97 · 마장기신3 v1.2 · 마장기신F v1.45 업데이트",
+    "text": "방랑자의 암자를 공개합니다",
     "link": "",
     "linkLabel": ""
   },
@@ -110,16 +110,16 @@
     }
   ],
   "hermitage": {
-    "heroSubtitle": "열혈시대극 · 熱血時代劇",
+    "heroSubtitle": "열혈시대극FC · 熱血時代劇",
     "intro": "마장기신 곁에서 방랑자가 틈틈이 옮기는 다른 이야기들의 자리입니다. 첫 손님은 열혈시대극 한글패치입니다.",
     "downloads": [
       {
-        "title": "열혈시대극 한글패치",
+        "title": "열혈시대극[FC] 한글패치",
         "subtitle": "熱血時代劇",
-        "version": "0.97",
+        "version": "0.98",
         "date": "2026-07-19",
         "size": "약 24KB",
-        "url": "https://github.com/wandererB/wanderer-arbor/releases/download/DT1/Downtown_Jidaigeki_Korean_v0.97.zip"
+        "url": "https://github.com/wandererB/wanderer-arbor/releases/download/DT2/Downtown_Jidaigeki_Korean_v0.98.zip"
       }
     ]
   }
