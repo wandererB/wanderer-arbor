@@ -2,11 +2,16 @@ import { C, serif } from "../theme.js";
 import { CTA } from "./ui.jsx";
 import content from "../content.json";
 
-export default function DownloadSection() {
-  const downloads = content.downloads || [];
+export default function DownloadSection({
+  items,
+  heading = "패치 다운로드",
+  eyebrow = "Download",
+  id = "download",
+} = {}) {
+  const downloads = items || content.downloads || [];
   return (
     <section
-      id="download"
+      id={id}
       style={{
         background: C.ink2,
         borderTop: `1px solid ${C.line}`,
@@ -23,7 +28,7 @@ export default function DownloadSection() {
             margin: "0 0 6px",
           }}
         >
-          Download
+          {eyebrow}
         </p>
         <h2
           style={{
@@ -34,7 +39,7 @@ export default function DownloadSection() {
             fontWeight: 700,
           }}
         >
-          패치 다운로드
+          {heading}
         </h2>
 
         <div style={{ display: "grid", gap: 16 }}>

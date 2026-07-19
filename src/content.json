@@ -108,5 +108,19 @@
       "date": "2026-05-19",
       "notes": ["마장기신1 한글패치를 위한 기본 분석 시작"]
     }
-  ]
+  ],
+  "hermitage": {
+    "heroSubtitle": "열혈시대극 · 熱血時代劇",
+    "intro": "마장기신 곁에서 방랑자가 틈틈이 옮기는 다른 이야기들의 자리입니다. 첫 손님은 열혈시대극 한글패치입니다.",
+    "downloads": [
+      {
+        "title": "열혈시대극 한글패치",
+        "subtitle": "熱血時代劇",
+        "version": "0.96",
+        "date": "2026-07-19",
+        "size": "약 24KB",
+        "url": "https://github.com/wandererB/wanderer-arbor/releases/download/DT/Downtown_Jidaigeki_Korean_v0.96.zip"
+      }
+    ]
+  }
 }
