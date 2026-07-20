@@ -1,7 +1,7 @@
 {
   "notice": {
     "show": true,
-    "text": "방랑자의 암자를 공개합니다",
+    "text": "방랑자의 암자를 공개합니다 > FC열혈시대극 v0.99b 배포",
     "link": "",
     "linkLabel": ""
   },
@@ -116,10 +116,10 @@
       {
         "title": "열혈시대극[FC] 한글패치",
         "subtitle": "熱血時代劇",
-        "version": "0.98",
-        "date": "2026-07-19",
+        "version": "0.99b",
+        "date": "2026-07-20",
         "size": "약 24KB",
-        "url": "https://github.com/wandererB/wanderer-arbor/releases/download/DT2/Downtown_Jidaigeki_Korean_v0.98.zip"
+        "url": "https://github.com/wandererB/wanderer-arbor/releases/download/DT3/Downtown_Jidaigeki_Korean_v0.99b.zip"
       }
     ]
   }
