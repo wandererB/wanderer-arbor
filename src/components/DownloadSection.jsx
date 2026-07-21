@@ -1,4 +1,4 @@
-import { C, serif } from "../theme.js";
+import { C, serif, asset } from "../theme.js";
 import { CTA } from "./ui.jsx";
 import content from "../content.json";
 
@@ -60,13 +60,41 @@ export default function DownloadSection({
                   justifyContent: "space-between",
                   gap: 20,
                   flexWrap: "wrap",
-                  background: C.paper,
+                  backgroundColor: C.paper,
                   border: `1px solid ${C.line}`,
                   borderRadius: 12,
                   padding: "22px 24px",
+                  position: "relative",
+                  overflow: "hidden",
                 }}
               >
-                <div>
+                {/* d.bg 가 있으면 원작 타이틀 화면을 카드 전체 배경으로 깐다.
+                    sepia 로 사이트 톤에 맞추고, 위에 카드색 막을 덮어 글자 가독성을 지킨다. */}
+                {d.bg && (
+                  <>
+                    <div
+                      style={{
+                        position: "absolute",
+                        inset: 0,
+                        backgroundImage: `url(${asset(d.bg)})`,
+                        backgroundSize: "cover",
+                        backgroundPosition: "center 35%",
+                        filter: "sepia(0.45) saturate(0.8) brightness(0.9)",
+                        pointerEvents: "none",
+                      }}
+                    />
+                    <div
+                      style={{
+                        position: "absolute",
+                        inset: 0,
+                        background:
+                          "linear-gradient(90deg, rgba(42,36,27,0.86) 0%, rgba(42,36,27,0.78) 100%)",
+                        pointerEvents: "none",
+                      }}
+                    />
+                  </>
+                )}
+                <div style={{ position: "relative", zIndex: 1 }}>
                   <div style={{ fontFamily: serif, color: C.gold, fontSize: 20 }}>
                     {d.title}
                   </div>
@@ -87,29 +115,31 @@ export default function DownloadSection({
                     {meta || "준비 중"}
                   </div>
                 </div>
-                {d.url ? (
-                  <CTA primary href={d.url}>
-                    ↓ 다운로드
-                  </CTA>
-                ) : (
-                  // url이 비어 있으면(아직 미배포) 클릭 안 되는 '준비 중' 표시
-                  <span
-                    style={{
-                      padding: "12px 26px",
-                      borderRadius: 8,
-                      fontSize: 15,
-                      fontWeight: 600,
-                      letterSpacing: 1,
-                      color: C.textDim,
-                      background: "rgba(20,16,11,0.4)",
-                      border: `1px dashed ${C.line}`,
-                      display: "inline-block",
-                      cursor: "default",
-                    }}
-                  >
-                    준비 중
-                  </span>
-                )}
+                <div style={{ position: "relative", zIndex: 1 }}>
+                  {d.url ? (
+                    <CTA primary href={d.url}>
+                      ↓ 다운로드
+                    </CTA>
+                  ) : (
+                    // url이 비어 있으면(아직 미배포) 클릭 안 되는 '준비 중' 표시
+                    <span
+                      style={{
+                        padding: "12px 26px",
+                        borderRadius: 8,
+                        fontSize: 15,
+                        fontWeight: 600,
+                        letterSpacing: 1,
+                        color: C.textDim,
+                        background: "rgba(20,16,11,0.4)",
+                        border: `1px dashed ${C.line}`,
+                        display: "inline-block",
+                        cursor: "default",
+                      }}
+                    >
+                      준비 중
+                    </span>
+                  )}
+                </div>
               </div>
             );
           })}
