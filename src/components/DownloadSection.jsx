@@ -78,7 +78,8 @@ export default function DownloadSection({
                         inset: 0,
                         backgroundImage: `url(${asset(d.bg)})`,
                         backgroundSize: "cover",
-                        backgroundPosition: "center 35%",
+                        // 그림마다 잘 보이는 띠가 달라서 항목별로 bgPos 로 조정한다.
+                        backgroundPosition: d.bgPos || "center 35%",
                         filter: "sepia(0.45) saturate(0.8) brightness(0.9)",
                         pointerEvents: "none",
                       }}

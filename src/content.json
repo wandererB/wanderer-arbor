@@ -110,8 +110,8 @@
     }
   ],
   "hermitage": {
-    "heroSubtitle": "열혈시대극FC · 熱血時代劇",
-    "intro": "마장기신 곁에서 방랑자가 틈틈이 옮기는 다른 이야기들의 자리입니다. 첫 손님은 열혈시대극 한글패치입니다.",
+    "heroSubtitle": "熱血時代劇 · PARASITE EVE II",
+    "intro": "마장기신 곁에서 방랑자가 틈틈이 옮기는 다른 이야기들의 자리입니다.",
     "downloads": [
       {
         "title": "열혈시대극[FC] 한글패치",
@@ -120,7 +120,18 @@
         "date": "2026-07-20",
         "size": "약 24KB",
         "url": "https://github.com/wandererB/wanderer-arbor/releases/download/DT3/Downtown_Jidaigeki_Korean_v0.99b.zip",
-        "bg": "images/jidaigeki.jpg"
+        "bg": "images/jidaigeki.jpg",
+        "bgPos": "center 35%"
+      },
+      {
+        "title": "패러사이트 이브 2[PS1] 한글패치",
+        "subtitle": "Parasite Eve II",
+        "version": "1.0",
+        "date": "2026-07-22",
+        "size": "약 4.9MB",
+        "url": "https://github.com/wandererB/wanderer-arbor/releases/download/pe2-v1.0/PE2_KO_1.0_patch.zip",
+        "bg": "images/PE2.jpg",
+        "bgPos": "center 50%"
       }
     ]
   }
