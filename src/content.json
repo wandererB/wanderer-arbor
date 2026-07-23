@@ -1,7 +1,7 @@
 {
   "notice": {
     "show": true,
-    "text": "방랑자의 암자를 공개합니다 > 패러사이트 이브2 v1.0.1 업데이트",
+    "text": "방랑자의 암자를 공개합니다 > 패러사이트 이브2 v1.1 업데이트",
     "link": "",
     "linkLabel": ""
   },
@@ -126,10 +126,10 @@
       {
         "title": "패러사이트 이브 2[PS1] 한글패치",
         "subtitle": "Parasite Eve II",
-        "version": "1.0.1",
+        "version": "1.1",
         "date": "2026-07-23",
         "size": "약 4.9MB",
-        "url": "https://github.com/wandererB/wanderer-arbor/releases/download/pe2-v1.0.1/PE2_KO_1.0.1_patch.zip",
+        "url": "https://github.com/wandererB/wanderer-arbor/releases/download/pe2-v1.1/PE2_KO_1.1_patch.zip",
         "bg": "images/PE2.jpg",
         "bgPos": "center 50%"
       }
