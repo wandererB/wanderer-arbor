@@ -1,7 +1,7 @@
 {
   "notice": {
     "show": true,
-    "text": "방랑자의 암자를 공개합니다 > 사이버포뮬러 RTTI4 v1.0 공개, 패러사이트 이브2 v1.1 업데이트",
+    "text": "방랑자의 암자를 공개합니다 > 사이버포뮬러 RTTI4 v1.1 업데이트(폰트변경), 패러사이트 이브2 v1.1 업데이트",
     "link": "",
     "linkLabel": ""
   },
@@ -136,10 +136,10 @@
       {
         "title": "사이버 포뮬러 RTI4[PS2] 한글패치",
         "subtitle": "新世紀GPX Road to the Infinity 4",
-        "version": "1.0",
-        "date": "2026-07-23",
+        "version": "1.1",
+        "date": "2026-07-24",
         "size": "약 470KB",
-        "url": "https://github.com/wandererB/wanderer-arbor/releases/download/cf4-v1.0/cyber4-korean-v1.0.zip",
+        "url": "https://github.com/wandererB/wanderer-arbor/releases/download/cf4-v1.1/cyber4-korean-v1.1.zip",
         "bg": "images/CF_RtI4.jpg",
         "bgPos": "center 30%"
       }
