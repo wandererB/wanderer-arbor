@@ -69,7 +69,7 @@
       "subtitle": "Masou Kishin F · Coffin of The End",
       "version": "1.5",
       "date": "2026-07-31",
-      "size": "약 5.1MB",
+      "size": "약 5.5MB",
       "url": "https://github.com/wandererB/wanderer-arbor/releases/download/mkf-v1.5/MasouKishinF_KR.v1.5.zip"
     }
   ],
@@ -132,6 +132,16 @@
         "url": "https://github.com/wandererB/wanderer-arbor/releases/download/pe2-v1.1/PE2_KO_1.1_patch.zip",
         "bg": "images/PE2.jpg",
         "bgPos": "center 50%"
+      },
+      {
+        "title": "사이버 포뮬러 RTTI3[PS2] 한글패치",
+        "subtitle": "新世紀GPX Road to the Infinity 3",
+        "version": "1.0",
+        "date": "2026-07-30",
+        "size": "약 550KB",
+        "url": "https://github.com/wandererB/wanderer-arbor/releases/download/cf3-v1.0/cyber3-korean-v1.0.zip",
+        "bg": "images/Road_to_the_Infinity_3.jpg",
+        "bgPos": "center 15%"
       },
       {
         "title": "사이버 포뮬러 RTTI4[PS2] 한글패치",
