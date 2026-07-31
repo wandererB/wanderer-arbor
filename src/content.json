@@ -1,7 +1,7 @@
 {
   "notice": {
     "show": true,
-    "text": "마장기신F v1.5 업데이트(DLC 6종)",
+    "text": "마장기신F v1.5 업데이트(DLC 6종), 사이버포뮬러3 v1.0 배포, 패러사이트 이브2 v1.3 업데이트",
     "link": "",
     "linkLabel": ""
   },
@@ -126,10 +126,10 @@
       {
         "title": "패러사이트 이브 2[PS1] 한글패치",
         "subtitle": "Parasite Eve II",
-        "version": "1.1",
-        "date": "2026-07-23",
+        "version": "1.3",
+        "date": "2026-07-31",
         "size": "약 4.9MB",
-        "url": "https://github.com/wandererB/wanderer-arbor/releases/download/pe2-v1.1/PE2_KO_1.1_patch.zip",
+        "url": "https://github.com/wandererB/wanderer-arbor/releases/download/pe2-v1.3/PE2_KO_1.3_patch.zip",
         "bg": "images/PE2.jpg",
         "bgPos": "center 50%"
       },
