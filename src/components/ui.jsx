@@ -126,8 +126,13 @@ export function GlobalStyle() {
       @media (max-width: 640px) {
         .site-name-part { display: block; }
         nav { padding-left: 14px !important; padding-right: 14px !important; }
+        .nav-links { gap: 6px !important; }
+        .nav-links button { padding: 7px 10px; font-size: 13px; letter-spacing: 0; }
+      }
+      /* 아주 좁은 폰(≤400px)만 더 축소해 4버튼이 한 줄에 들어가게. 그 이상은 위 13px 유지 */
+      @media (max-width: 400px) {
         .nav-links { gap: 5px !important; }
-        .nav-links button { padding: 6px 9px; font-size: 12px; letter-spacing: 0; }
+        .nav-links button { padding: 6px 9px; font-size: 12px; }
       }
     `}</style>
   );
