@@ -154,5 +154,19 @@
         "bgPos": "center 30%"
       }
     ]
+  },
+  "botjim": {
+    "heroSubtitle": "도구 · 유틸리티",
+    "intro": "방랑자가 봇짐에 챙겨 다니는 자잘한 연장들. 한글패치가 아닌 도구·유틸리티를 여기 둡니다.",
+    "downloads": [
+      {
+        "title": "슈퍼로봇대전 Z 커스텀 BGM 생성기",
+        "subtitle": "Super Robot Wars Z · Custom BGM",
+        "version": "준비중입니다",
+        "date": "",
+        "size": "",
+        "url": ""
+      }
+    ]
   }
 }

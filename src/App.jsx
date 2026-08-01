@@ -3,7 +3,7 @@ import { C, sans } from "./theme.js";
 import { GlobalStyle } from "./components/ui.jsx";
 import Nav from "./components/Nav.jsx";
 import Home from "./components/Home.jsx";
-import Workspace from "./components/Workspace.jsx";
+import Botjim from "./components/Botjim.jsx";
 import Hermitage from "./components/Hermitage.jsx";
 import Footer from "./components/Footer.jsx";
 import content from "./content.json";
@@ -12,7 +12,7 @@ import content from "./content.json";
 const Guestbook = lazy(() => import("./components/Guestbook.jsx"));
 
 export default function App() {
-  const [view, setView] = useState("home"); // home | guestbook | workspace | hermitage
+  const [view, setView] = useState("home"); // home | guestbook | botjim | hermitage
   useEffect(() => {
     document.title = content.site.name;
   }, []);
@@ -39,7 +39,7 @@ export default function App() {
           <Guestbook />
         </Suspense>
       )}
-      {view === "workspace" && <Workspace />}
+      {view === "botjim" && <Botjim setView={setView} />}
       {view === "hermitage" && <Hermitage setView={setView} />}
       <Footer />
     </div>

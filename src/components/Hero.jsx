@@ -68,7 +68,7 @@ export default function Hero({ setView }) {
             </CTA>
           )}
           <CTA onClick={() => setView("hermitage")}>암자 가기</CTA>
-          <CTA onClick={() => setView("workspace")}>작업공간 →</CTA>
+          <CTA onClick={() => setView("botjim")}>봇짐 →</CTA>
         </div>
       </div>
     </header>
