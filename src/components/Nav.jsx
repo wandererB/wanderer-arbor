@@ -35,14 +35,44 @@ export default function Nav({ view, setView }) {
           alt="방랑자"
           style={{ width: 38, height: 38, borderRadius: "50%" }}
         />
-        <span style={{ fontSize: 19, letterSpacing: 1 }}>{content.site.name}</span>
+        {/* 사이트명: 데스크톱은 한 줄, 모바일은 공백에서 두 줄(방랑자의 / 그늘쉼터).
+            keep-all 로 낱말 중간(그늘쉼|터) 깨짐 방지. 분리는 content.site.name 의 공백 기준. */}
+        <span
+          className="site-name"
+          style={{
+            fontSize: 19,
+            letterSpacing: 1,
+            whiteSpace: "nowrap",
+            wordBreak: "keep-all",
+            lineHeight: 1.15,
+            textAlign: "left",
+          }}
+        >
+          {content.site.name.split(" ").map((part, i) => (
+            <span key={i} className="site-name-part">
+              {i > 0 ? " " : ""}
+              {part}
+            </span>
+          ))}
+        </span>
       </button>
-      <div style={{ display: "flex", gap: 6 }}>
+      <div
+        className="nav-links"
+        style={{
+          display: "flex",
+          gap: 6,
+          flexWrap: "wrap",
+          justifyContent: "flex-end",
+        }}
+      >
         <NavBtn active={view === "home"} onClick={() => setView("home")}>
           패치
         </NavBtn>
         <NavBtn active={view === "hermitage"} onClick={() => setView("hermitage")}>
           암자
+        </NavBtn>
+        <NavBtn active={view === "botjim"} onClick={() => setView("botjim")}>
+          봇짐
         </NavBtn>
         <NavBtn active={view === "guestbook"} onClick={() => setView("guestbook")}>
           방명록
@@ -57,12 +87,10 @@ function NavBtn({ active, children, onClick }) {
     <button
       onClick={onClick}
       style={{
-        padding: "8px 16px",
         borderRadius: 6,
         cursor: "pointer",
         fontFamily: sans,
-        fontSize: 14,
-        letterSpacing: 0.5,
+        whiteSpace: "nowrap",
         background: active ? C.gold : "transparent",
         color: active ? C.ink : C.textDim,
         border: `1px solid ${active ? C.gold : C.line}`,

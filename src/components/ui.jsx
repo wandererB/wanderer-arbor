@@ -120,6 +120,15 @@ export function GlobalStyle() {
       body { margin: 0; }
       code { font-family: ui-monospace, monospace; background: ${C.ink}; padding: 1px 5px; border-radius: 4px; color: ${C.sepia}; font-size: 0.88em; }
       @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+      /* 네비 버튼 기본 크기(인라인 대신 CSS로 관리 → 모바일에서 축소 가능) */
+      .nav-links button { padding: 8px 16px; font-size: 14px; letter-spacing: 0.5px; }
+      /* 모바일: 사이트명 두 줄(방랑자의 / 그늘쉼터) + 네비 버튼 4개가 들어가도록 여백 축소 */
+      @media (max-width: 640px) {
+        .site-name-part { display: block; }
+        nav { padding-left: 14px !important; padding-right: 14px !important; }
+        .nav-links { gap: 5px !important; }
+        .nav-links button { padding: 6px 9px; font-size: 12px; letter-spacing: 0; }
+      }
     `}</style>
   );
 }
