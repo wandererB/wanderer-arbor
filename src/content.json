@@ -160,12 +160,12 @@
     "intro": "방랑자가 봇짐에 챙겨 다니는 자잘한 연장들. 한글패치가 아닌 도구·유틸리티를 여기 둡니다.",
     "downloads": [
       {
-        "title": "슈퍼로봇대전 Z 커스텀 BGM 생성기(길이조절판)",
+        "title": "슈퍼로봇대전 Z 커스텀 BGM 생성기(정식판)",
         "subtitle": "Super Robot Wars Z · Custom BGM",
-        "version": "2.11",
-        "date": "2026-08-05",
+        "version": "2.20",
+        "date": "2026-08-06",
         "size": "약 71MB",
-        "url": "https://github.com/wandererB/wanderer-arbor/releases/download/srwzbgm/SRWZ_InternalBGM_Public_v2.11_LengthOption.zip"
+        "url": "https://github.com/wandererB/wanderer-arbor/releases/download/srwz-v2.8/SRWZ_InternalBGM_Public_v2.20.zip"
       }
     ]
   }
