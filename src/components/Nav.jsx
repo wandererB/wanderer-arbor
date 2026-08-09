@@ -77,6 +77,9 @@ export default function Nav({ view, setView }) {
         <NavBtn active={view === "guestbook"} onClick={() => setView("guestbook")}>
           방명록
         </NavBtn>
+        <NavBtn active={view === "genki"} onClick={() => setView("genki")}>
+          원기옥
+        </NavBtn>
       </div>
     </nav>
   );

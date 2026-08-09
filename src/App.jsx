@@ -5,6 +5,7 @@ import Nav from "./components/Nav.jsx";
 import Home from "./components/Home.jsx";
 import Botjim from "./components/Botjim.jsx";
 import Hermitage from "./components/Hermitage.jsx";
+import Genki from "./components/Genki.jsx";
 import Footer from "./components/Footer.jsx";
 import content from "./content.json";
 
@@ -12,7 +13,7 @@ import content from "./content.json";
 const Guestbook = lazy(() => import("./components/Guestbook.jsx"));
 
 export default function App() {
-  const [view, setView] = useState("home"); // home | guestbook | botjim | hermitage
+  const [view, setView] = useState("home"); // home | guestbook | botjim | hermitage | genki
   useEffect(() => {
     document.title = content.site.name;
   }, []);
@@ -41,6 +42,7 @@ export default function App() {
       )}
       {view === "botjim" && <Botjim setView={setView} />}
       {view === "hermitage" && <Hermitage setView={setView} />}
+      {view === "genki" && <Genki setView={setView} />}
       <Footer />
     </div>
   );

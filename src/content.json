@@ -152,6 +152,16 @@
         "url": "https://github.com/wandererB/wanderer-arbor/releases/download/cf4-v1.1/cyber4-korean-v1.1.zip",
         "bg": "images/CF_RtI4.jpg",
         "bgPos": "center 30%"
+      },
+      {
+        "title": "시작의 일보[PS3] 한글패치",
+        "subtitle": "はじめの一歩 THE FIGHTING!",
+        "version": "1.0",
+        "date": "2026-08-09",
+        "size": "약 18.8MB",
+        "url": "https://github.com/wandererB/wanderer-arbor/releases/download/ippo-v1.0/PS3.The.Fighting.KR_v1.0.zip",
+        "bg": "images/the_fighting.png",
+        "bgPos": "center 40%"
       }
     ]
   },
@@ -168,5 +178,18 @@
         "url": "https://github.com/wandererB/wanderer-arbor/releases/download/srwz-v2.8/SRWZ_InternalBGM_Public_v2.20.zip"
       }
     ]
+  },
+  "genki": {
+    "eyebrow": "원기옥",
+    "title": "☕ 커피 한잔 응원하기",
+    "lines": [
+      "작업이 마음에 드셨다면 가볍게 응원해 주세요 :)",
+      "후원은 전적으로 자율이며, 후원 여부와 자료의 다운로드·이용은 아무런 관계가 없습니다.",
+      "후원에 따른 별도의 자료 제공, 우선 배포 등의 혜택은 없습니다.",
+      "보내주신 응원은 개인적인 작업 환경 유지에 감사히 사용하겠습니다.",
+      "감사합니다!"
+    ],
+    "buttonLabel": "☕ 커피 한잔 응원하기",
+    "url": "https://litt.ly/wandererb"
   }
 }
