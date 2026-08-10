@@ -1,7 +1,7 @@
 {
   "notice": {
     "show": true,
-    "text": "PS3 시작의 일보(더 파이팅!) v1.01 배포 -> 암자, 슈로대Z 커스텀 BGM 생성기 배포 -> 봇짐",
+    "text": "사이버포뮬러4 v1.2 업데이트, PS3 시작의 일보(더 파이팅!) v1.01 배포 -> 암자",
     "link": "",
     "linkLabel": ""
   },
@@ -146,10 +146,10 @@
       {
         "title": "사이버 포뮬러 RTTI4[PS2] 한글패치",
         "subtitle": "新世紀GPX Road to the Infinity 4",
-        "version": "1.1",
-        "date": "2026-07-24",
-        "size": "약 470KB",
-        "url": "https://github.com/wandererB/wanderer-arbor/releases/download/cf4-v1.1/cyber4-korean-v1.1.zip",
+        "version": "1.2",
+        "date": "2026-08-11",
+        "size": "약 650KB",
+        "url": "https://github.com/wandererB/wanderer-arbor/releases/download/cf4-v1.0/cyber4-korean-v1.2.zip",
         "bg": "images/CF_RtI4.jpg",
         "bgPos": "center 30%"
       },
