@@ -1,7 +1,7 @@
 {
   "notice": {
     "show": true,
-    "text": "사이버포뮬러4 v1.2, 사이버포뮬러3 v1.1 업데이트, PS3 시작의 일보(더 파이팅!) v1.01 배포 -> 암자",
+    "text": "PS3 시작의 일보(더 파이팅!) v1.1 업데이트 배포, 사이버포뮬러4 v1.2, 사이버포뮬러3 v1.1 업데이트-> 암자",
     "link": "",
     "linkLabel": ""
   },
@@ -156,10 +156,10 @@
       {
         "title": "시작의 일보[PS3] 한글패치",
         "subtitle": "はじめの一歩 THE FIGHTING!",
-        "version": "1.01",
-        "date": "2026-08-09",
-        "size": "약 18.8MB",
-        "url": "https://github.com/wandererB/wanderer-arbor/releases/download/ippo-v1.01/PS3.The.Fighting.KR_v1.01.zip",
+        "version": "1.1",
+        "date": "2026-08-12",
+        "size": "약 1.17GB",
+        "url": "https://github.com/wandererB/wanderer-arbor/releases/download/ippo-v1.0/PS3.The.Fighting.KR_v1.1.zip",
         "bg": "images/the_fighting.png",
         "bgPos": "center 40%"
       }
