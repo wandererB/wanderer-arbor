@@ -1,7 +1,7 @@
 {
   "notice": {
     "show": true,
-    "text": "사이버포뮬러4 v1.2 업데이트, PS3 시작의 일보(더 파이팅!) v1.01 배포 -> 암자",
+    "text": "사이버포뮬러4 v1.2, 사이버포뮬러3 v1.1 업데이트, PS3 시작의 일보(더 파이팅!) v1.01 배포 -> 암자",
     "link": "",
     "linkLabel": ""
   },
@@ -136,10 +136,10 @@
       {
         "title": "사이버 포뮬러 RTTI3[PS2] 한글패치",
         "subtitle": "新世紀GPX Road to the Infinity 3",
-        "version": "1.0",
-        "date": "2026-07-30",
-        "size": "약 550KB",
-        "url": "https://github.com/wandererB/wanderer-arbor/releases/download/cf3-v1.0/cyber3-korean-v1.0.zip",
+        "version": "1.1",
+        "date": "2026-08-12",
+        "size": "약 680KB",
+        "url": "https://github.com/wandererB/wanderer-arbor/releases/download/cf3-v1.0/cyber3-korean-v1.1.zip",
         "bg": "images/Road_to_the_Infinity_3.jpg",
         "bgPos": "center 15%"
       },
