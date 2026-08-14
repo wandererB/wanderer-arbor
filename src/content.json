@@ -1,7 +1,7 @@
 {
   "notice": {
     "show": true,
-    "text": "PS3 시작의 일보(더 파이팅!) v1.1 업데이트 배포, 사이버포뮬러4 v1.2, 사이버포뮬러3 v1.1 업데이트-> 암자",
+    "text": "PS2 슈퍼로봇대전 커스텀BGM 통합 생성기->암자, PS3 시작의 일보(더 파이팅!) v1.1 업데이트 배포",
     "link": "",
     "linkLabel": ""
   },
@@ -169,6 +169,14 @@
     "heroSubtitle": "도구 · 유틸리티",
     "intro": "방랑자가 봇짐에 챙겨 다니는 자잘한 연장들. 한글패치가 아닌 도구·유틸리티를 여기 둡니다.",
     "downloads": [
+      {
+        "title": "PS2 슈퍼로봇대전 커스텀 BGM 생성기(통합판)",
+        "subtitle": "Super Robot Wars Z · Custom BGM",
+        "version": "3.0",
+        "date": "2026-08-14",
+        "size": "약 71MB",
+        "url": "https://github.com/wandererB/wanderer-arbor/releases/download/srwbgm-v3.0/PS2_SRW_CustomBGM_Public_v3.0.zip"
+      },
       {
         "title": "슈퍼로봇대전 Z 커스텀 BGM 생성기(정식판)",
         "subtitle": "Super Robot Wars Z · Custom BGM",
