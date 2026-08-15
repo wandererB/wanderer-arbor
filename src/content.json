@@ -1,7 +1,7 @@
 {
   "notice": {
     "show": true,
-    "text": "PS2 슈퍼로봇대전 커스텀BGM 통합 생성기->봇짐, PS3 시작의 일보(더 파이팅!) v1.1 업데이트 배포",
+    "text": "PS2 슈퍼로봇대전 커스텀BGM 통합 생성기->봇짐, 유유백서 외전[MD]->암자 배포",
     "link": "",
     "linkLabel": ""
   },
@@ -161,6 +161,16 @@
         "size": "약 1.17GB",
         "url": "https://github.com/wandererB/wanderer-arbor/releases/download/ippo-v1.0/PS3.The.Fighting.KR_v1.1.zip",
         "bg": "images/the_fighting.png",
+        "bgPos": "center 40%"
+      },
+      {
+        "title": "유유백서 외전[MD] 한글패치",
+        "subtitle": "유유백서 외전",
+        "version": "1.0.6",
+        "date": "2026-08-15",
+        "size": "약 90KB",
+        "url": "https://github.com/wandererB/wanderer-arbor/releases/download/yuyu/yyh_gaiden_ko_v1.0.6.zip",
+        "bg": "images/yuyu.png",
         "bgPos": "center 40%"
       }
     ]
