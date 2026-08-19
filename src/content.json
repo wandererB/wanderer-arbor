@@ -1,7 +1,7 @@
 {
   "notice": {
     "show": true,
-    "text": "PS2 슈퍼로봇대전 커스텀BGM 통합 생성기->봇짐, 유유백서 외전[MD]->암자 배포",
+    "text": "PSP 시작의 일보 v1.0 배포-> 암자, PS2 슈퍼로봇대전 커스텀BGM 통합 생성기->봇짐",
     "link": "",
     "linkLabel": ""
   },
@@ -161,6 +161,16 @@
         "size": "약 1.17GB",
         "url": "https://github.com/wandererB/wanderer-arbor/releases/download/ippo-v1.0/PS3.The.Fighting.KR_v1.1.zip",
         "bg": "images/the_fighting.png",
+        "bgPos": "center 40%"
+      },
+      {
+        "title": "시작의 일보[PSP] 한글패치",
+        "subtitle": "はじめの一歩 THE FIGHTING!",
+        "version": "1.0",
+        "date": "2026-08-19",
+        "size": "약 22.4MB",
+        "url": "https://github.com/wandererB/wanderer-arbor/releases/download/psp_ippo-v1.0/Ippo_KR_v1.0.zip",
+        "bg": "images/psp_ippo.jpg",
         "bgPos": "center 40%"
       },
       {
