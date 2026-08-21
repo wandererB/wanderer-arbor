@@ -1,7 +1,7 @@
 {
   "notice": {
     "show": true,
-    "text": "PSP 시작의 일보 v1.0 배포-> 암자, PS2 슈퍼로봇대전 커스텀BGM 통합 생성기->봇짐",
+    "text": "PSP 시작의 일보 v1.0 배포-> 암자, PS1 슈퍼로봇대전 알파 커스텀BGM 생성기->봇짐",
     "link": "",
     "linkLabel": ""
   },
@@ -198,12 +198,12 @@
         "url": "https://github.com/wandererB/wanderer-arbor/releases/download/srwbgm-v3.0/PS2_SRW_CustomBGM_Public_v3.0.zip"
       },
       {
-        "title": "슈퍼로봇대전 Z 커스텀 BGM 생성기(정식판)",
-        "subtitle": "Super Robot Wars Z · Custom BGM",
-        "version": "2.20",
-        "date": "2026-08-06",
+        "title": "PS1 슈퍼로봇대전 알파 커스텀 BGM 생성기(시험판)",
+        "subtitle": "Super Robot Wars α · Custom BGM",
+        "version": "1.3",
+        "date": "2026-08-021",
         "size": "약 71MB",
-        "url": "https://github.com/wandererB/wanderer-arbor/releases/download/srwz-v2.8/SRWZ_InternalBGM_Public_v2.20.zip"
+        "url": "https://github.com/wandererB/wanderer-arbor/releases/download/srwz-v2.8/PS1_SRW_CustomBGM_Public_v1.3.zip"
       }
     ]
   },
