@@ -198,12 +198,12 @@
         "url": "https://github.com/wandererB/wanderer-arbor/releases/download/srwbgm-v3.0/PS2_SRW_CustomBGM_Public_v3.0.zip"
       },
       {
-        "title": "PS1 슈퍼로봇대전 알파 커스텀 BGM 생성기(시험판)",
+        "title": "PS1 슈퍼로봇대전 알파 커스텀 BGM 생성기(정식판)",
         "subtitle": "Super Robot Wars α · Custom BGM",
-        "version": "1.3",
-        "date": "2026-08-21",
+        "version": "1.4",
+        "date": "2026-08-22",
         "size": "약 71MB",
-        "url": "https://github.com/wandererB/wanderer-arbor/releases/download/srwz-v2.8/PS1_SRW_CustomBGM_Public_v1.3.zip"
+        "url": "https://github.com/wandererB/wanderer-arbor/releases/download/srwz-v2.8/PS1_SRW_CustomBGM_V1.4.zip"
       }
     ]
   },
