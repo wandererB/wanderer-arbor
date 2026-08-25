@@ -56,6 +56,11 @@ if (-not $OutDir) { $OutDir = Join-Path $src.DirectoryName ($src.BaseName + "_pa
 if (-not (Test-Path $OutDir)) { New-Item -ItemType Directory -Path $OutDir | Out-Null }
 $OutDir = (Resolve-Path $OutDir).Path
 
+# 1024MB 이상은 GB 로 적어야 읽힌다 ("약 5291.1MB" 대신 "약 5.17GB")
+function Format-Size([int64]$bytes) {
+  if ($bytes -ge 1GB) { "약 $([math]::Round($bytes / 1GB, 2))GB" }
+  else { "약 $([math]::Round($bytes / 1MB, 0))MB" }
+}
 $srcMB = [math]::Round($src.Length / 1MB, 1)
 Write-Host "원본  : $($src.Name)  ($srcMB MB)"
 Write-Host "분할  : ${VolumeSizeMB}MB 씩 -> $OutDir"
@@ -66,8 +71,14 @@ if ($src.Length -lt 2GB) {
 # ---- 분할 ---------------------------------------------------------------
 # 7-Zip CLI 의 -tsplit 은 읽기 전용(만들기 미지원)이라 직접 자른다.
 # 결과 바이트는 7-Zip GUI 의 "파일 분할"과 동일해서 .001 을 7-Zip 으로 열면 그대로 합쳐진다.
-$target = Join-Path $OutDir $src.Name
-Get-ChildItem -LiteralPath $OutDir -Filter "$($src.Name).*" -ErrorAction SilentlyContinue |
+# GitHub 은 에셋 이름의 공백을 점으로 바꿔 올린다(기존 PS3.The.Fighting.KR_v1.1.zip 이 그 결과).
+# 파트 이름을 미리 그 형태로 맞춰야 로컬 파일명 · 릴리스 에셋명 · content.json URL 이 전부 일치한다.
+$assetName = $src.Name -replace '\s+', '.'
+if ($assetName -ne $src.Name) {
+  Write-Host "이름  : '$($src.Name)' -> '$assetName' (GitHub 이 공백을 점으로 바꾸므로 미리 맞춤)"
+}
+$target = Join-Path $OutDir $assetName
+Get-ChildItem -LiteralPath $OutDir -Filter "$assetName.*" -ErrorAction SilentlyContinue |
   Where-Object { $_.Name -match '\.\d{3}$' } | Remove-Item -Force
 
 $volBytes = [int64]$VolumeSizeMB * 1MB
@@ -95,7 +106,7 @@ try {
 } finally { $in.Dispose() }
 Write-Progress -Activity "분할 중" -Completed
 
-$parts = Get-ChildItem -LiteralPath $OutDir -Filter "$($src.Name).*" |
+$parts = Get-ChildItem -LiteralPath $OutDir -Filter "$assetName.*" |
   Where-Object { $_.Name -match '\.\d{3}$' } | Sort-Object Name
 if (-not $parts) { throw "분할 결과 파일이 없습니다." }
 
@@ -110,7 +121,7 @@ $parts | ForEach-Object { "{0,-56} {1,8} MB" -f $_.Name, [math]::Round($_.Length
 
 # 합친 결과가 원본과 같은지 확인할 수 있게 원본 해시를 남긴다.
 $sha = (Get-FileHash -LiteralPath $src.FullName -Algorithm SHA256).Hash
-Set-Content -Path (Join-Path $OutDir "SHA256.txt") -Value "$sha  $($src.Name)" -Encoding utf8
+Set-Content -Path (Join-Path $OutDir "SHA256.txt") -Value "$sha  $assetName" -Encoding utf8
 Write-Host ""
 Write-Host "SHA256 (원본): $sha"
 
@@ -121,8 +132,8 @@ $bat = @(
   '@echo off'
   'rem 파트를 모두 이 폴더에 모아두고 이 파일을 더블클릭하세요.'
   'cd /d "%~dp0"'
-  "copy /b $plus `"$($src.Name)`""
-  'if errorlevel 1 ( echo. & echo 합치기 실패: 파트가 모두 있는지 확인하세요. ) else ( echo. & echo 완료: %~dp0' + $src.Name + ' )'
+  "copy /b $plus `"$assetName`""
+  'if errorlevel 1 ( echo. & echo 합치기 실패: 파트가 모두 있는지 확인하세요. ) else ( echo. & echo 완료: %~dp0' + $assetName + ' )'
   'pause'
 ) -join "`r`n"
 Set-Content -Path (Join-Path $OutDir "join.bat") -Value $bat -Encoding oem
@@ -135,7 +146,7 @@ for ($i = 0; $i -lt $n; $i++) {
   $items += [ordered]@{
     label = "파트 $($i + 1)/$n"
     url   = "$base/$($parts[$i].Name)"
-    size  = "약 $([math]::Round($parts[$i].Length / 1MB, 0))MB"
+    size  = Format-Size $parts[$i].Length
   }
 }
 $json = $items | ConvertTo-Json -Depth 4
@@ -145,7 +156,7 @@ Set-Content -Path (Join-Path $OutDir "content-parts.json") -Value $json -Encodin
 Write-Host ""
 Write-Host "--- src/content.json 해당 항목에 넣을 내용 ($OutDir\content-parts.json 에도 저장됨) ---"
 Write-Host ""
-Write-Host ('"size": "약 ' + $srcMB + 'MB (분할 ' + $n + '개)",')
+Write-Host ('"size": "' + (Format-Size $src.Length) + ' (분할 ' + $n + '개)",')
 Write-Host ('"parts": ' + $json + ',')
 Write-Host ""
 Write-Host "--- 다음 할 일 ---"
