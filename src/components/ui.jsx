@@ -1,13 +1,14 @@
 import { C, serif, sans } from "../theme.js";
 
 // ---- 공통 버튼 / 링크 (CTA) ----
-export function CTA({ children, primary, onClick, href }) {
+export function CTA({ children, primary, onClick, href, small }) {
   const style = {
-    padding: "12px 26px",
+    // small: 분할 다운로드처럼 버튼이 여러 개 붙는 자리에서 쓰는 축소 사이즈
+    padding: small ? "9px 16px" : "12px 26px",
     borderRadius: 8,
     cursor: "pointer",
     fontFamily: sans,
-    fontSize: 15,
+    fontSize: small ? 13 : 15,
     fontWeight: 600,
     letterSpacing: 1,
     background: primary ? C.gold : "rgba(20,16,11,0.6)",

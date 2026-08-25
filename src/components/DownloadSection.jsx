@@ -51,6 +51,10 @@ export default function DownloadSection({
                 : d.version
               : null;
             const meta = [ver, d.date, d.size].filter(Boolean).join(" · ");
+            // GitHub Releases는 에셋 1개당 2GiB가 하드 리밋이라,
+            // 그보다 큰 패치는 7-Zip 분할(.001/.002…)로 올리고
+            // content.json 에 parts[] 로 적어둔다. 그럴 때만 파트 버튼이 나온다.
+            const parts = Array.isArray(d.parts) && d.parts.length ? d.parts : null;
             return (
               <div
                 key={i}
@@ -115,9 +119,39 @@ export default function DownloadSection({
                   <div style={{ color: C.textDim, fontSize: 13, marginTop: 6 }}>
                     {meta || "준비 중"}
                   </div>
+                  {parts && (
+                    <div
+                      style={{
+                        color: C.sepiaDim,
+                        fontSize: 12,
+                        lineHeight: 1.65,
+                        marginTop: 8,
+                        maxWidth: 430,
+                      }}
+                    >
+                      {d.partsNote ||
+                        `용량이 커서 ${parts.length}개로 나눠 올렸습니다. 파트를 모두 같은 폴더에 받은 뒤 .001 파일을 7-Zip으로 열면 원래 파일로 합쳐집니다.`}
+                    </div>
+                  )}
                 </div>
                 <div style={{ position: "relative", zIndex: 1 }}>
-                  {d.url ? (
+                  {parts ? (
+                    <div
+                      style={{
+                        display: "flex",
+                        gap: 8,
+                        flexWrap: "wrap",
+                        justifyContent: "flex-end",
+                        maxWidth: 300,
+                      }}
+                    >
+                      {parts.map((p, j) => (
+                        <CTA key={j} primary small href={p.url}>
+                          {`↓ ${p.label || `파트 ${j + 1}`}`}
+                        </CTA>
+                      ))}
+                    </div>
+                  ) : d.url ? (
                     <CTA primary href={d.url}>
                       ↓ 다운로드
                     </CTA>
