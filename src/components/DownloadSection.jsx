@@ -136,20 +136,42 @@ export default function DownloadSection({
                 </div>
                 <div style={{ position: "relative", zIndex: 1 }}>
                   {parts ? (
-                    <div
-                      style={{
-                        display: "flex",
-                        gap: 8,
-                        flexWrap: "wrap",
-                        justifyContent: "flex-end",
-                        maxWidth: 300,
-                      }}
-                    >
-                      {parts.map((p, j) => (
-                        <CTA key={j} primary small href={p.url}>
-                          {`↓ ${p.label || `파트 ${j + 1}`}`}
-                        </CTA>
-                      ))}
+                    // 파트 이름을 버튼마다 다 적으면 3개부터 2+1 로 어긋나게 줄바꿈된다.
+                    // 번호만 단 칩으로 두고 설명은 위 한 줄에 몰아준다 → 개수가 늘어도 한 줄 유지.
+                    <div style={{ textAlign: "right" }}>
+                      <div
+                        style={{
+                          color: C.goldDim,
+                          fontSize: 11,
+                          letterSpacing: 1,
+                          marginBottom: 8,
+                          textTransform: "uppercase",
+                        }}
+                      >
+                        {`↓ 분할 다운로드 · ${parts.length}개 전부`}
+                      </div>
+                      <div
+                        style={{
+                          display: "flex",
+                          gap: 8,
+                          flexWrap: "wrap",
+                          justifyContent: "flex-end",
+                        }}
+                      >
+                        {parts.map((p, j) => (
+                          <CTA
+                            key={j}
+                            primary
+                            small
+                            href={p.url}
+                            title={[p.label || `파트 ${j + 1}`, p.size]
+                              .filter(Boolean)
+                              .join(" · ")}
+                          >
+                            {j + 1}
+                          </CTA>
+                        ))}
+                      </div>
                     </div>
                   ) : d.url ? (
                     <CTA primary href={d.url}>

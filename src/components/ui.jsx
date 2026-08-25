@@ -1,7 +1,7 @@
 import { C, serif, sans } from "../theme.js";
 
 // ---- 공통 버튼 / 링크 (CTA) ----
-export function CTA({ children, primary, onClick, href, small }) {
+export function CTA({ children, primary, onClick, href, small, title }) {
   const style = {
     // small: 분할 다운로드처럼 버튼이 여러 개 붙는 자리에서 쓰는 축소 사이즈
     padding: small ? "9px 16px" : "12px 26px",
@@ -25,13 +25,13 @@ export function CTA({ children, primary, onClick, href, small }) {
   };
   if (href) {
     return (
-      <a href={href} target="_blank" rel="noreferrer" style={style} {...press}>
+      <a href={href} target="_blank" rel="noreferrer" title={title} style={style} {...press}>
         {children}
       </a>
     );
   }
   return (
-    <button onClick={onClick} style={style} {...press}>
+    <button onClick={onClick} title={title} style={style} {...press}>
       {children}
     </button>
   );
