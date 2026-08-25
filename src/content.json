@@ -160,11 +160,11 @@
         "date": "2026-08-25",
         "size": "약 5.17GB (분할 3개)",
         "parts": [
-          { "label": "파트 1/3", "url": "https://github.com/wandererB/wanderer-arbor/releases/download/ippo-v1.2/PS3.The.Fighting.KR_v1.2.zip.001", "size": "약 1.86GB" },
-          { "label": "파트 2/3", "url": "https://github.com/wandererB/wanderer-arbor/releases/download/ippo-v1.2/PS3.The.Fighting.KR_v1.2.zip.002", "size": "약 1.86GB" },
-          { "label": "파트 3/3", "url": "https://github.com/wandererB/wanderer-arbor/releases/download/ippo-v1.2/PS3.The.Fighting.KR_v1.2.zip.003", "size": "약 1.46GB" }
+          { "label": "파트 1/3", "url": "https://github.com/wandererB/wanderer-arbor/releases/download/ippo-v1.01/PS3.The.Fighting.KR_v1.2.z01", "size": "약 1.95GB" },
+          { "label": "파트 2/3", "url": "https://github.com/wandererB/wanderer-arbor/releases/download/ippo-v1.01/PS3.The.Fighting.KR_v1.2.z02", "size": "약 1.95GB" },
+          { "label": "파트 3/3", "url": "https://github.com/wandererB/wanderer-arbor/releases/download/ippo-v1.01/PS3.The.Fighting.KR_v1.2.zip", "size": "약 1.27GB" }
         ],
-        "partsNote": "용량이 커서 3개로 나눠 올렸습니다. 파트 3개를 모두 같은 폴더에 받은 뒤 join.bat 을 실행하면 하나로 합쳐집니다. (7-Zip 으로 .001 을 열어도 됩니다)",
+        "partsNote": "용량이 커서 3개로 나눠 올렸습니다. 파트 3개를 모두 같은 폴더에 받은 뒤 7-Zip·반디집 같은 압축 프로그램으로 여세요. 윈도우 기본 '압축 풀기'로는 열리지 않습니다.",
         "bg": "images/the_fighting.png",
         "bgPos": "center 40%"
       },
