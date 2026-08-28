@@ -1,7 +1,7 @@
 {
   "notice": {
     "show": true,
-    "text": "무사시전 스팀우드 폭발사건 구간 프리징 확인중, PS1 브레이브 팬서 무사시전 v0.9 배포",
+    "text": "<필수> PS1 브레이브 팬서 무사시전 v0.92(프리징해결)업데이트",
     "link": "",
     "linkLabel": ""
   },
@@ -136,10 +136,10 @@
       {
         "title": "브레이브 팬서 무사시전[PS1] 한글패치",
         "subtitle": "ブレイヴフェンサー 武蔵伝",
-        "version": "0.9",
-        "date": "2026-08-27",
+        "version": "0.92",
+        "date": "2026-08-28",
         "size": "약 31.4MB",
-        "url": "https://github.com/wandererB/wanderer-arbor/releases/download/bfm-v0.9/BFM_KO_0.9_patch.zip",
+        "url": "https://github.com/wandererB/wanderer-arbor/releases/download/bfm-v0.9/BFM_KO_0.92_patch.zip",
         "bg": "images/musasi.jpg",
         "bgPos": "center 40%"
       },
