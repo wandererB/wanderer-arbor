@@ -1,7 +1,7 @@
 {
   "notice": {
     "show": true,
-    "text": "<필수> PS1 브레이브 팬서 무사시전 v0.93(폐광 해결) 업데이트",
+    "text": "PS1 브레이브 팬서 무사시전 v1.0(정식판) 업데이트",
     "link": "",
     "linkLabel": ""
   },
@@ -136,10 +136,10 @@
       {
         "title": "브레이브 팬서 무사시전[PS1] 한글패치",
         "subtitle": "ブレイヴフェンサー 武蔵伝",
-        "version": "0.93",
-        "date": "2026-08-29",
+        "version": "1.0",
+        "date": "2026-08-30",
         "size": "약 31.4MB",
-        "url": "https://github.com/wandererB/wanderer-arbor/releases/download/bfm-v0.9/BFM_KO_0.93_patch.zip",
+        "url": "https://github.com/wandererB/wanderer-arbor/releases/download/bfm-v0.9/BFM_KO_1.0_patch.zip",
         "bg": "images/musasi.jpg",
         "bgPos": "center 40%"
       },
