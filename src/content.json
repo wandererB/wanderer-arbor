@@ -197,6 +197,16 @@
         "url": "https://github.com/wandererB/wanderer-arbor/releases/download/yuyu/yyh_gaiden_ko_v1.0.6.zip",
         "bg": "images/yuyu.png",
         "bgPos": "center 30%"
+      },
+      {
+        "title": "뷰티풀 죠1[PS2] 한글패치",
+        "subtitle": "Viewtiful Joe",
+        "version": "0.9",
+        "date": "2026-09-03",
+        "size": "약 7.4MB",
+        "url": "https://github.com/wandererB/wanderer-arbor/releases/download/vj1-v0.9/vj1-korean-v0.9.zip",
+        "bg": "images/Viewtiful_Joe_1.jpg",
+        "bgPos": "center 47%"
       }
     ]
   },
