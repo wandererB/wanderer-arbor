@@ -1,7 +1,7 @@
 {
   "notice": {
     "show": true,
-    "text": "PS2 뷰티풀 죠1 v0.9 배포, PS1 브레이브 팬서 무사시전 v1.11(마이너) 업데이트",
+    "text": "PS2 뷰티풀 죠1 v0.9.1 업데이트, PS1 브레이브 팬서 무사시전 v1.11 업데이트",
     "link": "",
     "linkLabel": ""
   },
@@ -201,10 +201,10 @@
       {
         "title": "뷰티풀 죠1[PS2] 한글패치",
         "subtitle": "Viewtiful Joe: A New Hope",
-        "version": "0.9",
-        "date": "2026-09-03",
+        "version": "0.9.1",
+        "date": "2026-09-04",
         "size": "약 7.4MB",
-        "url": "https://github.com/wandererB/wanderer-arbor/releases/download/vj1-v0.9/vj1-korean-v0.9.zip",
+        "url": "https://github.com/wandererB/wanderer-arbor/releases/download/vj1-v0.9/vj1-korean-v0.9.1.zip",
         "bg": "images/Viewtiful_Joe_1.jpg",
         "bgPos": "center 47%"
       }
