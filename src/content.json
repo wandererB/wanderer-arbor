@@ -203,10 +203,20 @@
         "subtitle": "Viewtiful Joe: A New Hope",
         "version": "0.9.3",
         "date": "2026-09-04",
-        "size": "약 7.4MB",
+        "size": "약 8.2MB",
         "url": "https://github.com/wandererB/wanderer-arbor/releases/download/vj1-v0.9/vj1-korean-v0.9.3.zip",
         "bg": "images/Viewtiful_Joe_1.jpg",
         "bgPos": "center 47%"
+      },
+      {
+        "title": "뷰티풀 죠2[PS2] 한글패치",
+        "subtitle": "Viewtiful Joe 2",
+        "version": "0.9.5",
+        "date": "2026-09-05",
+        "size": "약 208MB",
+        "url": "https://github.com/wandererB/wanderer-arbor/releases/download/vj2_v0.9.5/vj2-korean-v0.9.5.zip",
+        "bg": "images/Viewtiful_Joe_2.jpg",
+        "bgPos": "center 20%"
       }
     ]
   },
