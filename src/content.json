@@ -1,7 +1,7 @@
 {
   "notice": {
     "show": true,
-    "text": " 패러사이트 이브2 v1.34 업데이트, PS2 뷰티풀 죠2 v0.9.5 배포",
+    "text": " 패러사이트 이브2 v1.33 업데이트, PS2 뷰티풀 죠2 v0.9.5 배포",
     "link": "",
     "linkLabel": ""
   },
@@ -126,10 +126,10 @@
       {
         "title": "패러사이트 이브 2[PS1] 한글패치",
         "subtitle": "Parasite Eve II",
-        "version": "1.34",
+        "version": "1.33",
         "date": "2026-09-07",
         "size": "약 4.7MB",
-        "url": "https://github.com/wandererB/wanderer-arbor/releases/download/pe2-v1.1/PE2_KO_1.34_patch.zip",
+        "url": "https://github.com/wandererB/wanderer-arbor/releases/download/pe2-v1.1/PE2_KO_1.33_patch.zip",
         "bg": "images/PE2.jpg",
         "bgPos": "center 50%"
       },
