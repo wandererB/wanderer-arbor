@@ -100,6 +100,24 @@ GitHub Releases 는 **에셋 1개당 2GiB** 가 플랫폼 하드 리밋입니다
 
 ---
 
+## 화면별 주소 (해시 라우팅)
+
+화면을 바꾸면 주소도 같이 바뀌므로 특정 화면을 바로 링크할 수 있습니다.
+
+| 화면 | 주소 |
+| --- | --- |
+| 패치(홈) | `.../wanderer-arbor/` |
+| 암자 | `.../wanderer-arbor/#/hermitage` |
+| 봇짐 | `.../wanderer-arbor/#/botjim` |
+| 방명록 | `.../wanderer-arbor/#/guestbook` |
+| 원기옥 | `.../wanderer-arbor/#/genki` |
+
+- 새로고침해도 그 화면이 유지되고, 브라우저 뒤로가기가 화면 이동을 따라갑니다.
+- 모르는 해시(`#/없는페이지`)는 홈으로 떨어집니다.
+- GitHub Pages 는 서버 라우팅이 없어서 해시 방식을 씁니다. 경로 방식(`/guestbook`)은
+  새로고침할 때 404 가 납니다.
+- 화면을 추가하면 `src/App.jsx` 의 `VIEWS` 배열에도 이름을 넣어야 주소가 동작합니다.
+
 ## 배포 (GitHub Pages)
 
 1. 이 폴더를 GitHub 저장소로 push (`main` 브랜치).
