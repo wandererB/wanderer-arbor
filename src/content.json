@@ -1,7 +1,7 @@
 {
   "notice": {
     "show": true,
-    "text": "마장기신F v1.61 업데이트, 패러사이트 이브2 v1.35 업데이트",
+    "text": "마장기신F v1.61, 마장기신3 v1.4 업데이트, 패러사이트 이브2 v1.35 업데이트",
     "link": "",
     "linkLabel": ""
   },
@@ -51,18 +51,18 @@
     {
       "title": "마장기신 3 한글패치 (PS Vita)",
       "subtitle": "Masou Kishin III · Pride of Justice",
-      "version": "1.3",
-      "date": "2026-08-03",
+      "version": "1.4",
+      "date": "2026-09-08",
       "size": "4MB",
-      "url": "https://github.com/wandererB/wanderer-arbor/releases/download/mk3v-v1.3/MasouKishin3_KR_Vita_v1.3.zip"
+      "url": "https://github.com/wandererB/wanderer-arbor/releases/download/mk3v-v1.2/MasouKishin3_KR_Vita_v1.4.zip"
     },
     {
       "title": "마장기신 3 한글패치 (PS3)",
       "subtitle": "Masou Kishin III · Pride of Justice",
-      "version": "1.3",
-      "date": "2026-08-03",
+      "version": "1.4",
+      "date": "2026-09-08",
       "size": "약 4.9MB",
-      "url": "https://github.com/wandererB/wanderer-arbor/releases/download/mk3p-v1.3/MasouKishin3_KR_PS3_v1.3.zip"
+      "url": "https://github.com/wandererB/wanderer-arbor/releases/download/mk3p-v1.2/MasouKishin3_KR_PS3_v1.4.zip"
     },
     {
       "title": "마장기신F 한글패치",
