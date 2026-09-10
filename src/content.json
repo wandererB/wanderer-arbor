@@ -184,6 +184,16 @@
         "bgPos": "center 18%"
       },
       {
+        "title": "시작의 일보[PS2] 한글패치",
+        "subtitle": "はじめの一歩2 VICTORIOUS ROAD",
+        "version": "1.0",
+        "date": "2026-09-10",
+        "size": "약 692KB",
+        "url": "https://github.com/wandererB/wanderer-arbor/releases/download/ippo2-v1.0/ippo2-ps2-korean-v1.0.zip",
+        "bg": "images/ps2_ippo.jpg",
+        "bgPos": "center 85%"
+      },
+      {
         "title": "시작의 일보[PS3] 한글패치",
         "subtitle": "はじめの一歩 THE FIGHTING!",
         "version": "1.2",
