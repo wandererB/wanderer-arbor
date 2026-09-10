@@ -1,7 +1,7 @@
 {
   "notice": {
     "show": true,
-    "text": "PS2 사이버 포뮬러 RTTI2 v1.0 배포, 마장기신F v1.61, 마장기신3 v1.4 업데이트",
+    "text": "PS2 사이버 포뮬러 RTTI1 v1.0 배포, PS2 사이버 포뮬러 RTTI2 v1.0 배포",
     "link": "",
     "linkLabel": ""
   },
@@ -146,7 +146,10 @@
       {
         "title": "사이버 포뮬러 RTTI1[PS2] 한글패치",
         "subtitle": "新世紀GPX Road to the Infinity",
-        "url": "",
+        "version": "1.0",
+        "date": "2026-09-10",
+        "size": "약 630KB",
+        "url": "https://github.com/wandererB/wanderer-arbor/releases/download/rtti1-v1.0/cyber1-korean-v1.0.zip",
         "bg": "images/Road_to_the_Infinity_1.jpg",
         "bgPos": "center 28%"
       },
