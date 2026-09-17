@@ -1,7 +1,7 @@
 {
   "notice": {
     "show": true,
-    "text": "PSP 사이버 포뮬러 VS v1.1 업데이트(실기대응 패치)",
+    "text": "브레이브 팬서 무사시전 v1.12 업데이트(최종), PSP 사이버 포뮬러 VS v1.1 업데이트(실기대응 패치)",
     "link": "",
     "linkLabel": ""
   },
@@ -136,10 +136,10 @@
       {
         "title": "브레이브 팬서 무사시전[PS1] 한글패치",
         "subtitle": "ブレイヴフェンサー 武蔵伝",
-        "version": "1.11",
-        "date": "2026-08-31",
+        "version": "1.12",
+        "date": "2026-09-17",
         "size": "약 31.4MB",
-        "url": "https://github.com/wandererB/wanderer-arbor/releases/download/bfm-v0.9/BFM_KO_1.11_patch.zip",
+        "url": "https://github.com/wandererB/wanderer-arbor/releases/download/bfm-v0.9/BFM_KO_1.12_patch.zip",
         "bg": "images/musasi.jpg",
         "bgPos": "center 40%"
       },
