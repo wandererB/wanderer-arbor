@@ -1,7 +1,7 @@
 {
   "notice": {
     "show": true,
-    "text": "브레이브 팬서 무사시전 v1.12 업데이트(최종), PSP 사이버 포뮬러 VS v1.1 업데이트(실기대응 패치)",
+    "text": "기동전사 건담 클라이맥스 U.C.[PS2] v1.0 배포, 브레이브 팬서 무사시전 v1.12 업데이트(최종)",
     "link": "",
     "linkLabel": ""
   },
@@ -257,6 +257,16 @@
         "url": "https://github.com/wandererB/wanderer-arbor/releases/download/vj2_v0.9.5/vj2-korean-v0.9.5.zip",
         "bg": "images/Viewtiful_Joe_2.jpg",
         "bgPos": "center 20%"
+      },
+      {
+        "title": "기동전사 건담 클라이맥스 U.C.[PS2] 한글패치",
+        "subtitle": "機動戦士ガンダム クライマックスU.C.",
+        "version": "1.0",
+        "date": "2026-09-19",
+        "size": "약 15.5MB",
+        "url": "https://github.com/wandererB/wanderer-arbor/releases/download/gduc-v1.0/gundam-climax-ko-v1.0.zip",
+        "bg": "images/gundam_climax.JPG",
+        "bgPos": "center 36%"
       }
     ]
   },
