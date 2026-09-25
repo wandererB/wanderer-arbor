@@ -1,7 +1,7 @@
 {
   "notice": {
     "show": true,
-    "text": "기동전사 건담 클라이맥스 U.C.[PS2] v1.0 배포, 브레이브 팬서 무사시전 v1.12 업데이트(최종)",
+    "text": "기동전사 건담 클라이맥스 U.C.[PS2] v1.1 업데이트(전투자막 완료)",
     "link": "",
     "linkLabel": ""
   },
@@ -261,10 +261,10 @@
       {
         "title": "기동전사 건담 클라이맥스 U.C.[PS2] 한글패치",
         "subtitle": "機動戦士ガンダム クライマックスU.C.",
-        "version": "1.0",
-        "date": "2026-09-19",
+        "version": "1.1",
+        "date": "2026-09-25",
         "size": "약 15.5MB",
-        "url": "https://github.com/wandererB/wanderer-arbor/releases/download/gduc-v1.0/gundam-climax-ko-v1.0.zip",
+        "url": "https://github.com/wandererB/wanderer-arbor/releases/download/gduc-v1.0/gundam-climax-ko-v1.1.zip",
         "bg": "images/gundam_climax.JPG",
         "bgPos": "center 36%"
       }
