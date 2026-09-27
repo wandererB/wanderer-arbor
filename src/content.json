@@ -267,6 +267,13 @@
         "url": "https://github.com/wandererB/wanderer-arbor/releases/download/gduc-v1.0/gundam-climax-ko-v1.1.zip",
         "bg": "images/gundam_climax.JPG",
         "bgPos": "center 36%"
+      },
+      {
+        "title": "프론트 미션 5[PS2] 한글패치",
+        "subtitle": "フロントミッション5 ~Scars of the War~",
+        "url": "",
+        "bg": "images/FM5.jpg",
+        "bgPos": "center 57%"
       }
     ]
   },
