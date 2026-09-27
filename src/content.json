@@ -1,7 +1,7 @@
 {
   "notice": {
     "show": true,
-    "text": "기동전사 건담 클라이맥스 U.C.[PS2] v1.1 업데이트(전투자막 완료)",
+    "text": "PS2 프론트 미션 5 v1.0 배포, 기동전사 건담 클라이맥스 U.C.[PS2] v1.1 업데이트(전투자막 완료)",
     "link": "",
     "linkLabel": ""
   },
@@ -271,7 +271,10 @@
       {
         "title": "프론트 미션 5[PS2] 한글패치",
         "subtitle": "フロントミッション5 ~Scars of the War~",
-        "url": "",
+        "version": "1.0",
+        "date": "2026-09-27",
+        "size": "약 28.3MB",
+        "url": "https://github.com/wandererB/wanderer-arbor/releases/download/FM5-v1.0/fm5-korean-v1.0.zip",
         "bg": "images/FM5.jpg",
         "bgPos": "center 57%"
       }
