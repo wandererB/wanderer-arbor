@@ -108,6 +108,14 @@ export default function Guestbook() {
           {intro}
         </p>
       )}
+      {/* 방명록에 오류 제보를 남기는 분들이 있어 제보 화면으로 안내한다 */}
+      <p style={{ color: C.textDim, fontSize: 13, margin: "-12px 0 22px" }}>
+        버그나 오역은{" "}
+        <a href="#/reports" style={{ color: C.gold, textUnderlineOffset: 3 }}>
+          제보 탭
+        </a>
+        에 남겨주시면 따로 모아 확인합니다.
+      </p>
 
       {/* 작성 폼 */}
       <div
