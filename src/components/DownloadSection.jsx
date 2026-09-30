@@ -119,6 +119,12 @@ export default function DownloadSection({
                   <div style={{ color: C.textDim, fontSize: 13, marginTop: 6 }}>
                     {meta || "준비 중"}
                   </div>
+                  {/* 항목별 한 줄 안내 (예: 원작자 요청 시 내려갈 수 있음) */}
+                  {d.note && (
+                    <div style={{ color: C.sepiaDim, fontSize: 12, marginTop: 4 }}>
+                      {d.note}
+                    </div>
+                  )}
                   {parts && (
                     <div
                       style={{
