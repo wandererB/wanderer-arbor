@@ -4,7 +4,7 @@ rules_version = '2';
 // Firebase 콘솔 > Firestore Database > 규칙 에 붙여넣고 '게시'.
 //
 // 원칙: 누구나 읽고 새 글을 쓸 수 있되, 수정·삭제는 아무도 못 한다.
-// 상태 변경(받음 -> 살피는 중 -> 고침 / 보류)은 콘솔에서 직접 한다.
+// 상태 변경(접수 -> 확인 중 -> 수정 완료 / 보류)은 콘솔에서 직접 한다.
 service cloud.firestore {
   match /databases/{database}/documents {
 
@@ -22,7 +22,7 @@ service cloud.firestore {
       allow update, delete: if false;
     }
 
-    // 옥에 티 (오류 제보)
+    // 오류 제보
     match /reports/{doc} {
       allow read: if true;
       allow create: if
@@ -33,7 +33,7 @@ service cloud.firestore {
         && request.resource.data.game is string
         && request.resource.data.game.size() > 0
         && request.resource.data.game.size() <= 60
-        && request.resource.data.type in ['진행 막힘', '글자 깨짐', '번역 손질', '그 밖에']
+        && request.resource.data.type in ['진행 불가', '글자 깨짐', '번역 수정', '기타']
         && request.resource.data.title is string
         && request.resource.data.title.size() > 0
         && request.resource.data.title.size() <= 100
@@ -43,8 +43,8 @@ service cloud.firestore {
         && request.resource.data.nickname.size() <= 30
         && request.resource.data.patchVersion is string
         && request.resource.data.patchVersion.size() <= 20
-        // 클라이언트는 상태를 정할 수 없다. 항상 '받음' 으로만 들어온다.
-        && request.resource.data.status == '받음'
+        // 클라이언트는 상태를 정할 수 없다. 항상 '접수' 로만 들어온다.
+        && request.resource.data.status == '접수'
         && request.resource.data.createdAt == request.time;
       allow update, delete: if false;
     }

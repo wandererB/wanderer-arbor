@@ -15,21 +15,21 @@ import {
 
 // 분류. value 는 Firestore 에 그대로 저장되므로 보안 규칙의 허용 목록과 같아야 한다.
 const TYPES = [
-  { value: "진행 막힘", label: "진행 막힘 — 멈춤·튕김·더 못 나감" },
-  { value: "글자 깨짐", label: "글자 깨짐 — 잘림·겹침·이상한 글자" },
-  { value: "번역 손질", label: "번역 손질 — 뜻이 틀림·말투가 어색함" },
-  { value: "그 밖에", label: "그 밖에" },
+  { value: "진행 불가", label: "진행 불가 — 멈춤, 튕김" },
+  { value: "글자 깨짐", label: "글자 깨짐 — 잘림, 겹침" },
+  { value: "번역 수정", label: "번역 수정 — 오역, 어색한 표현" },
+  { value: "기타", label: "기타" },
 ];
 
 // 상태 배지 색. 상태는 Firebase 콘솔에서 직접 바꾼다(클라이언트는 못 바꾼다).
 const STATUS_COLOR = {
-  "받음": { fg: C.textDim, bd: C.line },
-  "살피는 중": { fg: "#d9b45f", bd: "#8a6f2e" },
-  "고침": { fg: "#7fc08a", bd: "#3f6d48" },
+  "접수": { fg: C.textDim, bd: C.line },
+  "확인 중": { fg: "#d9b45f", bd: "#8a6f2e" },
+  "수정 완료": { fg: "#7fc08a", bd: "#3f6d48" },
   "보류": { fg: "#9a8a68", bd: C.line },
 };
-const FIRST_STATUS = "받음";
-const DEFAULT_NICK = "나그네";
+const FIRST_STATUS = "접수";
+const DEFAULT_NICK = "익명";
 
 const COOLDOWN_MS = 60 * 1000; // 같은 브라우저에서 1분에 1건
 const COOLDOWN_KEY = "wanderer:report:last";
@@ -98,17 +98,17 @@ export default function Reports() {
   async function send() {
     const t = title.trim();
     const b = body.trim();
-    if (!game) return setError("어느 패치인지 골라주세요.");
-    if (!t) return setError("한 줄 요약을 적어주세요.");
-    if (t.length > 100) return setError("한 줄 요약은 100자까지 적을 수 있어요.");
-    if (b.length > 1000) return setError("자세한 내용은 1000자까지 적을 수 있어요.");
+    if (!game) return setError("게임을 골라주세요.");
+    if (!t) return setError("제목을 적어주세요.");
+    if (t.length > 100) return setError("제목은 100자까지 적을 수 있어요.");
+    if (b.length > 1000) return setError("내용은 1000자까지 적을 수 있어요.");
 
     // 연타·스팸 완화. 브라우저 저장소라 우회는 가능하지만 실수 중복은 대부분 막힌다.
     try {
       const last = Number(localStorage.getItem(COOLDOWN_KEY) || 0);
       if (Date.now() - last < COOLDOWN_MS) {
         const left = Math.ceil((COOLDOWN_MS - (Date.now() - last)) / 1000);
-        return setError(`조금만 쉬었다가 다시 보내주세요. (${left}초)`);
+        return setError(`잠시 후 다시 보내주세요. (${left}초)`);
       }
     } catch {
       /* 저장소를 못 쓰면 쿨다운은 건너뛴다 */
@@ -146,7 +146,7 @@ export default function Reports() {
 
   if (!firebaseReady) {
     return (
-      <Section eyebrow="Report" title="옥에 티">
+      <Section eyebrow="Report" title="오류 제보">
         <div
           style={{
             background: C.ink2,
@@ -158,7 +158,7 @@ export default function Reports() {
             lineHeight: 1.7,
           }}
         >
-          옥에 티 게시판 준비 중입니다.
+          제보 게시판 준비 중입니다.
           <br />
           (Firebase 연결 후 열립니다.)
         </div>
@@ -176,7 +176,7 @@ export default function Reports() {
   };
 
   return (
-    <Section eyebrow="Report" title="옥에 티">
+    <Section eyebrow="Report" title="오류 제보">
       <p
         style={{
           color: C.textDim,
@@ -186,7 +186,7 @@ export default function Reports() {
         }}
       >
         {cfg.intro ||
-          "패치를 하다 걸린 돌부리가 있으면 알려주세요. 어느 장면에서 무엇이 이상했는지 적어주시면 방랑자가 짐을 풀고 들여다봅니다."}
+          "패치하다가 이상한 부분을 발견하셨다면 알려주세요. 어느 장면에서 어떤 문제가 있었는지 적어주시면 확인 후 수정하겠습니다."}
       </p>
 
       {/* 작성 폼 */}
@@ -199,13 +199,13 @@ export default function Reports() {
           marginBottom: 26,
         }}
       >
-        <label style={{ ...label, marginTop: 0 }}>어느 패치</label>
+        <label style={{ ...label, marginTop: 0 }}>게임</label>
         <select
           value={game}
           onChange={(e) => setGame(e.target.value)}
           style={inputStyle}
         >
-          <option value="">골라주세요</option>
+          <option value="">선택</option>
           {games.map((g) => (
             <option key={g} value={g}>
               {g}
@@ -213,7 +213,7 @@ export default function Reports() {
           ))}
         </select>
 
-        <label style={label}>어떤 문제</label>
+        <label style={label}>문제 유형</label>
         <select
           value={type}
           onChange={(e) => setType(e.target.value)}
@@ -226,20 +226,20 @@ export default function Reports() {
           ))}
         </select>
 
-        <label style={label}>한 줄 요약</label>
+        <label style={label}>제목</label>
         <input
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          placeholder="예: 3장 끝나고 대사창이 비어 있어요"
+          placeholder="예: 3장 이후 대사창이 비어 있어요"
           maxLength={100}
           style={inputStyle}
         />
 
-        <label style={label}>자세히</label>
+        <label style={label}>내용</label>
         <textarea
           value={body}
           onChange={(e) => setBody(e.target.value)}
-          placeholder="어느 장면이나 메뉴에서, 어떤 문장이, 어떻게 이상한지 적어주세요. 원문을 아시면 같이 적어주셔도 좋습니다."
+          placeholder="어느 장면이나 메뉴에서 어떤 문제가 있었는지 적어주세요. 원문을 알면 함께 적어주셔도 좋아요."
           rows={4}
           maxLength={1000}
           style={{ ...inputStyle, resize: "vertical" }}
@@ -247,11 +247,11 @@ export default function Reports() {
 
         <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
           <div style={{ flex: "1 1 160px" }}>
-            <label style={label}>이름 (선택)</label>
+            <label style={label}>닉네임 (선택)</label>
             <input
               value={nick}
               onChange={(e) => setNick(e.target.value)}
-              placeholder="지나가던 나그네"
+              placeholder="익명"
               maxLength={30}
               style={inputStyle}
             />
@@ -295,12 +295,12 @@ export default function Reports() {
               fontSize: 14,
             }}
           >
-            {sending ? "보내는 중…" : "알려주기"}
+            {sending ? "보내는 중…" : "보내기"}
           </button>
         </div>
         {done && (
           <p style={{ color: "#7fc08a", fontSize: 13, marginTop: 10 }}>
-            잘 받았습니다. 살펴보고 아래 목록에 표시해둘게요.
+            접수됐어요. 확인 후 목록에 상태를 표시할게요.
           </p>
         )}
         {error && (
@@ -336,8 +336,8 @@ export default function Reports() {
       ) : shown.length === 0 ? (
         <p style={{ color: C.textDim, textAlign: "center", padding: 30 }}>
           {items.length === 0
-            ? "아직 걸린 돌부리가 없습니다."
-            : "이 패치에는 아직 없습니다."}
+            ? "아직 제보가 없어요."
+            : "이 게임엔 아직 제보가 없어요."}
         </p>
       ) : (
         <div style={{ display: "grid", gap: 12 }}>
@@ -363,7 +363,7 @@ export default function Reports() {
                   }}
                 >
                   <Badge fg={C.gold} bd={C.goldDim}>
-                    {r.type || "그 밖에"}
+                    {r.type || "기타"}
                   </Badge>
                   <Badge fg={sc.fg} bd={sc.bd}>
                     {r.status || FIRST_STATUS}
