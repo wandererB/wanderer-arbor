@@ -127,18 +127,16 @@ export function GlobalStyle() {
       @media (max-width: 640px) {
         .site-name-part { display: block; }
         nav { padding-left: 14px !important; padding-right: 14px !important; }
-        /* 버튼 6개를 3개씩 두 줄로 가지런히. 인라인 flex 를 덮어야 해서 !important */
-        .nav-links {
-          display: grid !important;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 5px !important;
-        }
-        .nav-links button { padding: 6px 4px; font-size: 13px; letter-spacing: 0; }
+        /* 버튼 5개를 한 줄로. 줄바꿈을 막고 폭을 줄인다(인라인 flex 를 덮어야 해서 !important) */
+        .nav-links { flex-wrap: nowrap !important; gap: 4px !important; }
+        .nav-links button { padding: 6px 8px; font-size: 13px; letter-spacing: 0; }
       }
-      /* 아주 좁은 폰(≤400px) */
+      /* 아주 좁은 폰(≤400px). 360px 안드로이드에서 버튼이 화면 끝에 붙어서
+         사이트명 글자를 조금 줄여 자리를 만든다(인라인 fontSize 를 덮어야 해서 !important) */
       @media (max-width: 400px) {
-        .nav-links { gap: 4px !important; }
-        .nav-links button { padding: 5px 3px; font-size: 12px; }
+        .site-name { font-size: 16px !important; }
+        .nav-links { gap: 3px !important; }
+        .nav-links button { padding: 5px 6px; font-size: 12px; }
       }
     `}</style>
   );

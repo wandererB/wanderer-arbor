@@ -17,8 +17,11 @@ export default function Nav({ view, setView }) {
         borderBottom: `1px solid ${C.line}`,
       }}
     >
+      {/* 사이트명이 곧 홈(패치) 버튼이라 네비에 따로 '패치'를 두지 않는다 */}
       <button
         onClick={() => setView("home")}
+        aria-label="홈으로"
+        title="홈으로"
         style={{
           display: "flex",
           alignItems: "center",
@@ -65,9 +68,6 @@ export default function Nav({ view, setView }) {
           justifyContent: "flex-end",
         }}
       >
-        <NavBtn active={view === "home"} onClick={() => setView("home")}>
-          패치
-        </NavBtn>
         <NavBtn active={view === "hermitage"} onClick={() => setView("hermitage")}>
           암자
         </NavBtn>
