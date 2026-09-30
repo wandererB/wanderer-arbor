@@ -12,7 +12,7 @@
   "reports": {
     "uploadUrl": "https://script.google.com/macros/s/AKfycbyvzjU_BhzLO1xCWyn3TtQeVtP2BYfB7p_VYdZRwalG2AUA42Ut3DhPTkvagM9gDpGb/exec",
     "intro": "패치하다가 이상한 부분을 발견하셨다면 알려주세요. 어느 장면에서 어떤 문제가 있었는지 적어주시면 확인 후 수정하겠습니다.",
-    "adminUids": []
+    "adminUids": ["7QEaxHBkuySDQTvDn5nvJzIVztE2"]
   },
   "guestbook": {
     "intro": "패치가 도움이 되셨다면 한마디 남겨주세요. 응원은 큰 힘이 됩니다.",

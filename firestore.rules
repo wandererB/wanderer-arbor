@@ -11,7 +11,7 @@ service cloud.firestore {
     // 관리자 구글 계정 UID. src/content.json 의 reports.adminUids 와 같게 넣는다.
     // UID 는 제보 탭 '관리'로 로그인하면 화면 아래에 나온다.
     function isAdmin() {
-      return request.auth != null && request.auth.uid in [];
+      return request.auth != null && request.auth.uid in ['7QEaxHBkuySDQTvDn5nvJzIVztE2'];
     }
 
     // 방명록
