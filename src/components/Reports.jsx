@@ -103,6 +103,7 @@ export default function Reports() {
     const b = body.trim();
     if (!game) return setError("게임이나 유틸을 골라주세요.");
     if (!t) return setError("제목을 적어주세요.");
+    if (!ver.trim()) return setError("패치 버전을 적어주세요. (예: v1.2)");
     if (t.length > 100) return setError("제목은 100자까지 적을 수 있어요.");
     if (b.length > 1000) return setError("내용은 1000자까지 적을 수 있어요.");
 
@@ -136,8 +137,7 @@ export default function Reports() {
         /* noop */
       }
       setTitle("");
-      setBody("");
-      setVer("");
+      setBody(""); // 버전은 남겨둔다: 같은 버전으로 여러 건 이어서 보내는 경우가 많다
       setDone(true);
       setTimeout(() => setDone(false), 4000);
     } catch {
@@ -261,22 +261,22 @@ export default function Reports() {
 
         <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
           <div style={{ flex: "1 1 160px" }}>
-            <label style={label}>닉네임 (선택)</label>
-            <input
-              value={nick}
-              onChange={(e) => setNick(e.target.value)}
-              placeholder="나그네"
-              maxLength={30}
-              style={inputStyle}
-            />
-          </div>
-          <div style={{ flex: "1 1 160px" }}>
-            <label style={label}>버전 (선택)</label>
+            <label style={label}>버전 (필수)</label>
             <input
               value={ver}
               onChange={(e) => setVer(e.target.value)}
               placeholder="예: v1.2"
               maxLength={20}
+              style={inputStyle}
+            />
+          </div>
+          <div style={{ flex: "1 1 160px" }}>
+            <label style={label}>제보자 (선택)</label>
+            <input
+              value={nick}
+              onChange={(e) => setNick(e.target.value)}
+              placeholder="나그네"
+              maxLength={30}
               style={inputStyle}
             />
           </div>
@@ -297,12 +297,12 @@ export default function Reports() {
           </span>
           <button
             onClick={send}
-            disabled={sending || !game || !title.trim()}
+            disabled={sending || !game || !title.trim() || !ver.trim()}
             style={{
               padding: "9px 20px",
               borderRadius: 8,
-              cursor: sending || !game || !title.trim() ? "default" : "pointer",
-              background: sending || !game || !title.trim() ? C.line : C.gold,
+              cursor: sending || !game || !title.trim() || !ver.trim() ? "default" : "pointer",
+              background: sending || !game || !title.trim() || !ver.trim() ? C.line : C.gold,
               color: C.ink,
               fontWeight: 600,
               border: "none",

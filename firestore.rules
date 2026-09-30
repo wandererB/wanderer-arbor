@@ -42,6 +42,7 @@ service cloud.firestore {
         && request.resource.data.nickname is string
         && request.resource.data.nickname.size() <= 30
         && request.resource.data.patchVersion is string
+        && request.resource.data.patchVersion.size() > 0   // 버전 필수
         && request.resource.data.patchVersion.size() <= 20
         // 클라이언트는 상태를 정할 수 없다. 항상 '접수' 로만 들어온다.
         && request.resource.data.status == '접수'
