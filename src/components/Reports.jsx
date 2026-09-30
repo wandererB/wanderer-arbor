@@ -29,7 +29,7 @@ const STATUS_COLOR = {
   "보류": { fg: "#9a8a68", bd: C.line },
 };
 const FIRST_STATUS = "접수";
-const DEFAULT_NICK = "익명";
+const DEFAULT_NICK = "나그네"; // 나그네 쉼터라서
 
 const COOLDOWN_MS = 60 * 1000; // 같은 브라우저에서 1분에 1건
 const COOLDOWN_KEY = "wanderer:report:last";
@@ -41,11 +41,13 @@ function fmt(ts) {
   return `${d.getFullYear()}.${p(d.getMonth() + 1)}.${p(d.getDate())}`;
 }
 
-// 제보 대상 게임 목록은 content.json 의 다운로드 항목에서 그대로 뽑는다.
-// 패치를 추가하면 드롭다운도 같이 늘어나므로 따로 관리할 필요가 없다.
-function gameList() {
-  const out = [];
-  const push = (items) =>
+// 제보 대상 목록은 content.json 의 다운로드 항목에서 그대로 뽑는다.
+// 패치나 유틸을 추가하면 드롭다운도 같이 늘어나므로 따로 관리할 필요가 없다.
+// 한글패치(메인·암자)와 봇짐 유틸은 드롭다운에서 묶음을 나눠 보여준다.
+function targetGroups() {
+  const patches = [];
+  const tools = [];
+  const push = (out, items) =>
     (items || []).forEach((it) => {
       // "마장기신 3 한글패치 (PS Vita)" 처럼 뒤에 말이 더 붙는 제목이 있어
       //  끝이 아니라 중간의 "한글패치" 도 지우고 공백을 정리한다.
@@ -55,15 +57,16 @@ function gameList() {
         .trim();
       if (t && !out.includes(t)) out.push(t);
     });
-  push(content.downloads);
-  push(content.hermitage && content.hermitage.downloads);
-  push(content.botjim && content.botjim.downloads);
-  return out;
+  push(patches, content.downloads);
+  push(patches, content.hermitage && content.hermitage.downloads);
+  push(tools, content.botjim && content.botjim.downloads);
+  return { patches, tools, all: [...patches, ...tools] };
 }
 
 export default function Reports() {
   const cfg = content.reports || {};
-  const games = useMemo(gameList, []);
+  const groups = useMemo(targetGroups, []);
+  const games = groups.all;
 
   const [items, setItems] = useState(null); // null = 로딩
   const [filter, setFilter] = useState("전체");
@@ -98,7 +101,7 @@ export default function Reports() {
   async function send() {
     const t = title.trim();
     const b = body.trim();
-    if (!game) return setError("게임을 골라주세요.");
+    if (!game) return setError("게임이나 유틸을 골라주세요.");
     if (!t) return setError("제목을 적어주세요.");
     if (t.length > 100) return setError("제목은 100자까지 적을 수 있어요.");
     if (b.length > 1000) return setError("내용은 1000자까지 적을 수 있어요.");
@@ -199,18 +202,29 @@ export default function Reports() {
           marginBottom: 26,
         }}
       >
-        <label style={{ ...label, marginTop: 0 }}>게임</label>
+        <label style={{ ...label, marginTop: 0 }}>게임·유틸</label>
         <select
           value={game}
           onChange={(e) => setGame(e.target.value)}
           style={inputStyle}
         >
           <option value="">선택</option>
-          {games.map((g) => (
-            <option key={g} value={g}>
-              {g}
-            </option>
-          ))}
+          <optgroup label="한글패치">
+            {groups.patches.map((g) => (
+              <option key={g} value={g}>
+                {g}
+              </option>
+            ))}
+          </optgroup>
+          {groups.tools.length > 0 && (
+            <optgroup label="봇짐 (유틸)">
+              {groups.tools.map((g) => (
+                <option key={g} value={g}>
+                  {g}
+                </option>
+              ))}
+            </optgroup>
+          )}
         </select>
 
         <label style={label}>문제 유형</label>
@@ -251,7 +265,7 @@ export default function Reports() {
             <input
               value={nick}
               onChange={(e) => setNick(e.target.value)}
-              placeholder="익명"
+              placeholder="나그네"
               maxLength={30}
               style={inputStyle}
             />
@@ -337,7 +351,7 @@ export default function Reports() {
         <p style={{ color: C.textDim, textAlign: "center", padding: 30 }}>
           {items.length === 0
             ? "아직 제보가 없어요."
-            : "이 게임엔 아직 제보가 없어요."}
+            : "여기엔 아직 제보가 없어요."}
         </p>
       ) : (
         <div style={{ display: "grid", gap: 12 }}>
