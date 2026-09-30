@@ -154,6 +154,20 @@ GitHub Releases 는 **에셋 1개당 2GiB** 가 플랫폼 하드 리밋입니다
 - `status` 는 `접수` 로만 생성 가능
 - `createdAt` 은 서버 시각만 허용
 
+### 첨부 파일 (구글 드라이브)
+
+사진·세이브 파일은 Apps Script 웹앱(`scripts/report-upload.gs`)이 받아 방랑자 구글 드라이브의
+`방랑자 제보 첨부` 폴더에 제보별로 저장합니다. 파일은 비공개(소유자만)이고, 사이트 목록에는
+"📎 첨부 N개" 만 보입니다.
+
+1. script.google.com 새 프로젝트에 `scripts/report-upload.gs` 를 붙여넣고 `selfTest` 실행 → 권한 허용
+2. 배포 → 새 배포 → 웹 앱 (실행: 나 / 액세스: 모든 사용자) → 웹 앱 URL 복사
+3. `src/content.json` 의 `reports.uploadUrl` 에 넣기 (비어 있으면 파일 칸이 숨겨집니다)
+4. `firestore.rules` 를 다시 게시 (`attachCount` 허용)
+
+제한(화면·웹앱 양쪽): 사진 JPG·PNG·WEBP 5MB × 5장, 세이브 20MB × 2개, 실행 파일 거부,
+하루 총 300MB. 웹앱은 Firestore 에 30분 안에 만들어진 제보가 `attachCount` 로 예고한 개수까지만 받습니다.
+
 스팸 대비로 같은 브라우저에서 1분에 1건만 보내지도록 해두었습니다(`Reports.jsx`).
 브라우저 저장소 기반이라 우회는 가능하니, 실제로 문제가 생기면 그때 더 조이면 됩니다.
 

@@ -34,6 +34,73 @@ const DEFAULT_NICK = "나그네"; // 나그네 쉼터라서
 const COOLDOWN_MS = 60 * 1000; // 같은 브라우저에서 1분에 1건
 const COOLDOWN_KEY = "wanderer:report:last";
 
+// ── 첨부 파일 (구글 드라이브) ─────────────────────────────────────────
+// scripts/report-upload.gs 를 Apps Script 웹앱으로 배포한 주소. 비어 있으면 파일 칸을 숨긴다.
+const UPLOAD_URL = (content.reports && content.reports.uploadUrl) || "";
+// 웹앱 쪽 제한과 같게 맞춘다(scripts/report-upload.gs).
+const FILE_RULES = {
+  image: {
+    label: "사진",
+    max: 5,
+    maxBytes: 5 * 1024 * 1024,
+    exts: ["jpg", "jpeg", "png", "webp"],
+    accept: ".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp",
+    hint: "JPG·PNG·WEBP · 파일당 5MB · 최대 5장",
+  },
+  save: {
+    label: "세이브",
+    max: 2,
+    maxBytes: 20 * 1024 * 1024,
+    exts: null, // 기종마다 확장자가 달라 막지 않는다
+    accept: "",
+    hint: "실기·에뮬레이터 세이브, ZIP · 파일당 20MB · 최대 2개",
+  },
+};
+const BLOCKED_EXTS = ["exe", "bat", "cmd", "com", "msi", "scr", "ps1", "vbs", "vbe", "js",
+  "jse", "wsf", "jar", "apk", "sh", "dll", "lnk", "hta", "reg"];
+
+function extOf(name) {
+  const i = name.lastIndexOf(".");
+  return i >= 0 ? name.slice(i + 1).toLowerCase() : "";
+}
+
+function fmtBytes(n) {
+  return n >= 1024 * 1024 ? `${(n / 1024 / 1024).toFixed(1)}MB` : `${Math.max(1, Math.round(n / 1024))}KB`;
+}
+
+// 고른 파일이 규칙에 맞는지. 맞으면 빈 문자열.
+function checkFiles(kind, files) {
+  const r = FILE_RULES[kind];
+  if (files.length > r.max) return `${r.label}은 ${r.max}개까지 올릴 수 있어요.`;
+  for (const f of files) {
+    const ext = extOf(f.name);
+    if (BLOCKED_EXTS.includes(ext)) return `실행 파일(.${ext})은 올릴 수 없어요.`;
+    if (r.exts && !r.exts.includes(ext)) return `${r.label}은 JPG·PNG·WEBP만 올릴 수 있어요.`;
+    if (f.size > r.maxBytes)
+      return `${f.name} 이(가) ${fmtBytes(r.maxBytes)}를 넘어요. 압축하거나 첨부 링크로 보내주세요.`;
+  }
+  return "";
+}
+
+function toBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(String(reader.result).split(",")[1] || "");
+    reader.onerror = () => reject(reader.error);
+    reader.readAsDataURL(file);
+  });
+}
+
+// 파일 하나를 웹앱으로 보낸다. 본문을 문자열로 보내 CORS 사전요청(preflight)을 피한다.
+async function uploadOne(reportId, kind, file) {
+  const res = await fetch(UPLOAD_URL, {
+    method: "POST",
+    body: JSON.stringify({ reportId, kind, name: file.name, data: await toBase64(file) }),
+  });
+  const json = await res.json();
+  if (!json.ok) throw new Error(json.error || "upload_failed");
+}
+
 function fmt(ts) {
   if (!ts || !ts.toDate) return "";
   const d = ts.toDate();
@@ -77,6 +144,10 @@ export default function Reports() {
   const [nick, setNick] = useState("");
   const [ver, setVer] = useState("");
   const [link, setLink] = useState("");
+  const [images, setImages] = useState([]);
+  const [saves, setSaves] = useState([]);
+  const [fileKey, setFileKey] = useState(0);
+  const [progress, setProgress] = useState("");
   const [sending, setSending] = useState(false);
   const [error, setError] = useState("");
   const [done, setDone] = useState(false);
@@ -112,6 +183,11 @@ export default function Reports() {
       return setError("첨부 링크는 http:// 나 https:// 로 시작하는 주소만 넣을 수 있어요.");
     if (l.length > 500) return setError("첨부 링크가 너무 길어요.");
 
+    if (UPLOAD_URL) {
+      const fileMsg = checkFiles("image", images) || checkFiles("save", saves);
+      if (fileMsg) return setError(fileMsg);
+    }
+
     // 연타·스팸 완화. 브라우저 저장소라 우회는 가능하지만 실수 중복은 대부분 막힌다.
     try {
       const last = Number(localStorage.getItem(COOLDOWN_KEY) || 0);
@@ -125,8 +201,12 @@ export default function Reports() {
 
     setSending(true);
     setError("");
+    const attachList = UPLOAD_URL
+      ? [...images.map((f) => ["image", f]), ...saves.map((f) => ["save", f])]
+      : [];
+    let ref;
     try {
-      await addDoc(collection(db, "reports"), {
+      ref = await addDoc(collection(db, "reports"), {
         game,
         type,
         title: t,
@@ -137,22 +217,46 @@ export default function Reports() {
         createdAt: serverTimestamp(),
         // 링크가 있을 때만 넣는다(빈 값까지 쌓지 않게)
         ...(l ? { attachUrl: l } : {}),
+        // 올릴 파일 개수를 미리 적어 둔다. 웹앱은 이 개수까지만 받는다.
+        ...(attachList.length ? { attachCount: attachList.length } : {}),
       });
       try {
         localStorage.setItem(COOLDOWN_KEY, String(Date.now()));
       } catch {
         /* noop */
       }
-      setTitle("");
-      setLink("");
-      setBody(""); // 버전은 남겨둔다: 같은 버전으로 여러 건 이어서 보내는 경우가 많다
-      setDone(true);
-      setTimeout(() => setDone(false), 4000);
     } catch {
       setError("전송이 안 됐어요. 잠시 후 다시 시도해 주세요.");
-    } finally {
       setSending(false);
+      return;
     }
+
+    // 제보는 이미 접수됐다. 첨부가 일부 실패해도 제보 자체는 살아 있다.
+    let failed = 0;
+    for (let i = 0; i < attachList.length; i++) {
+      setProgress(`첨부 올리는 중 ${i + 1}/${attachList.length}…`);
+      try {
+        await uploadOne(ref.id, attachList[i][0], attachList[i][1]);
+      } catch {
+        failed++;
+      }
+    }
+    setProgress("");
+    setTitle("");
+    setLink("");
+    setBody(""); // 버전은 남겨둔다: 같은 버전으로 여러 건 이어서 보내는 경우가 많다
+    setImages([]);
+    setSaves([]);
+    setFileKey((k) => k + 1); // 파일 칸 비우기
+    setSending(false);
+    if (failed) {
+      setError(
+        `제보는 접수됐어요. 다만 첨부 ${failed}개를 올리지 못했어요. 첨부 링크 칸으로 보내주시면 됩니다.`
+      );
+      return;
+    }
+    setDone(true);
+    setTimeout(() => setDone(false), 4000);
   }
 
   if (!firebaseReady) {
@@ -271,11 +375,51 @@ export default function Reports() {
         <input
           value={link}
           onChange={(e) => setLink(e.target.value)}
-          placeholder="스크린샷·세이브 파일 공유 링크 (구글 드라이브 등)"
+          placeholder={
+            UPLOAD_URL
+              ? "파일이 크면 공유 링크로 (구글 드라이브 등)"
+              : "스크린샷·세이브 파일 공유 링크 (구글 드라이브 등)"
+          }
           maxLength={500}
           inputMode="url"
           style={inputStyle}
         />
+
+        {UPLOAD_URL &&
+          ["image", "save"].map((kind) => {
+            const r = FILE_RULES[kind];
+            const files = kind === "image" ? images : saves;
+            const setFiles = kind === "image" ? setImages : setSaves;
+            return (
+              <div key={kind}>
+                <label style={label}>{r.label} (선택)</label>
+                <input
+                  key={`${kind}-${fileKey}`}
+                  type="file"
+                  multiple
+                  accept={r.accept || undefined}
+                  onChange={(e) => {
+                    const picked = [...(e.target.files || [])];
+                    const msg = checkFiles(kind, picked);
+                    if (msg) {
+                      setError(msg);
+                      e.target.value = "";
+                      setFiles([]);
+                      return;
+                    }
+                    setError("");
+                    setFiles(picked);
+                  }}
+                  style={{ ...inputStyle, padding: "8px 10px", cursor: "pointer" }}
+                />
+                <div style={{ color: C.textDim, fontSize: 12, marginTop: 5 }}>
+                  {files.length
+                    ? files.map((f) => `${f.name} (${fmtBytes(f.size)})`).join(" · ")
+                    : r.hint}
+                </div>
+              </div>
+            );
+          })}
 
         <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
           <div style={{ flex: "1 1 160px" }}>
@@ -327,7 +471,7 @@ export default function Reports() {
               fontSize: 14,
             }}
           >
-            {sending ? "보내는 중…" : "보내기"}
+            {sending ? progress || "보내는 중…" : "보내기"}
           </button>
         </div>
         {done && (
@@ -432,6 +576,12 @@ export default function Reports() {
                   >
                     {r.body}
                   </p>
+                )}
+                {/* 올린 파일은 비공개(방랑자 드라이브)라 개수만 보여준다 */}
+                {Number(r.attachCount) > 0 && (
+                  <div style={{ color: C.goldDim, fontSize: 12, marginBottom: 6 }}>
+                    📎 첨부 {Number(r.attachCount)}개
+                  </div>
                 )}
                 {/* http(s) 링크만 링크로 띄운다(규칙에서도 막지만 한 번 더) */}
                 {typeof r.attachUrl === "string" &&

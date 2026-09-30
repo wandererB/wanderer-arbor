@@ -28,7 +28,7 @@ service cloud.firestore {
       allow create: if
         request.resource.data.keys().hasOnly([
           'game', 'type', 'title', 'body', 'nickname',
-          'patchVersion', 'status', 'createdAt', 'attachUrl'
+          'patchVersion', 'status', 'createdAt', 'attachUrl', 'attachCount'
         ])
         && request.resource.data.game is string
         && request.resource.data.game.size() > 0
@@ -51,7 +51,12 @@ service cloud.firestore {
         && (!('attachUrl' in request.resource.data)
             || (request.resource.data.attachUrl is string
                 && request.resource.data.attachUrl.size() <= 500
-                && request.resource.data.attachUrl.matches('https?://[^ ]+')));
+                && request.resource.data.attachUrl.matches('https?://[^ ]+')))
+        // 올릴 파일 개수(선택). 첨부 웹앱이 이 개수까지만 받는다.
+        && (!('attachCount' in request.resource.data)
+            || (request.resource.data.attachCount is int
+                && request.resource.data.attachCount >= 1
+                && request.resource.data.attachCount <= 7));
       allow update, delete: if false;
     }
   }
