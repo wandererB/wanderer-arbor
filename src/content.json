@@ -11,7 +11,7 @@
     "reportUrl": "https://docs.google.com/forms/d/e/1FAIpQLSczfOU4REn87Ss4ThLYioBYguaQcjBd-Cn-wbZFmQosP2iB_Q/viewform?usp=publish-editor"
   },
   "reports": {
-    "intro": "버그·오역·번역 개선 제안을 받습니다. 어디서(장면·메뉴), 무엇이(원문/현재 번역), 어떻게 되면 좋을지 적어주시면 반영이 빨라집니다."
+    "intro": "패치를 하다 걸린 돌부리가 있으면 알려주세요. 어느 장면에서 무엇이 이상했는지 적어주시면 방랑자가 짐을 풀고 들여다봅니다."
   },
   "guestbook": {
     "intro": "패치가 도움이 되셨다면 한마디 남겨주세요. 응원은 큰 힘이 됩니다.",
