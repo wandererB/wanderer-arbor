@@ -137,9 +137,21 @@ GitHub Releases 는 **에셋 1개당 2GiB** 가 플랫폼 하드 리밋입니다
 
 ### 상태 바꾸기
 
-`status` 를 바꾸면 목록의 배지 색이 바뀝니다. **Firebase 콘솔 > Firestore Database >
-`reports` 컬렉션**에서 해당 문서의 `status` 값을 직접 고치면 됩니다.
-클라이언트는 상태를 바꿀 수 없도록 보안 규칙으로 막아두었습니다.
+`status` 를 바꾸면 목록의 배지 색이 바뀝니다. 방문자는 보안 규칙으로 막혀 있고,
+바꾸는 방법은 두 가지입니다.
+
+- **관리자 모드 (폰에서도 됨):** 제보 탭 맨 아래 작은 **관리** → 구글 로그인.
+  등록된 계정이면 각 제보의 상태 배지가 드롭다운으로 바뀌고, 삭제·드라이브 첨부 링크가 보입니다.
+  관리자는 `status`(와 `statusAt`)만 바꿀 수 있고 제보 내용은 못 고칩니다.
+- **Firebase 콘솔:** Firestore Database > `reports` 에서 문서의 `status` 를 직접 수정.
+
+관리자 모드 처음 설정 (한 번만):
+
+1. Firebase 콘솔 > Authentication > 로그인 방법 > **Google** 사용 설정.
+2. Authentication > 설정 > 승인된 도메인에 **`wandererb.github.io`** 추가.
+3. 사이트 제보 탭에서 **관리**로 로그인하면 "관리자로 등록된 계정이 아니에요 · UID …" 가 나온다.
+4. 그 UID 를 `src/content.json` 의 `reports.adminUids` 와 `firestore.rules` 의 `isAdmin()` 목록
+   두 곳에 넣고, 규칙을 콘솔에 다시 게시 + 푸시.
 
 ### 보안 규칙 (필수)
 

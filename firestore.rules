@@ -4,9 +4,15 @@ rules_version = '2';
 // Firebase 콘솔 > Firestore Database > 규칙 에 붙여넣고 '게시'.
 //
 // 원칙: 누구나 읽고 새 글을 쓸 수 있되, 수정·삭제는 아무도 못 한다.
-// 상태 변경(접수 -> 확인 중 -> 수정 완료 / 보류)은 콘솔에서 직접 한다.
+// 예외: 관리자(아래 UID)만 제보의 상태를 바꾸거나 지울 수 있다(제보 탭 맨 아래 '관리').
 service cloud.firestore {
   match /databases/{database}/documents {
+
+    // 관리자 구글 계정 UID. src/content.json 의 reports.adminUids 와 같게 넣는다.
+    // UID 는 제보 탭 '관리'로 로그인하면 화면 아래에 나온다.
+    function isAdmin() {
+      return request.auth != null && request.auth.uid in [];
+    }
 
     // 방명록
     match /guestbook/{doc} {
@@ -57,7 +63,12 @@ service cloud.firestore {
             || (request.resource.data.attachCount is int
                 && request.resource.data.attachCount >= 1
                 && request.resource.data.attachCount <= 7));
-      allow update, delete: if false;
+      // 관리자는 상태(와 바꾼 시각)만 바꿀 수 있다. 제보 내용은 못 고친다.
+      allow update: if isAdmin()
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status', 'statusAt'])
+        && request.resource.data.status in ['접수', '확인 중', '수정 완료', '보류']
+        && request.resource.data.statusAt == request.time;
+      allow delete: if isAdmin();
     }
   }
 }

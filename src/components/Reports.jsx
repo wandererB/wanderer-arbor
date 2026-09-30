@@ -2,16 +2,26 @@ import { useState, useEffect, useMemo } from "react";
 import { C, serif } from "../theme.js";
 import { Section, inputStyle } from "./ui.jsx";
 import content from "../content.json";
-import { db, firebaseReady } from "../firebase.js";
+import { app, db, firebaseReady } from "../firebase.js";
 import {
   collection,
   addDoc,
+  doc,
+  updateDoc,
+  deleteDoc,
   query,
   orderBy,
   limit,
   onSnapshot,
   serverTimestamp,
 } from "firebase/firestore";
+import {
+  getAuth,
+  onAuthStateChanged,
+  signInWithPopup,
+  signOut,
+  GoogleAuthProvider,
+} from "firebase/auth";
 
 // 분류. value 는 Firestore 에 그대로 저장되므로 보안 규칙의 허용 목록과 같아야 한다.
 const TYPES = [
@@ -21,13 +31,14 @@ const TYPES = [
   { value: "기타", label: "기타" },
 ];
 
-// 상태 배지 색. 상태는 Firebase 콘솔에서 직접 바꾼다(클라이언트는 못 바꾼다).
+// 상태 배지 색. 방문자는 못 바꾸고, 관리자 모드(아래)나 Firebase 콘솔에서 바꾼다.
 const STATUS_COLOR = {
   "접수": { fg: C.textDim, bd: C.line },
   "확인 중": { fg: "#d9b45f", bd: "#8a6f2e" },
   "수정 완료": { fg: "#7fc08a", bd: "#3f6d48" },
   "보류": { fg: "#9a8a68", bd: C.line },
 };
+const STATUSES = Object.keys(STATUS_COLOR);
 const FIRST_STATUS = "접수";
 const DEFAULT_NICK = "나그네"; // 나그네 쉼터라서
 
@@ -58,6 +69,12 @@ const FILE_RULES = {
 };
 const BLOCKED_EXTS = ["exe", "bat", "cmd", "com", "msi", "scr", "ps1", "vbs", "vbe", "js",
   "jse", "wsf", "jar", "apk", "sh", "dll", "lnk", "hta", "reg"];
+
+// ── 관리자 모드 ──────────────────────────────────────────────────────
+// 목록 맨 아래 '관리' 로 구글 로그인하면, content.json 의 reports.adminUids 에 있는
+// 계정에만 상태 선택·삭제가 보인다. 실제로 막는 건 firestore.rules 의 isAdmin() 이고
+// 여기 목록은 버튼을 보여줄지만 정한다(둘 다 같은 UID 를 넣어야 한다).
+const ADMIN_UIDS = (content.reports && content.reports.adminUids) || [];
 
 function extOf(name) {
   const i = name.lastIndexOf(".");
@@ -151,6 +168,15 @@ export default function Reports() {
   const [sending, setSending] = useState(false);
   const [error, setError] = useState("");
   const [done, setDone] = useState(false);
+  const [user, setUser] = useState(null);
+  const [adminMsg, setAdminMsg] = useState("");
+  const [busyId, setBusyId] = useState("");
+  const isAdmin = !!user && ADMIN_UIDS.includes(user.uid);
+
+  useEffect(() => {
+    if (!firebaseReady) return;
+    return onAuthStateChanged(getAuth(app), setUser);
+  }, []);
 
   useEffect(() => {
     if (!firebaseReady) {
@@ -169,6 +195,43 @@ export default function Reports() {
     );
     return () => unsub();
   }, []);
+
+  async function adminLogin() {
+    setAdminMsg("");
+    try {
+      await signInWithPopup(getAuth(app), new GoogleAuthProvider());
+    } catch (e) {
+      const code = (e && e.code) || "unknown";
+      if (code === "auth/popup-closed-by-user" || code === "auth/cancelled-popup-request") return;
+      setAdminMsg(`로그인하지 못했어요. (${code})`);
+    }
+  }
+
+  async function changeStatus(r, status) {
+    if (status === (r.status || FIRST_STATUS)) return;
+    setBusyId(r.id);
+    setAdminMsg("");
+    try {
+      // 목록은 실시간 구독이라 바뀐 값이 바로 반영된다
+      await updateDoc(doc(db, "reports", r.id), { status, statusAt: serverTimestamp() });
+    } catch {
+      setAdminMsg("상태를 바꾸지 못했어요. 보안 규칙에 관리자 UID가 들어갔는지 확인해 주세요.");
+    }
+    setBusyId("");
+  }
+
+  async function removeReport(r) {
+    if (!window.confirm(`"${r.title}" 제보를 지울까요? 되돌릴 수 없어요.\n(드라이브 첨부 파일은 남아 있어요)`))
+      return;
+    setBusyId(r.id);
+    setAdminMsg("");
+    try {
+      await deleteDoc(doc(db, "reports", r.id));
+    } catch {
+      setAdminMsg("지우지 못했어요. 보안 규칙에 관리자 UID가 들어갔는지 확인해 주세요.");
+    }
+    setBusyId("");
+  }
 
   async function send() {
     const t = title.trim();
@@ -504,6 +567,10 @@ export default function Reports() {
         </div>
       )}
 
+      {adminMsg && (
+        <p style={{ color: "#d98a6a", fontSize: 13, margin: "0 0 12px" }}>{adminMsg}</p>
+      )}
+
       {/* 제보 목록 */}
       {items === null ? (
         <p style={{ color: C.textDim, textAlign: "center", padding: 30 }}>
@@ -541,9 +608,33 @@ export default function Reports() {
                   <Badge fg={C.gold} bd={C.goldDim}>
                     {r.type || "기타"}
                   </Badge>
-                  <Badge fg={sc.fg} bd={sc.bd}>
-                    {r.status || FIRST_STATUS}
-                  </Badge>
+                  {isAdmin ? (
+                    <select
+                      value={r.status || FIRST_STATUS}
+                      disabled={busyId === r.id}
+                      onChange={(e) => changeStatus(r, e.target.value)}
+                      aria-label="상태 바꾸기"
+                      style={{
+                        fontSize: 12,
+                        padding: "2px 6px",
+                        borderRadius: 20,
+                        color: sc.fg,
+                        border: `1px solid ${sc.bd}`,
+                        background: C.ink,
+                        cursor: "pointer",
+                      }}
+                    >
+                      {STATUSES.map((st) => (
+                        <option key={st} value={st}>
+                          {st}
+                        </option>
+                      ))}
+                    </select>
+                  ) : (
+                    <Badge fg={sc.fg} bd={sc.bd}>
+                      {r.status || FIRST_STATUS}
+                    </Badge>
+                  )}
                   <span style={{ color: C.textDim, fontSize: 12 }}>{r.game}</span>
                   <span
                     style={{ color: C.textDim, fontSize: 12, marginLeft: "auto" }}
@@ -606,14 +697,92 @@ export default function Reports() {
                   {r.nickname || DEFAULT_NICK}
                   {r.patchVersion ? ` · ${r.patchVersion}` : ""}
                 </div>
+                {isAdmin && (
+                  <div
+                    style={{
+                      display: "flex",
+                      gap: 14,
+                      alignItems: "center",
+                      flexWrap: "wrap",
+                      marginTop: 10,
+                      paddingTop: 10,
+                      borderTop: `1px dashed ${C.line}`,
+                      fontSize: 12,
+                    }}
+                  >
+                    {/* 첨부 폴더 이름에 제보 ID 가 들어 있어 검색으로 바로 찾힌다 */}
+                    {Number(r.attachCount) > 0 && (
+                      <a
+                        href={`https://drive.google.com/drive/search?q=${encodeURIComponent(r.id)}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{ color: C.gold }}
+                      >
+                        드라이브 첨부 ↗
+                      </a>
+                    )}
+                    <span style={{ color: C.sepiaDim }}>ID {r.id}</span>
+                    <button
+                      onClick={() => removeReport(r)}
+                      disabled={busyId === r.id}
+                      style={{ ...textBtn, color: "#d98a6a", marginLeft: "auto" }}
+                    >
+                      삭제
+                    </button>
+                  </div>
+                )}
               </div>
             );
           })}
         </div>
       )}
+
+      {/* 관리자 입구. 방문자에게는 작은 글자 하나만 보인다. */}
+      <div
+        style={{
+          marginTop: 30,
+          textAlign: "center",
+          color: C.sepiaDim,
+          fontSize: 12,
+          lineHeight: 1.8,
+        }}
+      >
+        {!user ? (
+          <button onClick={adminLogin} style={textBtn}>
+            관리
+          </button>
+        ) : (
+          <>
+            {isAdmin ? (
+              "관리자 모드 · 상태를 누르면 바꿀 수 있어요"
+            ) : (
+              <>
+                관리자로 등록된 계정이 아니에요.
+                <br />
+                <span style={{ userSelect: "all" }}>UID {user.uid}</span>
+              </>
+            )}
+            {" · "}
+            <button onClick={() => signOut(getAuth(app))} style={textBtn}>
+              로그아웃
+            </button>
+          </>
+        )}
+      </div>
     </Section>
   );
 }
+
+const textBtn = {
+  background: "none",
+  border: "none",
+  padding: 0,
+  color: C.sepiaDim,
+  fontSize: 12,
+  cursor: "pointer",
+  textDecoration: "underline",
+  textUnderlineOffset: 3,
+};
 
 function Badge({ children, fg, bd }) {
   return (

@@ -8,11 +8,14 @@ import content from "./content.json";
 const cfg = content.guestbook && content.guestbook.firebase;
 export const firebaseReady = !!(cfg && cfg.apiKey && cfg.projectId);
 
+let _app = null;
 let _db = null;
 if (firebaseReady) {
   const app = initializeApp(cfg);
+  _app = app;
   // 일부 네트워크/프록시가 Firestore 실시간 채널(WebChannel)을 막는 경우를 대비해
   // long-polling 자동 감지를 켭니다(연결 안정성 향상).
   _db = initializeFirestore(app, { experimentalAutoDetectLongPolling: true });
 }
+export const app = _app; // 제보 관리자 로그인(firebase/auth)에서 씀
 export const db = _db;
