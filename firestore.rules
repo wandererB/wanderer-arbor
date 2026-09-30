@@ -28,7 +28,7 @@ service cloud.firestore {
       allow create: if
         request.resource.data.keys().hasOnly([
           'game', 'type', 'title', 'body', 'nickname',
-          'patchVersion', 'status', 'createdAt'
+          'patchVersion', 'status', 'createdAt', 'attachUrl'
         ])
         && request.resource.data.game is string
         && request.resource.data.game.size() > 0
@@ -46,7 +46,12 @@ service cloud.firestore {
         && request.resource.data.patchVersion.size() <= 20
         // 클라이언트는 상태를 정할 수 없다. 항상 '접수' 로만 들어온다.
         && request.resource.data.status == '접수'
-        && request.resource.data.createdAt == request.time;
+        && request.resource.data.createdAt == request.time
+        // 첨부 링크는 선택. 있으면 http(s) 주소, 500자 이내만.
+        && (!('attachUrl' in request.resource.data)
+            || (request.resource.data.attachUrl is string
+                && request.resource.data.attachUrl.size() <= 500
+                && request.resource.data.attachUrl.matches('https?://[^ ]+')));
       allow update, delete: if false;
     }
   }

@@ -76,6 +76,7 @@ export default function Reports() {
   const [body, setBody] = useState("");
   const [nick, setNick] = useState("");
   const [ver, setVer] = useState("");
+  const [link, setLink] = useState("");
   const [sending, setSending] = useState(false);
   const [error, setError] = useState("");
   const [done, setDone] = useState(false);
@@ -106,6 +107,10 @@ export default function Reports() {
     if (!ver.trim()) return setError("패치 버전을 적어주세요. (예: v1.2)");
     if (t.length > 100) return setError("제목은 100자까지 적을 수 있어요.");
     if (b.length > 1000) return setError("내용은 1000자까지 적을 수 있어요.");
+    const l = link.trim();
+    if (l && !/^https?:\/\/\S+$/.test(l))
+      return setError("첨부 링크는 http:// 나 https:// 로 시작하는 주소만 넣을 수 있어요.");
+    if (l.length > 500) return setError("첨부 링크가 너무 길어요.");
 
     // 연타·스팸 완화. 브라우저 저장소라 우회는 가능하지만 실수 중복은 대부분 막힌다.
     try {
@@ -130,6 +135,8 @@ export default function Reports() {
         patchVersion: ver.trim().slice(0, 20),
         status: FIRST_STATUS, // 보안 규칙에서도 이 값만 허용한다
         createdAt: serverTimestamp(),
+        // 링크가 있을 때만 넣는다(빈 값까지 쌓지 않게)
+        ...(l ? { attachUrl: l } : {}),
       });
       try {
         localStorage.setItem(COOLDOWN_KEY, String(Date.now()));
@@ -137,6 +144,7 @@ export default function Reports() {
         /* noop */
       }
       setTitle("");
+      setLink("");
       setBody(""); // 버전은 남겨둔다: 같은 버전으로 여러 건 이어서 보내는 경우가 많다
       setDone(true);
       setTimeout(() => setDone(false), 4000);
@@ -257,6 +265,16 @@ export default function Reports() {
           rows={4}
           maxLength={1000}
           style={{ ...inputStyle, resize: "vertical" }}
+        />
+
+        <label style={label}>첨부 링크 (선택)</label>
+        <input
+          value={link}
+          onChange={(e) => setLink(e.target.value)}
+          placeholder="스크린샷·세이브 파일 공유 링크 (구글 드라이브 등)"
+          maxLength={500}
+          inputMode="url"
+          style={inputStyle}
         />
 
         <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
@@ -415,6 +433,25 @@ export default function Reports() {
                     {r.body}
                   </p>
                 )}
+                {/* http(s) 링크만 링크로 띄운다(규칙에서도 막지만 한 번 더) */}
+                {typeof r.attachUrl === "string" &&
+                  /^https?:\/\//.test(r.attachUrl) && (
+                    <a
+                      href={r.attachUrl}
+                      target="_blank"
+                      rel="noopener noreferrer nofollow"
+                      style={{
+                        display: "inline-block",
+                        color: C.gold,
+                        fontSize: 13,
+                        marginBottom: 8,
+                        textDecoration: "underline",
+                        textUnderlineOffset: 3,
+                      }}
+                    >
+                      첨부 보기 ↗
+                    </a>
+                  )}
                 <div style={{ color: C.sepiaDim, fontSize: 12 }}>
                   {r.nickname || DEFAULT_NICK}
                   {r.patchVersion ? ` · ${r.patchVersion}` : ""}
