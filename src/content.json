@@ -1,7 +1,7 @@
 {
   "notice": {
     "show": true,
-    "text": "PS2 프론트 미션 5 v1.0 배포, 기동전사 건담 클라이맥스 U.C.[PS2] v1.1 업데이트(전투자막 완료)",
+    "text": "PSP 428 봉쇄된 시부야에서 v1.0 배포, PS2 프론트 미션 5 v1.0 배포",
     "link": "",
     "linkLabel": ""
   },
@@ -285,7 +285,10 @@
       {
         "title": "428 봉쇄된 시부야에서[PSP] 한글패치",
         "subtitle": "428 〜封鎖された渋谷で〜",
-        "url": "",
+        "version": "1.0",
+        "date": "2026-09-30",
+        "size": "약 89MB",
+        "url": "https://github.com/wandererB/wanderer-arbor/releases/download/428S/428_Shibuya_KR_v1.0.zip",
         "bg": "images/428.jpg",
         "bgPos": "center 67%"
       }
