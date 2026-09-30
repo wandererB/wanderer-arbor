@@ -11,8 +11,9 @@ import content from "./content.json";
 
 // 방명록은 Firebase를 쓰므로, 탭을 열 때만 로드(첫 화면 경량화)
 const Guestbook = lazy(() => import("./components/Guestbook.jsx"));
+const Reports = lazy(() => import("./components/Reports.jsx"));
 
-const VIEWS = ["home", "guestbook", "botjim", "hermitage", "genki"];
+const VIEWS = ["home", "guestbook", "reports", "botjim", "hermitage", "genki"];
 
 // 주소의 해시를 화면 이름으로. "#/guestbook" → "guestbook", 모르는 값이면 home.
 // GitHub Pages 는 서버 라우팅이 없어서 해시 방식을 쓴다(경로 방식은 새로고침 시 404).
@@ -74,6 +75,17 @@ export default function App() {
           }
         >
           <Guestbook />
+        </Suspense>
+      )}
+      {view === "reports" && (
+        <Suspense
+          fallback={
+            <div style={{ textAlign: "center", padding: 60, color: C.textDim }}>
+              불러오는 중…
+            </div>
+          }
+        >
+          <Reports />
         </Suspense>
       )}
       {view === "botjim" && <Botjim setView={setView} />}

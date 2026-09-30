@@ -110,6 +110,7 @@ GitHub Releases 는 **에셋 1개당 2GiB** 가 플랫폼 하드 리밋입니다
 | 암자 | `.../wanderer-arbor/#/hermitage` |
 | 봇짐 | `.../wanderer-arbor/#/botjim` |
 | 방명록 | `.../wanderer-arbor/#/guestbook` |
+| 제보 | `.../wanderer-arbor/#/reports` |
 | 원기옥 | `.../wanderer-arbor/#/genki` |
 
 - 새로고침해도 그 화면이 유지되고, 브라우저 뒤로가기가 화면 이동을 따라갑니다.
@@ -117,6 +118,44 @@ GitHub Releases 는 **에셋 1개당 2GiB** 가 플랫폼 하드 리밋입니다
 - GitHub Pages 는 서버 라우팅이 없어서 해시 방식을 씁니다. 경로 방식(`/guestbook`)은
   새로고침할 때 404 가 납니다.
 - 화면을 추가하면 `src/App.jsx` 의 `VIEWS` 배열에도 이름을 넣어야 주소가 동작합니다.
+
+## 오류 제보 게시판
+
+`#/reports` 화면에서 방문자가 버그·오역·번역 개선을 바로 접수합니다.
+방명록과 같은 Firestore 프로젝트를 쓰며, 컬렉션만 `reports` 로 다릅니다.
+
+저장되는 필드:
+
+| 필드 | 설명 |
+| --- | --- |
+| `game` | 제보 대상 게임. 드롭다운은 `content.json` 의 다운로드 항목에서 자동으로 만들어집니다 |
+| `type` | 버그 / 오역 / 번역 개선 / 기타 |
+| `title` `body` | 제목(100자)·내용(1000자) |
+| `nickname` `patchVersion` | 선택 입력 |
+| `status` | 접수됨 → 확인중 → 반영됨 → 보류 |
+| `createdAt` | 서버 시각 |
+
+### 상태 바꾸기
+
+`status` 를 바꾸면 목록의 배지 색이 바뀝니다. **Firebase 콘솔 > Firestore Database >
+`reports` 컬렉션**에서 해당 문서의 `status` 값을 직접 고치면 됩니다.
+클라이언트는 상태를 바꿀 수 없도록 보안 규칙으로 막아두었습니다.
+
+### 보안 규칙 (필수)
+
+`firestore.rules` 의 내용을 **Firebase 콘솔 > Firestore Database > 규칙**에 붙여넣고
+'게시'해야 제보 화면이 동작합니다. 규칙을 올리기 전에는 목록이
+"제보 목록을 불러오지 못했습니다" 로 표시됩니다.
+
+규칙이 막는 것:
+
+- 수정·삭제 전면 금지 (작성만 허용)
+- 정해둔 필드 외 거부, 글자 수 상한
+- `status` 는 `접수됨` 으로만 생성 가능
+- `createdAt` 은 서버 시각만 허용
+
+스팸 대비로 같은 브라우저에서 1분에 1건만 보내지도록 해두었습니다(`Reports.jsx`).
+브라우저 저장소 기반이라 우회는 가능하니, 실제로 문제가 생기면 그때 더 조이면 됩니다.
 
 ## 배포 (GitHub Pages)
 

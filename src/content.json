@@ -10,6 +10,9 @@
     "tagline": "비공식 팬 번역 프로젝트",
     "reportUrl": "https://docs.google.com/forms/d/e/1FAIpQLSczfOU4REn87Ss4ThLYioBYguaQcjBd-Cn-wbZFmQosP2iB_Q/viewform?usp=publish-editor"
   },
+  "reports": {
+    "intro": "버그·오역·번역 개선 제안을 받습니다. 어디서(장면·메뉴), 무엇이(원문/현재 번역), 어떻게 되면 좋을지 적어주시면 반영이 빨라집니다."
+  },
   "guestbook": {
     "intro": "패치가 도움이 되셨다면 한마디 남겨주세요. 응원은 큰 힘이 됩니다.",
     "firebase": {

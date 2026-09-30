@@ -1,0 +1,52 @@
+rules_version = '2';
+
+// 방랑자의 그늘쉼터 — Firestore 보안 규칙
+// Firebase 콘솔 > Firestore Database > 규칙 에 붙여넣고 '게시'.
+//
+// 원칙: 누구나 읽고 새 글을 쓸 수 있되, 수정·삭제는 아무도 못 한다.
+// 상태 변경(접수됨 -> 확인중 -> 반영됨)은 콘솔에서 직접 한다.
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // 방명록
+    match /guestbook/{doc} {
+      allow read: if true;
+      allow create: if
+        request.resource.data.keys().hasOnly(['name', 'message', 'createdAt'])
+        && request.resource.data.name is string
+        && request.resource.data.name.size() <= 30
+        && request.resource.data.message is string
+        && request.resource.data.message.size() > 0
+        && request.resource.data.message.size() <= 500
+        && request.resource.data.createdAt == request.time;
+      allow update, delete: if false;
+    }
+
+    // 오류 제보
+    match /reports/{doc} {
+      allow read: if true;
+      allow create: if
+        request.resource.data.keys().hasOnly([
+          'game', 'type', 'title', 'body', 'nickname',
+          'patchVersion', 'status', 'createdAt'
+        ])
+        && request.resource.data.game is string
+        && request.resource.data.game.size() > 0
+        && request.resource.data.game.size() <= 60
+        && request.resource.data.type in ['버그', '오역', '번역 개선', '기타']
+        && request.resource.data.title is string
+        && request.resource.data.title.size() > 0
+        && request.resource.data.title.size() <= 100
+        && request.resource.data.body is string
+        && request.resource.data.body.size() <= 1000
+        && request.resource.data.nickname is string
+        && request.resource.data.nickname.size() <= 30
+        && request.resource.data.patchVersion is string
+        && request.resource.data.patchVersion.size() <= 20
+        // 클라이언트는 상태를 정할 수 없다. 항상 '접수됨' 으로만 들어온다.
+        && request.resource.data.status == '접수됨'
+        && request.resource.data.createdAt == request.time;
+      allow update, delete: if false;
+    }
+  }
+}
