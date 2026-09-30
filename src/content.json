@@ -281,6 +281,13 @@
         "url": "https://github.com/wandererB/wanderer-arbor/releases/download/FM5-v1.0/fm5-korean-v1.0.zip",
         "bg": "images/FM5.jpg",
         "bgPos": "center 57%"
+      },
+      {
+        "title": "428 봉쇄된 시부야에서[PSP] 한글패치",
+        "subtitle": "428 〜封鎖された渋谷で〜",
+        "url": "",
+        "bg": "images/428.jpg",
+        "bgPos": "center 67%"
       }
     ]
   },
