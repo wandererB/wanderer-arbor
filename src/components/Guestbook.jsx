@@ -6,12 +6,15 @@ import { db, firebaseReady } from "../firebase.js";
 import {
   collection,
   addDoc,
+  doc,
+  deleteDoc,
   query,
   orderBy,
   limit,
   onSnapshot,
   serverTimestamp,
 } from "firebase/firestore";
+import { useAdmin, AdminFooter, textBtn } from "../admin.jsx";
 
 function fmt(ts) {
   if (!ts || !ts.toDate) return "";
@@ -29,6 +32,9 @@ export default function Guestbook() {
   const [msg, setMsg] = useState("");
   const [sending, setSending] = useState(false);
   const [error, setError] = useState("");
+  const admin = useAdmin();
+  const { isAdmin, setMsg: setAdminMsg } = admin;
+  const [busyId, setBusyId] = useState("");
 
   useEffect(() => {
     if (!firebaseReady) {
@@ -69,6 +75,19 @@ export default function Guestbook() {
     } finally {
       setSending(false);
     }
+  }
+
+  async function remove(m) {
+    if (!window.confirm(`${m.name || "익명"} 님의 글을 지울까요? 되돌릴 수 없어요.`))
+      return;
+    setBusyId(m.id);
+    setAdminMsg("");
+    try {
+      await deleteDoc(doc(db, "guestbook", m.id));
+    } catch {
+      setAdminMsg("지우지 못했어요. 보안 규칙에 관리자 UID가 들어갔는지 확인해 주세요.");
+    }
+    setBusyId("");
   }
 
   // Firebase 미설정 시 안내
@@ -215,6 +234,15 @@ export default function Guestbook() {
                 <span style={{ color: C.textDim, fontSize: 12 }}>
                   {fmt(m.createdAt)}
                 </span>
+                {isAdmin && (
+                  <button
+                    onClick={() => remove(m)}
+                    disabled={busyId === m.id}
+                    style={{ ...textBtn, color: "#d98a6a", marginLeft: "auto" }}
+                  >
+                    삭제
+                  </button>
+                )}
               </div>
               <p
                 style={{
@@ -232,6 +260,20 @@ export default function Guestbook() {
           ))}
         </div>
       )}
+
+      {admin.msg && (
+        <p
+          style={{
+            color: "#d98a6a",
+            fontSize: 13,
+            textAlign: "center",
+            margin: "14px 0 0",
+          }}
+        >
+          {admin.msg}
+        </p>
+      )}
+      <AdminFooter admin={admin} hint="관리자 모드 · 글마다 삭제가 보여요" />
     </Section>
   );
 }

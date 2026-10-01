@@ -2,7 +2,7 @@ import { useState, useEffect, useMemo } from "react";
 import { C, serif } from "../theme.js";
 import { Section, inputStyle } from "./ui.jsx";
 import content from "../content.json";
-import { app, db, firebaseReady } from "../firebase.js";
+import { db, firebaseReady } from "../firebase.js";
 import {
   collection,
   addDoc,
@@ -15,13 +15,7 @@ import {
   onSnapshot,
   serverTimestamp,
 } from "firebase/firestore";
-import {
-  getAuth,
-  onAuthStateChanged,
-  signInWithPopup,
-  signOut,
-  GoogleAuthProvider,
-} from "firebase/auth";
+import { useAdmin, AdminFooter, textBtn } from "../admin.jsx";
 
 // 분류. value 는 Firestore 에 그대로 저장되므로 보안 규칙의 허용 목록과 같아야 한다.
 const TYPES = [
@@ -69,12 +63,6 @@ const FILE_RULES = {
 };
 const BLOCKED_EXTS = ["exe", "bat", "cmd", "com", "msi", "scr", "ps1", "vbs", "vbe", "js",
   "jse", "wsf", "jar", "apk", "sh", "dll", "lnk", "hta", "reg"];
-
-// ── 관리자 모드 ──────────────────────────────────────────────────────
-// 목록 맨 아래 '관리' 로 구글 로그인하면, content.json 의 reports.adminUids 에 있는
-// 계정에만 상태 선택·삭제가 보인다. 실제로 막는 건 firestore.rules 의 isAdmin() 이고
-// 여기 목록은 버튼을 보여줄지만 정한다(둘 다 같은 UID 를 넣어야 한다).
-const ADMIN_UIDS = (content.reports && content.reports.adminUids) || [];
 
 function extOf(name) {
   const i = name.lastIndexOf(".");
@@ -168,15 +156,9 @@ export default function Reports() {
   const [sending, setSending] = useState(false);
   const [error, setError] = useState("");
   const [done, setDone] = useState(false);
-  const [user, setUser] = useState(null);
-  const [adminMsg, setAdminMsg] = useState("");
+  const admin = useAdmin();
+  const { isAdmin, msg: adminMsg, setMsg: setAdminMsg } = admin;
   const [busyId, setBusyId] = useState("");
-  const isAdmin = !!user && ADMIN_UIDS.includes(user.uid);
-
-  useEffect(() => {
-    if (!firebaseReady) return;
-    return onAuthStateChanged(getAuth(app), setUser);
-  }, []);
 
   useEffect(() => {
     if (!firebaseReady) {
@@ -195,17 +177,6 @@ export default function Reports() {
     );
     return () => unsub();
   }, []);
-
-  async function adminLogin() {
-    setAdminMsg("");
-    try {
-      await signInWithPopup(getAuth(app), new GoogleAuthProvider());
-    } catch (e) {
-      const code = (e && e.code) || "unknown";
-      if (code === "auth/popup-closed-by-user" || code === "auth/cancelled-popup-request") return;
-      setAdminMsg(`로그인하지 못했어요. (${code})`);
-    }
-  }
 
   async function changeStatus(r, status) {
     if (status === (r.status || FIRST_STATUS)) return;
@@ -737,52 +708,10 @@ export default function Reports() {
         </div>
       )}
 
-      {/* 관리자 입구. 방문자에게는 작은 글자 하나만 보인다. */}
-      <div
-        style={{
-          marginTop: 30,
-          textAlign: "center",
-          color: C.sepiaDim,
-          fontSize: 12,
-          lineHeight: 1.8,
-        }}
-      >
-        {!user ? (
-          <button onClick={adminLogin} style={textBtn}>
-            관리
-          </button>
-        ) : (
-          <>
-            {isAdmin ? (
-              "관리자 모드 · 상태를 누르면 바꿀 수 있어요"
-            ) : (
-              <>
-                관리자로 등록된 계정이 아니에요.
-                <br />
-                <span style={{ userSelect: "all" }}>UID {user.uid}</span>
-              </>
-            )}
-            {" · "}
-            <button onClick={() => signOut(getAuth(app))} style={textBtn}>
-              로그아웃
-            </button>
-          </>
-        )}
-      </div>
+      <AdminFooter admin={admin} hint="관리자 모드 · 상태를 누르면 바꿀 수 있어요" />
     </Section>
   );
 }
-
-const textBtn = {
-  background: "none",
-  border: "none",
-  padding: 0,
-  color: C.sepiaDim,
-  fontSize: 12,
-  cursor: "pointer",
-  textDecoration: "underline",
-  textUnderlineOffset: 3,
-};
 
 function Badge({ children, fg, bd }) {
   return (

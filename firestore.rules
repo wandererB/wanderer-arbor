@@ -4,7 +4,8 @@ rules_version = '2';
 // Firebase 콘솔 > Firestore Database > 규칙 에 붙여넣고 '게시'.
 //
 // 원칙: 누구나 읽고 새 글을 쓸 수 있되, 수정·삭제는 아무도 못 한다.
-// 예외: 관리자(아래 UID)만 제보의 상태를 바꾸거나 지울 수 있다(제보 탭 맨 아래 '관리').
+// 예외: 관리자(아래 UID)만 제보 상태를 바꾸거나, 제보·방명록 글을 지울 수 있다
+//       (제보·방명록 탭 맨 아래 '관리' 로 구글 로그인).
 service cloud.firestore {
   match /databases/{database}/documents {
 
@@ -25,7 +26,9 @@ service cloud.firestore {
         && request.resource.data.message.size() > 0
         && request.resource.data.message.size() <= 500
         && request.resource.data.createdAt == request.time;
-      allow update, delete: if false;
+      // 방명록은 고칠 일이 없다. 스팸만 관리자가 지운다.
+      allow update: if false;
+      allow delete: if isAdmin();
     }
 
     // 오류 제보
