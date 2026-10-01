@@ -1,7 +1,7 @@
 {
   "notice": {
     "show": true,
-    "text": "PSP 428 봉쇄된 시부야에서 v1.0 배포, PS2 프론트 미션 5 v1.1 업데이트",
+    "text": "PS2 커스텀 BGM 생성기 3.1.1 업데이트, PSP 428 봉쇄된 시부야에서 v1.0 배포, PS2 프론트 미션 5 v1.1 업데이트",
     "link": "",
     "linkLabel": ""
   },
@@ -298,6 +298,14 @@
     "heroSubtitle": "도구 · 유틸리티",
     "intro": "방랑자가 봇짐에 챙겨 다니는 자잘한 연장들. 한글패치가 아닌 도구·유틸리티를 여기 둡니다.",
     "downloads": [
+      {
+        "title": "PS2 슈퍼로봇대전 커스텀 BGM 생성기(통합판)",
+        "subtitle": "Super Robot Wars · Custom BGM",
+        "version": "3.1.1",
+        "date": "2026-10-01",
+        "size": "약 73MB",
+        "url": "https://github.com/wandererB/wanderer-arbor/releases/download/srwzbgm/PS2_SRW_CustomBGM_Public_v3.1.1.zip"
+      },
       {
         "title": "PS2 슈퍼로봇대전 커스텀 BGM 생성기(통합판)",
         "subtitle": "Super Robot Wars · Custom BGM",
