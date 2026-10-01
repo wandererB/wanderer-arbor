@@ -299,11 +299,12 @@
     "intro": "방랑자가 봇짐에 챙겨 다니는 자잘한 연장들. 한글패치가 아닌 도구·유틸리티를 여기 둡니다.",
     "downloads": [
       {
-        "title": "PS2 슈퍼로봇대전 커스텀 BGM 생성기(통합판)",
+        "title": "PS2 슈퍼로봇대전 커스텀 BGM 생성기(개선판)",
         "subtitle": "Super Robot Wars · Custom BGM",
         "version": "3.1.1",
         "date": "2026-10-01",
         "size": "약 73MB",
+        "Note": "2차 알파 레벨업 무음 버그 수정 및 임팩트 통합.",
         "url": "https://github.com/wandererB/wanderer-arbor/releases/download/srwzbgm/PS2_SRW_CustomBGM_Public_v3.1.1.zip"
       },
       {
