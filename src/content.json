@@ -64,7 +64,8 @@
       "size": "4MB",
       "url": "https://github.com/wandererB/wanderer-arbor/releases/download/mk3v-v1.2/MasouKishin3_KR_Vita_v1.4.zip",
       "bg": "images/mk3.jpg",
-      "bgPos": "center 65.4%"
+      "bgPair": "top",
+      "bgPos": "center 60.4%"
     },
     {
       "title": "마장기신 3 한글패치 (PS3)",
@@ -74,7 +75,8 @@
       "size": "약 4.9MB",
       "url": "https://github.com/wandererB/wanderer-arbor/releases/download/mk3p-v1.2/MasouKishin3_KR_PS3_v1.4.zip",
       "bg": "images/mk3.jpg",
-      "bgPos": "center 94.6%"
+      "bgPair": "bottom",
+      "bgPos": "center 89.6%"
     },
     {
       "title": "마장기신F 한글패치",

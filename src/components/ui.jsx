@@ -136,6 +136,12 @@ export function GlobalStyle() {
         /* 카드가 세로로 쌓이면 오른쪽 정렬된 안내가 배경 그림 한가운데(인물 얼굴)를 가린다 */
         .variant-pick { text-align: left; }
         .variant-pick .variant-buttons { justify-content: flex-start; }
+        /* 위아래 두 카드에 그림 한 장을 나눠 깔기.
+           카드(175) 2개 + 사이 간격(18) = 368 ≈ 카드 높이의 210% 로 키우고,
+           위 카드는 그림 위쪽, 아래 카드는 아래쪽을 보여준다. */
+        .bg-pair { background-size: auto 210% !important; }
+        .bg-pair-top { background-position: center 0% !important; }
+        .bg-pair-bottom { background-position: center 100% !important; }
       }
       /* 아주 좁은 폰(≤400px). 360px 안드로이드에서 버튼이 화면 끝에 붙어서
          사이트명 글자를 조금 줄여 자리를 만든다(인라인 fontSize 를 덮어야 해서 !important) */

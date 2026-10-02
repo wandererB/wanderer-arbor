@@ -81,6 +81,9 @@ export default function DownloadSection({
                 {d.bg && (
                   <>
                     <div
+                      // bgPair: 같은 그림을 위아래 두 카드에 나눠 까는 경우(마장기신 3 Vita/PS3).
+                      // PC 는 bgPos 로 맞추고, 모바일은 카드가 높아 ui.jsx 의 미디어 쿼리로 바꾼다.
+                      className={d.bgPair ? `bg-pair bg-pair-${d.bgPair}` : undefined}
                       style={{
                         position: "absolute",
                         inset: 0,
