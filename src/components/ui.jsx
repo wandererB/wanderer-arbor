@@ -121,6 +121,9 @@ export function GlobalStyle() {
       body { margin: 0; }
       code { font-family: ui-monospace, monospace; background: ${C.ink}; padding: 1px 5px; border-radius: 4px; color: ${C.sepia}; font-size: 0.88em; }
       @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+      /* 판본 선택(variants) 안내는 버튼 묶음 오른쪽 끝에 맞춘다 */
+      .variant-pick { text-align: right; }
+      .variant-pick .variant-buttons { justify-content: flex-end; }
       /* 네비 버튼 기본 크기(인라인 대신 CSS로 관리 → 모바일에서 축소 가능) */
       .nav-links button { padding: 8px 16px; font-size: 14px; letter-spacing: 0.5px; }
       /* 모바일: 사이트명 두 줄(방랑자의 / 그늘쉼터) + 네비 버튼 4개가 들어가도록 여백 축소 */
@@ -130,6 +133,9 @@ export function GlobalStyle() {
         /* 버튼 5개를 한 줄로. 줄바꿈을 막고 폭을 줄인다(인라인 flex 를 덮어야 해서 !important) */
         .nav-links { flex-wrap: nowrap !important; gap: 4px !important; }
         .nav-links button { padding: 6px 8px; font-size: 13px; letter-spacing: 0; }
+        /* 카드가 세로로 쌓이면 오른쪽 정렬된 안내가 배경 그림 한가운데(인물 얼굴)를 가린다 */
+        .variant-pick { text-align: left; }
+        .variant-pick .variant-buttons { justify-content: flex-start; }
       }
       /* 아주 좁은 폰(≤400px). 360px 안드로이드에서 버튼이 화면 끝에 붙어서
          사이트명 글자를 조금 줄여 자리를 만든다(인라인 fontSize 를 덮어야 해서 !important) */
