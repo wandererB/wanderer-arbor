@@ -55,6 +55,10 @@ export default function DownloadSection({
             // 그보다 큰 패치는 7-Zip 분할(.001/.002…)로 올리고
             // content.json 에 parts[] 로 적어둔다. 그럴 때만 파트 버튼이 나온다.
             const parts = Array.isArray(d.parts) && d.parts.length ? d.parts : null;
+            // variants[] 는 parts[] 와 반대다. 한 패치의 '둘 중 하나' 골라 받는 판본
+            // (예: 428 의 스팀 번역판 / 자체 번역판). 전부 받는 게 아니라서 버튼에 이름을 적는다.
+            const variants =
+              !parts && Array.isArray(d.variants) && d.variants.length ? d.variants : null;
             return (
               <div
                 key={i}
@@ -141,7 +145,41 @@ export default function DownloadSection({
                   )}
                 </div>
                 <div style={{ position: "relative", zIndex: 1 }}>
-                  {parts ? (
+                  {variants ? (
+                    <div style={{ textAlign: "right" }}>
+                      <div
+                        style={{
+                          color: C.goldDim,
+                          fontSize: 11,
+                          letterSpacing: 1,
+                          marginBottom: 8,
+                          textTransform: "uppercase",
+                        }}
+                      >
+                        ↓ 둘 중 하나만 받으세요
+                      </div>
+                      <div
+                        style={{
+                          display: "flex",
+                          gap: 8,
+                          flexWrap: "wrap",
+                          justifyContent: "flex-end",
+                        }}
+                      >
+                        {variants.map((v, j) => (
+                          <CTA
+                            key={j}
+                            primary
+                            small
+                            href={v.url}
+                            title={[v.label, v.size].filter(Boolean).join(" · ")}
+                          >
+                            {v.label || `판본 ${j + 1}`}
+                          </CTA>
+                        ))}
+                      </div>
+                    </div>
+                  ) : parts ? (
                     // 파트 이름을 버튼마다 다 적으면 3개부터 2+1 로 어긋나게 줄바꿈된다.
                     // 번호만 단 칩으로 두고 설명은 위 한 줄에 몰아준다 → 개수가 늘어도 한 줄 유지.
                     <div style={{ textAlign: "right" }}>

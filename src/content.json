@@ -288,7 +288,17 @@
         "version": "1.0",
         "date": "2026-09-30",
         "size": "약 89MB",
-        "url": "https://github.com/wandererB/wanderer-arbor/releases/download/428S/428_Shibuya_KR_V1_v1.0.zip",
+        "note": "V1은 스팀 번역판, V2는 자체 번역판입니다.",
+        "variants": [
+          {
+            "label": "V1 스팀 번역판",
+            "url": "https://github.com/wandererB/wanderer-arbor/releases/download/428S/428_Shibuya_KR_V1_v1.0.zip"
+          },
+          {
+            "label": "V2 자체 번역판",
+            "url": "https://github.com/wandererB/wanderer-arbor/releases/download/428S/428_Shibuya_KR_V2_v1.0.zip"
+          }
+        ],
         "bg": "images/428.jpg",
         "bgPos": "center 67%"
       }
