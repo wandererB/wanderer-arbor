@@ -83,11 +83,19 @@ export default function DownloadSection({
                     <div
                       // bgPair: 같은 그림을 위아래 두 카드에 나눠 까는 경우(마장기신 3 Vita/PS3).
                       // PC 는 bgPos 로 맞추고, 모바일은 카드가 높아 ui.jsx 의 미디어 쿼리로 바꾼다.
-                      className={d.bgPair ? `bg-pair bg-pair-${d.bgPair}` : undefined}
+                      className={[
+                        d.bgPair && `bg-pair bg-pair-${d.bgPair}`,
+                        // bgPosMobile: 모바일 카드는 PC 보다 훨씬 높아서(175 vs 111)
+                        // 그림이 더 많이 보인다. 로고 아래 부제까지 넣고 싶을 때 쓴다.
+                        d.bgPosMobile && "bg-mo",
+                      ]
+                        .filter(Boolean)
+                        .join(" ") || undefined}
                       style={{
                         position: "absolute",
                         inset: 0,
                         backgroundImage: `url(${asset(d.bg)})`,
+                        ...(d.bgPosMobile ? { "--bg-mo": d.bgPosMobile } : {}),
                         backgroundSize: "cover",
                         // 그림마다 잘 보이는 띠가 달라서 항목별로 bgPos 로 조정한다.
                         backgroundPosition: d.bgPos || "center 35%",

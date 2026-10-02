@@ -139,6 +139,7 @@ export function GlobalStyle() {
         /* 위아래 두 카드에 그림 한 장을 나눠 깔기.
            카드(175) 2개 + 사이 간격(18) = 368 ≈ 카드 높이의 210% 로 키우고,
            위 카드는 그림 위쪽, 아래 카드는 아래쪽을 보여준다. */
+        .bg-mo { background-position: var(--bg-mo) !important; }
         .bg-pair { background-size: auto 210% !important; }
         .bg-pair-top { background-position: center 0% !important; }
         .bg-pair-bottom { background-position: center 100% !important; }
