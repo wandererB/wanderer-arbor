@@ -146,7 +146,9 @@ export default function DownloadSection({
                 </div>
                 <div style={{ position: "relative", zIndex: 1 }}>
                   {variants ? (
-                    <div style={{ textAlign: "right" }}>
+                    // 안내는 버튼 왼쪽 끝에 맞춘다. 모바일에서 카드가 세로로 쌓이면
+                    // 오른쪽 정렬일 때 글이 배경 그림 한가운데(인물 얼굴)를 가린다.
+                    <div style={{ textAlign: "left" }}>
                       <div
                         style={{
                           color: C.goldDim,
@@ -163,7 +165,6 @@ export default function DownloadSection({
                           display: "flex",
                           gap: 8,
                           flexWrap: "wrap",
-                          justifyContent: "flex-end",
                         }}
                       >
                         {variants.map((v, j) => (
