@@ -148,6 +148,7 @@ export default function DownloadSection({
                   {variants ? (
                     // 안내는 버튼 왼쪽 끝에 맞춘다. 모바일에서 카드가 세로로 쌓이면
                     // 오른쪽 정렬일 때 글이 배경 그림 한가운데(인물 얼굴)를 가린다.
+                    // '하나만' 이라고 막지 않는다 — 비교하려고 둘 다 받는 사람도 있다.
                     <div style={{ textAlign: "left" }}>
                       <div
                         style={{
@@ -158,7 +159,7 @@ export default function DownloadSection({
                           textTransform: "uppercase",
                         }}
                       >
-                        ↓ 둘 중 하나만 받으세요
+                        ↓ 원하시는 걸 받으세요
                       </div>
                       <div
                         style={{
