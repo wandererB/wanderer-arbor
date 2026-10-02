@@ -52,7 +52,9 @@
       "version": "1.0",
       "date": "2026-08-03",
       "size": "약 19MB",
-      "url": "https://github.com/wandererB/wanderer-arbor/releases/download/mk2-v1.0/MasouKishin2_KR_v1.0.zip"
+      "url": "https://github.com/wandererB/wanderer-arbor/releases/download/mk2-v1.0/MasouKishin2_KR_v1.0.zip",
+      "bg": "images/mk2.jpg",
+      "bgPos": "center 86%"
     },
     {
       "title": "마장기신 3 한글패치 (PS Vita)",
