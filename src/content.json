@@ -1,7 +1,7 @@
 {
   "notice": {
     "show": true,
-    "text": "PSP 428 봉쇄된 시부야에서 스팀 번역판·자체 번역판 두 가지로 배포, PS2 커스텀 BGM 생성기 3.1.1 업데이트",
+    "text": "PSP 428 봉쇄된 시부야에서 스팀 번역판·자체 번역판(v1.1 업데이트) 두 가지로 배포, PS2 커스텀 BGM 생성기 3.1.1 업데이트",
     "link": "",
     "linkLabel": ""
   },
@@ -310,7 +310,7 @@
           },
           {
             "label": "V2 자체 번역판",
-            "url": "https://github.com/wandererB/wanderer-arbor/releases/download/428S/428_Shibuya_KR_V2_v1.0.zip"
+            "url": "https://github.com/wandererB/wanderer-arbor/releases/download/428S/428_Shibuya_KR_V2_v1.1.zip"
           }
         ],
         "bg": "images/428.jpg",
