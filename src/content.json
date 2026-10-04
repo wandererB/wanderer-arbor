@@ -315,6 +315,14 @@
         ],
         "bg": "images/428.jpg",
         "bgPos": "center 67%"
+      },
+      {
+        "title": "카마이타치의 밤 특별편[PS1] 한글패치",
+        "subtitle": "かまいたちの夜 特別篇",
+        "url": "",
+        "bg": "images/kamaitachi.webp",
+        "bgPos": "center 43%",
+        "bgPosMobile": "center 55%"
       }
     ]
   },
