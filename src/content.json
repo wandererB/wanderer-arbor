@@ -1,7 +1,7 @@
 {
   "notice": {
     "show": true,
-    "text": "프론트미션5 v1.2.1(마지막화 프리징 해결), PSP 428 봉쇄된 시부야에서 스팀 번역판(v1.0)·자체 번역판(v1.1 업데이트) 두 가지로 배포",
+    "text": "PS1 카마이타치의 밤 특별편 v1.0 배포, 프론트미션5 v1.2.1(마지막화 프리징 해결)",
     "link": "",
     "linkLabel": ""
   },
@@ -319,7 +319,10 @@
       {
         "title": "카마이타치의 밤 특별편[PS1] 한글패치",
         "subtitle": "かまいたちの夜 特別篇",
-        "url": "",
+        "version": "1.0",
+        "date": "2026-10-04",
+        "size": "약 1.4MB",
+        "url": "https://github.com/wandererB/wanderer-arbor/releases/download/kama-v1.0/Kamaitachi_KO_1.0_patch.zip",
         "bg": "images/kamaitachi.webp",
         "bgPos": "center 43%",
         "bgPosMobile": "center 55%"
