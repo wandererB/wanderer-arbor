@@ -49,6 +49,10 @@ export default function App() {
       window.location.hash = `#/${next}`;
     }
     setViewState(next);
+    // 다른 화면으로 넘어가면 맨 위부터 보여준다. 한 페이지 안에서 갈아끼우는 구조라
+    // 안 맞추면 읽던 높이에 그대로 멈춘다. 뒤로가기는 여기를 안 거치므로
+    // 브라우저가 보던 자리를 되살린다.
+    window.scrollTo(0, 0);
   };
 
   useEffect(() => {
