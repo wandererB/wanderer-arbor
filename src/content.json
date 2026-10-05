@@ -1,7 +1,7 @@
 {
   "notice": {
     "show": true,
-    "text": "PS1 카마이타치의 밤 특별편 v1.0 배포, 프론트미션5 v1.2.1(마지막화 프리징 해결)",
+    "text": "PS1 카마이타치의 밤 특별편 v1.0 배포, 프론트미션5 v1.2.2(마지막화 프리징 해결)",
     "link": "",
     "linkLabel": ""
   },
@@ -289,10 +289,10 @@
       {
         "title": "프론트 미션 5[PS2] 한글패치",
         "subtitle": "フロントミッション5 ~Scars of the War~",
-        "version": "1.2.1",
-        "date": "2026-10-04",
+        "version": "1.2.2",
+        "date": "2026-10-05",
         "size": "약 28.3MB",
-        "url": "https://github.com/wandererB/wanderer-arbor/releases/download/FM5-v1.0/fm5-korean-v1.2.1.zip",
+        "url": "https://github.com/wandererB/wanderer-arbor/releases/download/FM5-v1.0/fm5-korean-v1.2.2.zip",
         "bg": "images/FM5.jpg",
         "bgPos": "center 57%"
       },
