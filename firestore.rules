@@ -33,6 +33,11 @@ service cloud.firestore {
 
     // 오류 제보
     match /reports/{doc} {
+      // 이번 수정으로 값이 달라지는 필드들
+      function changed() {
+        return request.resource.data.diff(resource.data).affectedKeys();
+      }
+
       allow read: if true;
       allow create: if
         request.resource.data.keys().hasOnly([
@@ -66,11 +71,16 @@ service cloud.firestore {
             || (request.resource.data.attachCount is int
                 && request.resource.data.attachCount >= 1
                 && request.resource.data.attachCount <= 7));
-      // 관리자는 상태(와 바꾼 시각)만 바꿀 수 있다. 제보 내용은 못 고친다.
+      // 관리자는 상태와 답글만 바꿀 수 있다. 제보한 사람의 글은 못 고친다.
       allow update: if isAdmin()
-        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status', 'statusAt'])
-        && request.resource.data.status in ['접수', '확인 중', '수정 완료', '보류']
-        && request.resource.data.statusAt == request.time;
+        && changed().hasOnly(['status', 'statusAt', 'reply', 'replyAt'])
+        && (!changed().hasAny(['status'])
+            || (request.resource.data.status in ['접수', '확인 중', '수정 완료', '보류']
+                && request.resource.data.statusAt == request.time))
+        && (!changed().hasAny(['reply'])
+            || (request.resource.data.reply is string
+                && request.resource.data.reply.size() <= 500
+                && request.resource.data.replyAt == request.time));
       allow delete: if isAdmin();
     }
   }

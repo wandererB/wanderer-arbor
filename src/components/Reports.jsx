@@ -159,6 +159,8 @@ export default function Reports() {
   const admin = useAdmin();
   const { isAdmin, msg: adminMsg, setMsg: setAdminMsg } = admin;
   const [busyId, setBusyId] = useState("");
+  const [replyFor, setReplyFor] = useState(""); // 답글 쓰는 중인 제보 id
+  const [replyText, setReplyText] = useState("");
 
   useEffect(() => {
     if (!firebaseReady) {
@@ -187,6 +189,20 @@ export default function Reports() {
       await updateDoc(doc(db, "reports", r.id), { status, statusAt: serverTimestamp() });
     } catch {
       setAdminMsg("상태를 바꾸지 못했어요. 보안 규칙에 관리자 UID가 들어갔는지 확인해 주세요.");
+    }
+    setBusyId("");
+  }
+
+  async function saveReply(r) {
+    const t = replyText.trim().slice(0, 500);
+    setBusyId(r.id);
+    setAdminMsg("");
+    try {
+      await updateDoc(doc(db, "reports", r.id), { reply: t, replyAt: serverTimestamp() });
+      setReplyFor("");
+      setReplyText("");
+    } catch {
+      setAdminMsg("답글을 저장하지 못했어요. 보안 규칙을 다시 게시했는지 확인해 주세요.");
     }
     setBusyId("");
   }
@@ -639,6 +655,34 @@ export default function Reports() {
                     {r.body}
                   </p>
                 )}
+                {/* 방랑자 답글. 고칠 수 없는 건 왜 그런지 여기에 적는다. */}
+                {typeof r.reply === "string" && r.reply.trim() && (
+                  <div
+                    style={{
+                      borderLeft: `2px solid ${C.goldDim}`,
+                      background: "rgba(20,16,11,0.35)",
+                      borderRadius: "0 8px 8px 0",
+                      padding: "9px 12px",
+                      margin: "0 0 10px",
+                    }}
+                  >
+                    <div style={{ color: C.gold, fontSize: 12, marginBottom: 4 }}>
+                      방랑자{r.replyAt ? ` · ${fmt(r.replyAt)}` : ""}
+                    </div>
+                    <p
+                      style={{
+                        color: C.text,
+                        fontSize: 14,
+                        lineHeight: 1.7,
+                        margin: 0,
+                        whiteSpace: "pre-wrap",
+                        wordBreak: "break-word",
+                      }}
+                    >
+                      {r.reply}
+                    </p>
+                  </div>
+                )}
                 {/* 올린 파일은 비공개(방랑자 드라이브)라 개수만 보여준다 */}
                 {Number(r.attachCount) > 0 && (
                   <div style={{ color: C.goldDim, fontSize: 12, marginBottom: 6 }}>
@@ -692,6 +736,16 @@ export default function Reports() {
                         드라이브 첨부 ↗
                       </a>
                     )}
+                    <button
+                      onClick={() => {
+                        const open = replyFor === r.id;
+                        setReplyFor(open ? "" : r.id);
+                        setReplyText(open ? "" : (r.reply || ""));
+                      }}
+                      style={textBtn}
+                    >
+                      {replyFor === r.id ? "답글 접기" : r.reply ? "답글 고치기" : "답글"}
+                    </button>
                     <span style={{ color: C.sepiaDim }}>ID {r.id}</span>
                     <button
                       onClick={() => removeReport(r)}
@@ -700,6 +754,47 @@ export default function Reports() {
                     >
                       삭제
                     </button>
+                  </div>
+                )}
+                {isAdmin && replyFor === r.id && (
+                  <div style={{ marginTop: 10 }}>
+                    <textarea
+                      value={replyText}
+                      onChange={(e) => setReplyText(e.target.value)}
+                      placeholder="확인한 내용이나, 못 고치는 거라면 그 이유를 적어주세요."
+                      rows={3}
+                      maxLength={500}
+                      style={{ ...inputStyle, resize: "vertical" }}
+                    />
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: 12,
+                        marginTop: 6,
+                      }}
+                    >
+                      <span style={{ color: C.textDim, fontSize: 12 }}>
+                        {replyText.length}/500
+                      </span>
+                      <button
+                        onClick={() => saveReply(r)}
+                        disabled={busyId === r.id}
+                        style={{
+                          marginLeft: "auto",
+                          padding: "6px 14px",
+                          borderRadius: 7,
+                          border: "none",
+                          background: C.gold,
+                          color: C.ink,
+                          fontSize: 13,
+                          fontWeight: 600,
+                          cursor: busyId === r.id ? "default" : "pointer",
+                        }}
+                      >
+                        저장
+                      </button>
+                    </div>
                   </div>
                 )}
               </div>
