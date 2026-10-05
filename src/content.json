@@ -1,7 +1,7 @@
 {
   "notice": {
     "show": true,
-    "text": "PS1 카마이타치의 밤 특별편 v1.0 배포, 프론트미션5 v1.2.2(마지막화 프리징 해결)",
+    "text": "뷰티풀죠1 v1.0 업데이트, PS1 카마이타치의 밤 특별편 v1.0 배포",
     "link": "",
     "linkLabel": ""
   },
@@ -259,10 +259,10 @@
       {
         "title": "뷰티풀 죠1[PS2] 한글패치",
         "subtitle": "Viewtiful Joe: A New Hope",
-        "version": "0.9.3",
-        "date": "2026-09-04",
+        "version": "1.0",
+        "date": "2026-10-05",
         "size": "약 8.2MB",
-        "url": "https://github.com/wandererB/wanderer-arbor/releases/download/vj1-v0.9/vj1-korean-v0.9.3.zip",
+        "url": "https://github.com/wandererB/wanderer-arbor/releases/download/vj1-v0.9/vj1-korean-v1.0.zip",
         "bg": "images/Viewtiful_Joe_1.jpg",
         "bgPos": "center 47%"
       },
