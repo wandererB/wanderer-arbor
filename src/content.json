@@ -299,8 +299,8 @@
       {
         "title": "428 봉쇄된 시부야에서[PSP] 한글패치",
         "subtitle": "428 〜封鎖された渋谷で〜",
-        "version": "1.0",
-        "date": "2026-09-30",
+        "version": "1.11",
+        "date": "2026-10-05",
         "size": "약 89MB",
         "note": "V1은 스팀 번역판, V2는 자체 번역판입니다.",
         "variants": [
@@ -310,7 +310,7 @@
           },
           {
             "label": "V2 자체 번역판",
-            "url": "https://github.com/wandererB/wanderer-arbor/releases/download/428S/428_Shibuya_KR_V2_v1.1.zip"
+            "url": "https://github.com/wandererB/wanderer-arbor/releases/download/428S/428_Shibuya_KR_V2_v1.11.zip"
           }
         ],
         "bg": "images/428.jpg",
