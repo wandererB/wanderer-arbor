@@ -1,7 +1,7 @@
 {
   "notice": {
     "show": true,
-    "text": "뷰티풀죠1 v1.0 업데이트, PS1 카마이타치의 밤 특별편 v1.01 업데이트, 프론트미션5 v1.2.3 업데이트",
+    "text": "뷰티풀죠1 v1.0 업데이트, PS1 카마이타치의 밤 특별편 v1.02 업데이트, 프론트미션5 v1.2.3 업데이트",
     "link": "",
     "linkLabel": ""
   },
@@ -319,10 +319,10 @@
       {
         "title": "카마이타치의 밤 특별편[PS1] 한글패치",
         "subtitle": "かまいたちの夜 特別篇",
-        "version": "1.01",
-        "date": "2026-10-05",
+        "version": "1.02",
+        "date": "2026-10-06",
         "size": "약 1.4MB",
-        "url": "https://github.com/wandererB/wanderer-arbor/releases/download/kama-v1.0/Kamaitachi_KO_1.01_patch.zip",
+        "url": "https://github.com/wandererB/wanderer-arbor/releases/download/kama-v1.0/Kamaitachi_KO_1.02_patch.zip",
         "bg": "images/kamaitachi.webp",
         "bgPos": "center 43%",
         "bgPosMobile": "center 55%"
