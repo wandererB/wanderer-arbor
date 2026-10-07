@@ -341,7 +341,7 @@
       {
         "title": "카마이타치의 밤 ×3[PS2·Switch] 한글패치",
         "subtitle": "かまいたちの夜×3",
-        "version": "1.01",
+        "version": "1.02",
         "date": "2026-10-07",
         "note": "PS2판은 공개 검수판(RC2)입니다. PS2판 약 6.7MB · 스위치판 약 51MB.",
         "variants": [
@@ -353,7 +353,7 @@
           {
             "label": "스위치판",
             "size": "약 51MB",
-            "url": "https://github.com/wandererB/wanderer-arbor/releases/download/KM3-v1.0/Kama3_Switch_KO_v1.01_SD.zip"
+            "url": "https://github.com/wandererB/wanderer-arbor/releases/download/KM3-v1.0/Kama3_Switch_KO_v1.02_SD.zip"
           }
         ],
         "bg": "images/kamaitachi3.webp",
