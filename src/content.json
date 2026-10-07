@@ -326,6 +326,22 @@
         "bg": "images/kamaitachi.webp",
         "bgPos": "center 43%",
         "bgPosMobile": "center 55%"
+      },
+      {
+        "title": "카마이타치의 밤 2 특별편[PSP] 한글패치",
+        "subtitle": "かまいたちの夜2 特別篇",
+        "url": "",
+        "bg": "images/kamaitachi2.webp",
+        "bgPos": "center 28%",
+        "bgPosMobile": "center 22%"
+      },
+      {
+        "title": "카마이타치의 밤 ×3[PS2·Switch] 한글패치",
+        "subtitle": "かまいたちの夜×3",
+        "note": "PS2판과 스위치판 두 가지로 나옵니다.",
+        "url": "",
+        "bg": "images/kamaitachi3.webp",
+        "bgPos": "center 50%"
       }
     ]
   },
