@@ -319,10 +319,10 @@
       {
         "title": "카마이타치의 밤 특별편[PS1] 한글패치",
         "subtitle": "かまいたちの夜 特別篇",
-        "version": "1.03",
-        "date": "2026-10-07",
+        "version": "1.04",
+        "date": "2026-10-08",
         "size": "약 1.4MB",
-        "url": "https://github.com/wandererB/wanderer-arbor/releases/download/kama-v1.0/Kamaitachi_KO_1.03_patch.zip",
+        "url": "https://github.com/wandererB/wanderer-arbor/releases/download/kama-v1.0/Kamaitachi_KO_1.04_patch.zip",
         "bg": "images/kamaitachi.webp",
         "bgPos": "center 43%",
         "bgPosMobile": "center 55%"
