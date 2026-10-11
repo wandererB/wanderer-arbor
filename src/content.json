@@ -1,7 +1,7 @@
 {
   "notice": {
     "show": true,
-    "text": "PSP 카마이타치의 밤 2 특별편 v1.0.7 업데이트, 카마이타치의 밤 ×3 PS2(v1.0 정식), 스위치판 v1.09 업데이트",
+    "text": "PSP 카마이타치의 밤 2 특별편 v1.0.8 업데이트, 카마이타치의 밤 ×3 PS2(v1.0 정식), 스위치판 v1.09 업데이트",
     "link": "",
     "linkLabel": ""
   },
@@ -330,10 +330,10 @@
       {
         "title": "카마이타치의 밤 2 특별편[PSP] 한글패치",
         "subtitle": "かまいたちの夜2 特別篇",
-        "version": "1.0.7",
+        "version": "1.0.8",
         "date": "2026-10-11",
         "size": "약 65MB",
-        "url": "https://github.com/wandererB/wanderer-arbor/releases/download/KM2-v1.0/Kamaitachi2-PSP-KO-1.0.7.zip",
+        "url": "https://github.com/wandererB/wanderer-arbor/releases/download/KM2-v1.0/Kamaitachi2-PSP-KO-1.0.8.zip",
         "bg": "images/kamaitachi2.webp",
         "bgPos": "center 28%",
         "bgPosMobile": "center 22%"
