@@ -1,7 +1,7 @@
 {
   "notice": {
     "show": true,
-    "text": "PSP 카마이타치의 밤 2 특별편 v1.0.9 업데이트, 카마이타치의 밤 ×3 PS2(v1.0 정식), 스위치판 v1.09 업데이트",
+    "text": "PSP 카마이타치의 밤 2 특별편 v1.0.9 업데이트, 카마이타치의 밤 ×3 PS2(v1.0.1 업데이트), 스위치판 v1.09 업데이트",
     "link": "",
     "linkLabel": ""
   },
@@ -342,13 +342,13 @@
         "title": "카마이타치의 밤 ×3[PS2·Switch] 한글패치",
         "subtitle": "かまいたちの夜×3",
         "version": "1.09",
-        "date": "2026-10-11",
-        "note": "PS2판 정식(v1.0)입니다. PS2판 약 9.1MB · 스위치판 약 45.1MB.",
+        "date": "2026-10-12",
+        "note": "PS2판 정식(v1.0.1)입니다. PS2판 약 9.1MB · 스위치판 약 45.1MB.",
         "variants": [
           {
             "label": "PS2판",
             "size": "약 9.1MB",
-            "url": "https://github.com/wandererB/wanderer-arbor/releases/download/KM3-v1.0/Kamaitachi3-PS2-KO-1.0.zip"
+            "url": "https://github.com/wandererB/wanderer-arbor/releases/download/KM3-v1.0/Kamaitachi3-PS2-KO-1.0.1.zip"
           },
           {
             "label": "스위치판",
