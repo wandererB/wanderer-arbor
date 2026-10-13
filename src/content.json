@@ -1,7 +1,7 @@
 {
   "notice": {
     "show": true,
-    "text": "마장기신1 v1.4 업데이트, 마장기신2 v1.1 업데이트, 마장기신3 v1.5 업데이트, 마장기신F v.1.7 업데이트",
+    "text": "마장기신1 v1.4 업데이트, 마장기신2 v1.1 업데이트, 마장기신3 v1.6 업데이트(최종), 마장기신F v.1.8 업데이트(최종)",
     "link": "",
     "linkLabel": ""
   },
@@ -60,10 +60,10 @@
     {
       "title": "마장기신 3 한글패치 (PS Vita)",
       "subtitle": "Masou Kishin III · Pride of Justice",
-      "version": "1.5",
+      "version": "1.6",
       "date": "2026-10-13",
       "size": "4MB",
-      "url": "https://github.com/wandererB/wanderer-arbor/releases/download/mk3v-v1.3/MasouKishin3_KR_Vita_v1.5.zip",
+      "url": "https://github.com/wandererB/wanderer-arbor/releases/download/mk3v-v1.3/MasouKishin3_KR_Vita_v1.6.zip",
       "bg": "images/mk3.jpg",
       "bgPair": "top",
       "bgPos": "center 60.4%"
@@ -71,10 +71,10 @@
     {
       "title": "마장기신 3 한글패치 (PS3)",
       "subtitle": "Masou Kishin III · Pride of Justice",
-      "version": "1.5",
+      "version": "1.6",
       "date": "2026-10-13",
       "size": "약 4.9MB",
-      "url": "https://github.com/wandererB/wanderer-arbor/releases/download/mk3p-v1.3/MasouKishin3_KR_PS3_v1.5.zip",
+      "url": "https://github.com/wandererB/wanderer-arbor/releases/download/mk3p-v1.3/MasouKishin3_KR_PS3_v1.6.zip",
       "bg": "images/mk3.jpg",
       "bgPair": "bottom",
       "bgPos": "center 89.6%"
@@ -82,10 +82,10 @@
     {
       "title": "마장기신F 한글패치",
       "subtitle": "Masou Kishin F · Coffin of The End",
-      "version": "1.7",
+      "version": "1.8",
       "date": "2026-10-13",
       "size": "약 5.5MB",
-      "url": "https://github.com/wandererB/wanderer-arbor/releases/download/mkf-v1.5/MasouKishinF_KR.v1.7.zip",
+      "url": "https://github.com/wandererB/wanderer-arbor/releases/download/mkf-v1.5/MasouKishinF_KR.v1.8.zip",
       "bg": "images/mkf2.webp",
       "bgPos": "center 99%",
       "bgPosMobile": "center 100%"
