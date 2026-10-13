@@ -1,7 +1,7 @@
 {
   "notice": {
     "show": true,
-    "text": "마장기신1 v.4 업데이트, 마장기신2 v1.1 업데이트",
+    "text": "마장기신1 v.4 업데이트, 마장기신2 v1.1 업데이트, 마장기신3 v1.5 업데이트",
     "link": "",
     "linkLabel": ""
   },
@@ -71,10 +71,10 @@
     {
       "title": "마장기신 3 한글패치 (PS3)",
       "subtitle": "Masou Kishin III · Pride of Justice",
-      "version": "1.4",
-      "date": "2026-09-08",
+      "version": "1.5",
+      "date": "2026-10-13",
       "size": "약 4.9MB",
-      "url": "https://github.com/wandererB/wanderer-arbor/releases/download/mk3p-v1.2/MasouKishin3_KR_PS3_v1.4.zip",
+      "url": "https://github.com/wandererB/wanderer-arbor/releases/download/mk3p-v1.3/MasouKishin3_KR_PS3_v1.5.zip",
       "bg": "images/mk3.jpg",
       "bgPair": "bottom",
       "bgPos": "center 89.6%"
