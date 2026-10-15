@@ -1,7 +1,7 @@
 {
   "notice": {
     "show": true,
-    "text": "마장기신1 v1.5 업데이트, 마장기신2 v1.2 업데이트, 마장기신3 v1.6 업데이트(최종), 마장기신F v.1.8 업데이트(최종)",
+    "text": "PS2 테니스의 왕자 스매시 히트 2 v1.0 배포, 마장기신 시리즈 업데이트(1 v1.5 · 2 v1.2 · 3 v1.6 최종 · F v1.8 최종)",
     "link": "",
     "linkLabel": ""
   },
@@ -259,7 +259,10 @@
       {
         "title": "테니스의 왕자 스매시 히트 2[PS2] 한글패치",
         "subtitle": "テニスの王子様 Smash Hit! 2",
-        "url": "",
+        "version": "1.0",
+        "date": "2026-10-15",
+        "size": "약 3.8MB",
+        "url": "https://github.com/wandererB/wanderer-arbor/releases/download/TOSH2/tennis-sh2-korean-v1.0.zip",
         "bg": "images/TOSH2.jpg",
         "bgPos": "center 72%"
       },
