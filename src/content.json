@@ -257,6 +257,13 @@
         "bgPos": "center 30%"
       },
       {
+        "title": "테니스의 왕자 스매시 히트 2[PS2] 한글패치",
+        "subtitle": "テニスの王子様 Smash Hit! 2",
+        "url": "",
+        "bg": "images/TOSH2.jpg",
+        "bgPos": "center 72%"
+      },
+      {
         "title": "뷰티풀 죠1[PS2] 한글패치",
         "subtitle": "Viewtiful Joe: A New Hope",
         "version": "1.0",
@@ -358,11 +365,6 @@
         ],
         "bg": "images/kamaitachi3.webp",
         "bgPos": "center 50%"
-      },
-      {
-        "title": "테니스의 왕자 스매시 히트 2[PS2] 한글패치",
-        "subtitle": "テニスの王子様 Smash Hit! 2",
-        "url": ""
       }
     ]
   },
