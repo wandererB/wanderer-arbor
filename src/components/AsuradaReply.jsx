@@ -3,13 +3,16 @@ import { db } from "../firebase.js";
 import { useAdmin, AdminFooter } from "../admin.jsx";
 import { doc, getDocFromServer, runTransaction, serverTimestamp } from "firebase/firestore";
 const SOURCE = /^(guestbook|reports):([A-Za-z0-9_-]{1,200})$/;
+const STATUSES = ["접수", "확인 중", "수정 완료", "보류"];
 const readPending = key => {try{return sessionStorage.getItem(key);}catch{return null;}};
-const keyOf = r => JSON.stringify([r.reply || "", r.replyAt?.seconds || 0, r.replyAt?.nanoseconds || 0, r.message || r.body || ""]);
+const keyOf = r => JSON.stringify([r.reply || "", r.replyAt?.seconds || 0, r.replyAt?.nanoseconds || 0, r.message || r.body || "", r.status || "", r.statusAt?.seconds || 0, r.statusAt?.nanoseconds || 0]);
 const scan = t => /sk-[A-Za-z0-9_-]{20,}|gh[pousr]_[A-Za-z0-9]{20,}|-----BEGIN .*PRIVATE KEY-----|Bearer\s+\S{24,}|\b01[016789][- ]?\d{3,4}[- ]?\d{4}\b/.test(t);
 export default function AsuradaReply() {
   const admin = useAdmin();
   const target = new URLSearchParams(location.search).get("asuradaReply") || "";
   const match = SOURCE.exec(target);
+  const isReport = match?.[1] === "reports";
+  const [status,setStatus] = useState("접수");
   const [row,setRow] = useState(null), [text,setText] = useState("");
   const [approved,setApproved] = useState(null), [enabled,setEnabled] = useState(false);
   const [notice,setNotice] = useState("원문을 확인합니다."), [busy,setBusy] = useState(false);
@@ -21,15 +24,15 @@ export default function AsuradaReply() {
     try {
       const snap = await getDocFromServer(reference());
       if(!snap.exists()) throw Error("원글이 삭제되었습니다.");
-      const value=snap.data();setRow(value);
+      const value=snap.data();setRow(value);setStatus(value.status || "접수");
       const pending=readPending(pendingKey);
       if(pending) {
         const sent=JSON.parse(pending);
-        if(value.reply===sent.text && keyOf(value)!==sent.base) {
+        if((value.reply||"")===sent.text && (!sent.status || value.status===sent.status) && keyOf(value)!==sent.base) {
           sessionStorage.removeItem(pendingKey);setUncertain(false);
           setNotice("등록된 답글을 확인했습니다.");setText(value.reply||"");
         } else {
-          setUncertain(true);setText(sent.text);
+          setUncertain(true);setText(sent.text);if(sent.status)setStatus(sent.status);
           setNotice("등록 여부를 아직 확인하지 못했습니다. 자동 재등록하지 않습니다. 아래에서 다시 확인해 주세요.");
         }
       } else {setText(value.reply||"");setNotice(value.reply ? "기존 답글이 있습니다. 수정 후 미리보기를 확인하세요." : "답글을 작성해 주세요.");}
@@ -39,12 +42,12 @@ export default function AsuradaReply() {
   useEffect(()=>{load();},[]);
   const edit = value => {setText(value);setApproved(null);};
   async function publish() {
-    if(busy||uncertain||!admin.isAdmin||!enabled||!row||approved!==text) return;
+    if(busy||uncertain||!admin.isAdmin||!enabled||!row||(approved?.text!==text || (isReport && approved?.status!==status))) return;
     const exact=text.trim();
-    if(!exact||exact.length>500||scan(exact)) {setNotice("500자 이내로 작성하고 비밀정보·개인 연락처를 제거해 주세요.");return;}
+    if((!exact && (!isReport || !!row.reply))||exact.length>500||scan(exact)|| (isReport && !STATUSES.includes(status))) {setNotice("500자 이내로 작성하고 비밀정보·개인 연락처를 제거해 주세요.");return;}
     const base=keyOf(row);
     // Persist before sending. If the response is lost, opening this editor only reads.
-    try {sessionStorage.setItem(pendingKey,JSON.stringify({text:exact,base}));}
+    try {sessionStorage.setItem(pendingKey,JSON.stringify({text:exact,base,...(isReport ? {status} : {})}));}
     catch {setNotice("등록 상태를 보관할 수 없어 전송하지 않았습니다.");return;}
     setBusy(true);setUncertain(true);setApproved(null);
     try {
@@ -52,12 +55,15 @@ export default function AsuradaReply() {
         const snap=await tx.get(reference());
         if(!snap.exists()) throw Error("원글이 삭제되었습니다.");
         const current=snap.data();
-        if(current.reply===exact) return;
-        if(keyOf(current)!==base) throw Error("다른 곳에서 원문 또는 답글이 변경됐습니다. 다시 확인해 주세요.");
-        tx.update(reference(),{reply:exact,replyAt:serverTimestamp()});
+        if((current.reply||"")===exact && (!isReport || current.status===status)) return;
+        if(keyOf(current)!==base) throw Error("다른 곳에서 원문, 답글 또는 처리 상태가 변경됐습니다. 다시 확인해 주세요.");
+                const fields={};
+        if((current.reply||"")!==exact) Object.assign(fields,{reply:exact,replyAt:serverTimestamp()});
+        if(isReport && current.status!==status) Object.assign(fields,{status,statusAt:serverTimestamp()});
+        tx.update(reference(),fields);
       },{maxAttempts:1});
       sessionStorage.removeItem(pendingKey);setUncertain(false);
-      await load();setNotice("답글을 등록했습니다.");
+      await load();setNotice(isReport ? "답글과 처리 상태를 등록했습니다." : "답글을 등록했습니다.");
     } catch(e) {
       // Definitive rejection can be edited. Unknown transport outcomes remain read-only.
       if(["permission-denied","unauthenticated","invalid-argument"].includes(e.code) || /변경|삭제/.test(e.message||"")) {
@@ -73,19 +79,26 @@ export default function AsuradaReply() {
     {row?.reply && <blockquote style={{whiteSpace:"pre-wrap"}}>현재 답글: {row.reply}</blockquote>}
     <p role="status">{notice}</p>
     <AdminFooter admin={admin} hint="기존 홈페이지 관리자 Google 계정으로 로그인해 주세요." />
-    <label style={{display:"block",margin:"16px 0"}}><input type="checkbox" checked={enabled} onChange={e=>{setEnabled(e.target.checked);setApproved(null);}}/> 이 사이트 외부 답글 등록 허용</label>
+    <label style={{display:"block",margin:"16px 0"}}><input type="checkbox" checked={enabled} onChange={e=>{setEnabled(e.target.checked);setApproved(null);}}/> 이 사이트 답글·제보 상태 저장 허용</label>
+    {isReport && <label style={{display:"block",margin:"16px 0"}}>제보 처리 상태
+      <select aria-label="제보 처리 상태" value={status} disabled={busy||uncertain||!row}
+        onChange={e=>{setStatus(e.target.value);setApproved(null);}}
+        style={{display:"block",width:"100%",minHeight:44,marginTop:8,padding:10,fontSize:16,background:"#172a40",color:"#e9edf5",borderRadius:10}}>
+        {STATUSES.map(s=><option key={s} value={s}>{s}</option>)}
+      </select>
+    </label>}
     <textarea aria-label="답글 내용" value={text} maxLength={500} disabled={busy||uncertain||!row} onChange={e=>edit(e.target.value)}
       style={{width:"100%",minHeight:140,boxSizing:"border-box",fontSize:16}}/>
     <p>{text.length}/500</p>
     <button disabled={busy||uncertain||!row} onClick={()=>edit(match[1]==="reports" ? "제보 감사합니다. 알려주신 내용을 확인한 뒤 진행 상황을 이곳에 안내드리겠습니다." : "방문해 주셔서 감사합니다. 남겨주신 말씀 잘 읽었습니다.")}>기본 초안</button>{" "}
-    <button disabled={busy||uncertain||!row||!text.trim()} onClick={()=>{
+    <button disabled={busy||uncertain||!row||(!text.trim() && (!isReport || !!row.reply || status===row.status))} onClick={()=>{
       if(scan(text)){setNotice("비밀정보·개인 연락처 의심 내용이 있습니다. 수정해 주세요.");return;}
-      setApproved(text);
+      setApproved({text,status});
     }}>미리보기</button>{" "}
     {!uncertain && <button disabled={busy} onClick={()=>{if(window.confirm("원문과 등록된 답글을 다시 불러올까요? 작성 중인 내용은 바뀝니다."))load();}}>원문 다시 확인</button>}
     {uncertain && <button disabled={busy} onClick={load}>등록 결과 확인</button>}
-    {approved!==null && <section><h3>사이트에 공개될 답글</h3><p style={{whiteSpace:"pre-wrap"}}>{approved}</p>
-      <button disabled={busy||uncertain||!admin.isAdmin||!enabled||approved!==text} onClick={publish}>이 내용으로 승인·등록</button>
+    {approved!==null && <section><h3>사이트에 저장할 내용</h3>{isReport && <p>처리 상태: {row.status || "접수"} → {approved.status}</p>}<p style={{whiteSpace:"pre-wrap"}}>{approved.text || "답글 없음 · 상태만 저장"}</p>
+      <button disabled={busy||uncertain||!admin.isAdmin||!enabled||(approved?.text!==text || (isReport && approved?.status!==status))} onClick={publish}>이 내용으로 승인·등록</button>
     </section>}
   </main>;
 }
