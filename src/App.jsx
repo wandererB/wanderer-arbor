@@ -11,9 +11,10 @@ import content from "./content.json";
 
 // 방명록은 Firebase를 쓰므로, 탭을 열 때만 로드(첫 화면 경량화)
 const Guestbook = lazy(() => import("./components/Guestbook.jsx"));
+const AsuradaReply = lazy(() => import("./components/AsuradaReply.jsx"));
 const Reports = lazy(() => import("./components/Reports.jsx"));
 
-const VIEWS = ["home", "guestbook", "reports", "botjim", "hermitage", "genki"];
+const VIEWS = ["asurada-reply", "home", "guestbook", "reports", "botjim", "hermitage", "genki"];
 
 // 주소의 해시를 화면 이름으로. "#/guestbook" → "guestbook", 모르는 값이면 home.
 // GitHub Pages 는 서버 라우팅이 없어서 해시 방식을 쓴다(경로 방식은 새로고침 시 404).
@@ -68,7 +69,8 @@ export default function App() {
       }}
     >
       <GlobalStyle />
-      <Nav view={view} setView={setView} />
+      {view !== "asurada-reply" && <Nav view={view} setView={setView} />}
+      {view === "asurada-reply" && <Suspense fallback={<p>답글 편집기 준비 중…</p>}><AsuradaReply /></Suspense>}
       {view === "home" && <Home setView={setView} />}
       {view === "guestbook" && (
         <Suspense
@@ -95,7 +97,7 @@ export default function App() {
       {view === "botjim" && <Botjim setView={setView} />}
       {view === "hermitage" && <Hermitage setView={setView} />}
       {view === "genki" && <Genki setView={setView} />}
-      <Footer />
+      {view !== "asurada-reply" && <Footer />}
     </div>
   );
 }

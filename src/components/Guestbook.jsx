@@ -256,6 +256,7 @@ export default function Guestbook() {
               >
                 {m.message}
               </p>
+              {m.reply && <blockquote style={{whiteSpace:"pre-wrap",borderLeft:"3px solid #b99b62",paddingLeft:14,marginTop:12}}><strong>방랑자 · {fmt(m.replyAt)}</strong><p>{m.reply}</p></blockquote>}
             </div>
           ))}
         </div>
