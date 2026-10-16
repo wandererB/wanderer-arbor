@@ -256,7 +256,33 @@ export default function Guestbook() {
               >
                 {m.message}
               </p>
-              {m.reply && <blockquote style={{whiteSpace:"pre-wrap",borderLeft:"3px solid #b99b62",paddingLeft:14,marginTop:12}}><strong>방랑자 · {fmt(m.replyAt)}</strong><p>{m.reply}</p></blockquote>}
+                {typeof m.reply === "string" && m.reply.trim() && (
+                  <div
+                    style={{
+                      borderLeft: `2px solid ${C.goldDim}`,
+                      background: "rgba(20,16,11,0.35)",
+                      borderRadius: "0 8px 8px 0",
+                      padding: "9px 12px",
+                      margin: "12px 0 0",
+                    }}
+                  >
+                    <div style={{ color: C.gold, fontSize: 12, marginBottom: 4 }}>
+                      방랑자{m.replyAt ? ` · ${fmt(m.replyAt)}` : ""}
+                    </div>
+                    <p
+                      style={{
+                        color: C.text,
+                        fontSize: 14,
+                        lineHeight: 1.7,
+                        margin: 0,
+                        whiteSpace: "pre-wrap",
+                        wordBreak: "break-word",
+                      }}
+                    >
+                      {m.reply}
+                    </p>
+                  </div>
+                )}
             </div>
           ))}
         </div>
