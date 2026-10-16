@@ -13,7 +13,23 @@ import {
   signInWithPopup,
   signOut,
   GoogleAuthProvider,
+  setPersistence,
+  browserLocalPersistence,
+  indexedDBLocalPersistence,
 } from "firebase/auth";
+
+let persistenceReady;
+function restorePersistence() {
+  if (!persistenceReady) {
+    const auth = getAuth(app);
+    // Prefer localStorage: some embedded Safari contexts expose IndexedDB
+    // without retaining its data across iframe lifetimes.
+    persistenceReady = setPersistence(auth, browserLocalPersistence)
+      .catch(() => setPersistence(auth, indexedDBLocalPersistence))
+      .then(() => true, () => false);
+  }
+  return persistenceReady;
+}
 
 const ADMIN_UIDS = (content.reports && content.reports.adminUids) || [];
 
@@ -31,16 +47,32 @@ export const textBtn = {
 export function useAdmin() {
   const [user, setUser] = useState(null);
   const [msg, setMsg] = useState("");
+  const [ready, setReady] = useState(false);
 
   useEffect(() => {
-    if (!firebaseReady) return;
-    return onAuthStateChanged(getAuth(app), setUser);
+    if (!firebaseReady) { setReady(true); setMsg("사이트 로그인 설정을 확인해 주세요."); return; }
+    let cancelled = false;
+    let unsubscribe;
+    restorePersistence().then(persistent => {
+      if (cancelled) return;
+      if (!persistent) setMsg("이 창에서 로그인 저장이 제한되어 있습니다. 창을 다시 열면 로그인이 필요할 수 있습니다.");
+      unsubscribe = onAuthStateChanged(getAuth(app), value => {
+        setUser(value);
+        setReady(true);
+      }, () => {
+        setReady(true);
+        setMsg("로그인 상태를 복원하지 못했습니다. 다시 로그인해 주세요.");
+      });
+    });
+    return () => { cancelled = true; unsubscribe?.(); };
   }, []);
 
   async function login() {
     setMsg("");
     try {
+      const persistent = await restorePersistence();
       await signInWithPopup(getAuth(app), new GoogleAuthProvider());
+      if (!persistent) setMsg("현재 창에서만 로그인되었습니다. 브라우저가 로그인 저장을 제한하고 있습니다.");
     } catch (e) {
       const code = (e && e.code) || "unknown";
       // 창을 직접 닫은 건 실수가 아니라 취소라 조용히 넘어간다
@@ -52,6 +84,7 @@ export function useAdmin() {
 
   return {
     user,
+    ready,
     isAdmin: !!user && ADMIN_UIDS.includes(user.uid),
     login,
     logout: () => signOut(getAuth(app)),
@@ -62,7 +95,7 @@ export function useAdmin() {
 
 // 화면 맨 아래 입구. 방문자에게는 작은 '관리' 글자 하나만 보인다.
 export function AdminFooter({ admin, hint }) {
-  const { user, isAdmin, login, logout } = admin;
+  const { user, isAdmin, login, logout, ready, msg } = admin;
   return (
     <div
       style={{
@@ -73,7 +106,8 @@ export function AdminFooter({ admin, hint }) {
         lineHeight: 1.8,
       }}
     >
-      {!user ? (
+      {msg && <p role="status">{msg}</p>}
+      {!ready ? <span role="status">로그인 확인 중…</span> : !user ? (
         <button onClick={login} style={textBtn}>
           관리
         </button>

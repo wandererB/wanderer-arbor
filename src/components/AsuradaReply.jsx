@@ -78,7 +78,7 @@ export default function AsuradaReply() {
     <p style={{whiteSpace:"pre-wrap"}}>{row ? (row.title ? row.title+"\n" : "")+(row.message||row.body||"") : ""}</p>
     {row?.reply && <blockquote style={{whiteSpace:"pre-wrap"}}>현재 답글: {row.reply}</blockquote>}
     <p role="status">{notice}</p>
-    <AdminFooter admin={admin} hint="기존 홈페이지 관리자 Google 계정으로 로그인해 주세요." />
+    <AdminFooter admin={admin} hint="관리자 로그인됨 · 답글과 처리 상태를 저장할 수 있습니다." />
     <label style={{display:"block",margin:"16px 0"}}><input type="checkbox" checked={enabled} onChange={e=>{setEnabled(e.target.checked);setApproved(null);}}/> 이 사이트 답글·제보 상태 저장 허용</label>
     {isReport && <label style={{display:"block",margin:"16px 0"}}>제보 처리 상태
       <select aria-label="제보 처리 상태" value={status} disabled={busy||uncertain||!row}
