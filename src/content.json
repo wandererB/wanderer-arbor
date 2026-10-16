@@ -1,7 +1,7 @@
 {
   "notice": {
     "show": true,
-    "text": "PS2 테니스의 왕자 스매시 히트 2 v1.0 배포, 마장기신 시리즈 업데이트(1 v1.5 · 2 v1.2 · 3 v1.6 최종 · F v1.8 최종)",
+    "text": "PS2 테니스의 왕자 스매시 히트 2 v1.0 배포, 마장기신F v1.81(버그픽스) 업데이트, PSP 카마이타치2 v1.3 업데이트",
     "link": "",
     "linkLabel": ""
   },
@@ -62,7 +62,7 @@
       "subtitle": "Masou Kishin III · Pride of Justice",
       "version": "1.6",
       "date": "2026-10-13",
-      "size": "4MB",
+      "size": "5MB",
       "url": "https://github.com/wandererB/wanderer-arbor/releases/download/mk3v-v1.3/MasouKishin3_KR_Vita_v1.6.zip",
       "bg": "images/mk3.jpg",
       "bgPair": "top",
@@ -73,7 +73,7 @@
       "subtitle": "Masou Kishin III · Pride of Justice",
       "version": "1.6",
       "date": "2026-10-13",
-      "size": "약 4.9MB",
+      "size": "약 17.7MB",
       "url": "https://github.com/wandererB/wanderer-arbor/releases/download/mk3p-v1.3/MasouKishin3_KR_PS3_v1.6.zip",
       "bg": "images/mk3.jpg",
       "bgPair": "bottom",
@@ -82,10 +82,10 @@
     {
       "title": "마장기신F 한글패치",
       "subtitle": "Masou Kishin F · Coffin of The End",
-      "version": "1.8",
-      "date": "2026-10-13",
-      "size": "약 5.5MB",
-      "url": "https://github.com/wandererB/wanderer-arbor/releases/download/mkf-v1.5/MasouKishinF_KR.v1.8.zip",
+      "version": "1.81",
+      "date": "2026-10-17",
+      "size": "약 21MB",
+      "url": "https://github.com/wandererB/wanderer-arbor/releases/download/mkf-v1.5/MasouKishinF_KR.v1.81.zip",
       "bg": "images/mkf2.webp",
       "bgPos": "center 99%",
       "bgPosMobile": "center 100%"
