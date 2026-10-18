@@ -144,6 +144,27 @@ export function GlobalStyle() {
         .bg-pair-top { background-position: center 0% !important; }
         .bg-pair-bottom { background-position: center 100% !important; }
       }
+      /* 다운로드 바둑판 보기(암자 토글). PC 3열 → 태블릿 2열 → 휴대폰 작은 2열.
+         열을 minmax(0,1fr) 로 둬서 긴 제목이 카드 폭을 밀어내지 않게 한다. */
+      .dl-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+      .dl-grid .dl-body { padding: 14px 16px 16px; }
+      .dl-grid .dl-title { font-size: 17px; }
+      /* 판본·다운로드 버튼은 카드 폭을 나눠 채우고, 모자라면 다음 줄로 */
+      .dl-fill { display: flex; flex-wrap: wrap; gap: 6px; }
+      .dl-fill > * { flex: 1 1 auto; text-align: center; }
+      /* 분할 칩은 번호 한 글자라 좌우 여백 없이 같은 폭으로 → 좁은 카드에서도 한 줄
+         (인라인 padding 을 덮어야 해서 !important) */
+      .dl-parts > * { flex-basis: 0; padding-left: 0 !important; padding-right: 0 !important; }
+      @media (max-width: 900px) {
+        .dl-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      }
+      @media (max-width: 640px) {
+        .dl-grid { gap: 10px; }
+        .dl-grid .dl-body { padding: 10px 11px 12px; }
+        .dl-grid .dl-title { font-size: 14.5px; }
+        /* "V1 스팀 번역판" 같은 판본 이름이 두 줄로 안 갈라지게 버튼 좌우 여백을 줄인다 */
+        .dl-fill:not(.dl-parts) > * { padding-left: 8px !important; padding-right: 8px !important; }
+      }
       /* 아주 좁은 폰(≤400px). 360px 안드로이드에서 버튼이 화면 끝에 붙어서
          사이트명 글자를 조금 줄여 자리를 만든다(인라인 fontSize 를 덮어야 해서 !important) */
       @media (max-width: 400px) {

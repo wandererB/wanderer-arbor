@@ -83,12 +83,14 @@ export default function Hermitage({ setView }) {
         </section>
       )}
 
-      {/* 암자 다운로드 목록 — 홈의 DownloadSection 재사용 */}
+      {/* 암자 다운로드 목록 — 홈의 DownloadSection 재사용.
+          작품이 많아 「목록 / 바둑판」 토글을 켠다(기본은 목록, 홈은 토글 없음). */}
       <DownloadSection
         items={h.downloads}
         heading="암자 콘텐츠"
         eyebrow="Hermitage"
         id="hermitage-download"
+        allowGrid
       />
     </>
   );
