@@ -410,7 +410,9 @@ function GridCard({ d, meta, parts, partsNote, variants }) {
       }}
     >
       {/* 그림은 카드 위 띠에만 깐다. 글자가 그림 위에 오지 않으니 막은 아래쪽에만 살짝.
-          bgPair·bgPosMobile 은 목록 카드 높이에 맞춘 값이라 여기선 bgPos 만 쓴다. */}
+          bgPair·bgPosMobile 은 목록 카드 높이에 맞춘 값이라 여기선 쓰지 않는다.
+          띠(16:9)가 목록 카드보다 훨씬 높아서 bgPos 그대로면 로고가 잘리는 작품이 있다
+          → content.json 에 bgPosGrid 를 적으면 바둑판에서만 그 위치를 쓴다. */}
       <div
         style={{
           position: "relative",
@@ -427,7 +429,7 @@ function GridCard({ d, meta, parts, partsNote, variants }) {
                 inset: 0,
                 backgroundImage: `url(${asset(d.bg)})`,
                 backgroundSize: "cover",
-                backgroundPosition: d.bgPos || "center 35%",
+                backgroundPosition: d.bgPosGrid || d.bgPos || "center 35%",
                 filter: "sepia(0.45) saturate(0.8) brightness(0.9)",
               }}
             />
