@@ -84,13 +84,15 @@ export default function Hermitage({ setView }) {
       )}
 
       {/* 암자 다운로드 목록 — 홈의 DownloadSection 재사용.
-          작품이 많아 「목록 / 바둑판」 토글을 켠다(기본은 목록, 홈은 토글 없음). */}
+          작품이 많아 「목록 / 바둑판」 토글을 켜고, 처음엔 한눈에 보이는 바둑판으로 연다.
+          (목록을 고른 방문자는 그대로 목록. 홈은 토글 없음) */}
       <DownloadSection
         items={h.downloads}
         heading="암자 콘텐츠"
         eyebrow="Hermitage"
         id="hermitage-download"
         allowGrid
+        defaultLayout="grid"
       />
     </>
   );
