@@ -4,13 +4,14 @@ import { CTA } from "./ui.jsx";
 import content from "../content.json";
 
 // 방문자가 고른 보기(목록/바둑판)를 섹션 id 별로 기억한다.
-// 저장소를 못 쓰거나(사생활 보호 창 등) 이상한 값이면 목록으로 둔다.
+// 아직 안 골랐거나, 저장소를 못 쓰거나(사생활 보호 창 등), 이상한 값이면 섹션 기본값으로 둔다.
 const layoutKey = (id) => `wanderer:layout:${id}`;
-function readLayout(id) {
+function readLayout(id, fallback) {
   try {
-    return localStorage.getItem(layoutKey(id)) === "grid" ? "grid" : "list";
+    const v = localStorage.getItem(layoutKey(id));
+    return v === "grid" || v === "list" ? v : fallback;
   } catch {
-    return "list";
+    return fallback;
   }
 }
 
@@ -22,9 +23,13 @@ export default function DownloadSection({
   // allowGrid: 제목 옆에 「목록 / 바둑판」 토글을 단다. 작품이 많은 암자에서만 켠다.
   // 꺼져 있으면(홈) 토글도 없고 언제나 지금의 목록 보기다.
   allowGrid = false,
+  // defaultLayout: 토글을 아직 안 눌러 본 방문자가 처음 보는 보기("list" | "grid").
+  defaultLayout = "list",
 } = {}) {
   const downloads = items || content.downloads || [];
-  const [layout, setLayout] = useState(() => (allowGrid ? readLayout(id) : "list"));
+  const [layout, setLayout] = useState(() =>
+    allowGrid ? readLayout(id, defaultLayout) : "list"
+  );
   const grid = allowGrid && layout === "grid";
   const pickLayout = (next) => {
     setLayout(next);
