@@ -142,6 +142,16 @@
         "bgPos": "center 35%"
       },
       {
+        "title": "유유백서 외전[MD] 한글패치",
+        "subtitle": "幽遊白書 外伝",
+        "version": "1.0.6",
+        "date": "2026-08-15",
+        "size": "약 90KB",
+        "url": "https://github.com/wandererB/wanderer-arbor/releases/download/yuyu/yyh_gaiden_ko_v1.0.6.zip",
+        "bg": "images/yuyu.png",
+        "bgPos": "center 30%"
+      },
+      {
         "title": "패러사이트 이브 2[PS1] 한글패치",
         "subtitle": "Parasite Eve II",
         "version": "1.38",
@@ -247,16 +257,6 @@
         "url": "https://github.com/wandererB/wanderer-arbor/releases/download/psp_ippo-v1.0/PSP_Ippo_KR_v1.0.zip",
         "bg": "images/psp_ippo.jpg",
         "bgPos": "center 54%"
-      },
-      {
-        "title": "유유백서 외전[MD] 한글패치",
-        "subtitle": "幽遊白書 外伝",
-        "version": "1.0.6",
-        "date": "2026-08-15",
-        "size": "약 90KB",
-        "url": "https://github.com/wandererB/wanderer-arbor/releases/download/yuyu/yyh_gaiden_ko_v1.0.6.zip",
-        "bg": "images/yuyu.png",
-        "bgPos": "center 30%"
       },
       {
         "title": "테니스의 왕자 스매시 히트 2[PS2] 한글패치",
