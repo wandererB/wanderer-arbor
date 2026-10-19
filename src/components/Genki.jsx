@@ -18,7 +18,7 @@ export default function Genki({ setView }) {
       }}
     >
       <img
-        src={asset("images/logo.png")}
+        src={asset("images/logo.webp")}
         alt="방랑자"
         style={{
           width: 88,
