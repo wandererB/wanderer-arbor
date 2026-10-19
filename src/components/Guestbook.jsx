@@ -102,7 +102,7 @@ export default function Guestbook() {
     }
   }
 
-  // 제보 답글과 같은 방식. 방명록 규칙은 빈 답글을 받지 않아서(firestore.rules) 비우면 저장을 막는다.
+  // 제보 답글과 같은 방식. 빈 칸 저장은 실수일 수 있어 막고, 지우기는 아래 deleteReply 로 확인받는다.
   async function saveReply(m) {
     const t = replyText.trim().slice(0, 500);
     if (!t) return;
@@ -114,6 +114,21 @@ export default function Guestbook() {
       setReplyText("");
     } catch {
       setAdminMsg("답글을 저장하지 못했어요. 보안 규칙에 관리자 UID가 들어갔는지 확인해 주세요.");
+    }
+    setBusyId("");
+  }
+
+  // 제보처럼 빈 답글로 덮어서 지운다. 목록은 빈 답글을 보여주지 않는다.
+  async function deleteReply(m) {
+    if (!window.confirm("이 글에 단 답글을 지울까요? 방문자 글은 그대로 남아요.")) return;
+    setBusyId(m.id);
+    setAdminMsg("");
+    try {
+      await updateDoc(doc(db, "guestbook", m.id), { reply: "", replyAt: serverTimestamp() });
+      setReplyFor("");
+      setReplyText("");
+    } catch {
+      setAdminMsg("답글을 지우지 못했어요. 보안 규칙을 콘솔에 다시 게시했는지 확인해 주세요.");
     }
     setBusyId("");
   }
@@ -349,11 +364,20 @@ export default function Guestbook() {
                   />
                   <div style={{ display: "flex", alignItems: "center", gap: 12, marginTop: 6 }}>
                     <span style={{ color: C.textDim, fontSize: 12 }}>{replyText.length}/500</span>
+                    {m.reply && (
+                      <button
+                        onClick={() => deleteReply(m)}
+                        disabled={busyId === m.id}
+                        style={{ ...textBtn, color: "#d98a6a", marginLeft: "auto" }}
+                      >
+                        답글 지우기
+                      </button>
+                    )}
                     <button
                       onClick={() => saveReply(m)}
                       disabled={busyId === m.id || !replyText.trim()}
                       style={{
-                        marginLeft: "auto",
+                        marginLeft: m.reply ? 0 : "auto",
                         padding: "6px 14px",
                         borderRadius: 7,
                         border: "none",
