@@ -27,10 +27,10 @@ service cloud.firestore {
         && request.resource.data.message.size() <= 500
         && request.resource.data.createdAt == request.time;
       // 관리자는 답글과 서버 작성 시간만 갱신한다. 방문자 원문은 유지한다.
+      // 빈 답글("")은 답글 지우기다 (제보와 같다).
       allow update: if isAdmin()
         && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['reply', 'replyAt'])
         && request.resource.data.reply is string
-        && request.resource.data.reply.size() > 0
         && request.resource.data.reply.size() <= 500
         && request.resource.data.replyAt == request.time;
       allow delete: if isAdmin();
