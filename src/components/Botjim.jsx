@@ -8,11 +8,11 @@ export default function Botjim({ setView }) {
   const b = content.botjim || {};
   return (
     <>
-      {/* 히어로: 봇짐을 멘 방랑자(botzim.jpg). 없으면 banner.jpg 로 폴백. */}
+      {/* 히어로: 봇짐을 멘 방랑자(botzim.webp). 없으면 banner.jpg 로 폴백. */}
       <header style={{ position: "relative", overflow: "hidden" }}>
         <div style={{ textAlign: "center" }}>
           <img
-            src={asset("images/botzim.jpg")}
+            src={asset("images/botzim.webp")}
             onError={(e) => {
               e.currentTarget.onerror = null;
               e.currentTarget.src = asset("images/banner.jpg");

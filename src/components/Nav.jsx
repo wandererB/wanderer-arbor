@@ -34,7 +34,7 @@ export default function Nav({ view, setView }) {
         }}
       >
         <img
-          src={asset("images/logo.png")}
+          src={asset("images/logo.webp")}
           alt="방랑자"
           style={{ width: 38, height: 38, borderRadius: "50%" }}
         />

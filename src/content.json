@@ -179,7 +179,7 @@
         "date": "2026-09-10",
         "size": "약 894KB",
         "url": "https://github.com/wandererB/wanderer-arbor/releases/download/rtti2-v1.0/cyber2-korean-v1.1.zip",
-        "bg": "images/Road_to_the_Infinity_2.jpg",
+        "bg": "images/Road_to_the_Infinity_2.webp",
         "bgPos": "center 43%",
         "bgPosGrid": "center 25.5%"
       },
@@ -190,7 +190,7 @@
         "date": "2026-08-12",
         "size": "약 680KB",
         "url": "https://github.com/wandererB/wanderer-arbor/releases/download/cf3-v1.0/cyber3-korean-v1.1.zip",
-        "bg": "images/Road_to_the_Infinity_3.jpg",
+        "bg": "images/Road_to_the_Infinity_3.webp",
         "bgPos": "center 50%"
       },
       {
@@ -220,7 +220,7 @@
         "date": "2026-09-10",
         "size": "약 692KB",
         "url": "https://github.com/wandererB/wanderer-arbor/releases/download/ippo2-v1.0/ippo2-ps2-korean-v1.0.zip",
-        "bg": "images/ps2_ippo.jpg",
+        "bg": "images/ps2_ippo.webp",
         "bgPos": "center 85%"
       },
       {
@@ -235,7 +235,7 @@
           { "label": "파트 3/3", "url": "https://github.com/wandererB/wanderer-arbor/releases/download/ippo-v1.01/PS3.The.Fighting.KR_v1.2.zip", "size": "약 1.27GB" }
         ],
         "partsNote": "용량이 커서 3개로 나눠 올렸습니다. 파트 3개를 모두 같은 폴더에 받은 뒤 7-Zip·반디집 같은 압축 프로그램으로 여세요. 윈도우 기본 '압축 풀기'로는 열리지 않습니다.",
-        "bg": "images/the_fighting.png",
+        "bg": "images/the_fighting.webp",
         "bgPos": "center 40%"
       },
       {
@@ -265,7 +265,7 @@
         "date": "2026-10-15",
         "size": "약 3.8MB",
         "url": "https://github.com/wandererB/wanderer-arbor/releases/download/TOSH2/tennis-sh2-korean-v1.0.zip",
-        "bg": "images/TOSH2.jpg",
+        "bg": "images/TOSH2.webp",
         "bgPos": "center 69%"
       },
       {
@@ -286,7 +286,7 @@
         "date": "2026-09-05",
         "size": "약 208MB",
         "url": "https://github.com/wandererB/wanderer-arbor/releases/download/vj2_v0.9.5/vj2-korean-v0.9.5.zip",
-        "bg": "images/Viewtiful_Joe_2.jpg",
+        "bg": "images/Viewtiful_Joe_2.webp",
         "bgPos": "center 20%",
         "bgPosGrid": "center 24.5%"
       },
@@ -307,7 +307,7 @@
         "date": "2026-10-16",
         "size": "약 28.3MB",
         "url": "https://github.com/wandererB/wanderer-arbor/releases/download/FM5-v1.0/fm5-korean-v1.2.4.zip",
-        "bg": "images/FM5.jpg",
+        "bg": "images/FM5.webp",
         "bgPos": "center 57%",
         "bgPosGrid": "center 47%"
       },
@@ -328,7 +328,7 @@
             "url": "https://github.com/wandererB/wanderer-arbor/releases/download/428S/428_Shibuya_KR_V2_v1.11.zip"
           }
         ],
-        "bg": "images/428.jpg",
+        "bg": "images/428.webp",
         "bgPos": "center 67%"
       },
       {

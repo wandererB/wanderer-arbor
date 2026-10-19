@@ -8,12 +8,12 @@ export default function Hermitage({ setView }) {
   const h = content.hermitage || {};
   return (
     <>
-      {/* 히어로: 2번째 이미지(public/images/hermitage.jpg).
+      {/* 히어로: 2번째 이미지(public/images/hermitage.webp).
           아직 파일이 없으면 기존 banner.jpg 로 자동 폴백 → 깨진 이미지 방지. */}
       <header style={{ position: "relative", overflow: "hidden" }}>
         <div style={{ textAlign: "center" }}>
           <img
-            src={asset("images/hermitage.jpg")}
+            src={asset("images/hermitage.webp")}
             onError={(e) => {
               e.currentTarget.onerror = null;
               e.currentTarget.src = asset("images/banner.jpg");

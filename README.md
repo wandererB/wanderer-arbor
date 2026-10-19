@@ -25,7 +25,7 @@ npm run preview  # 빌드 결과 미리보기
 ```
 wanderer/
 ├─ public/
-│  ├─ images/        # hero.jpg · banner.jpg · logo.png (웹용 변환본)
+│  ├─ images/        # hero.jpg · banner.jpg · logo.webp 등 (웹용 변환본, 큰 그림은 WebP)
 │  └─ favicon.png
 ├─ src/
 │  ├─ content.json   # ★ 공개 콘텐츠 (소개·통계·다운로드·변경이력) — 여기만 고치면 됨
