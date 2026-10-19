@@ -224,6 +224,16 @@
         "bgPos": "center 44%"
       },
       {
+        "title": "시작의 일보[PSP] 한글패치",
+        "subtitle": "Hajime no Ippo Portable - Victorious Spirits",
+        "version": "1.0",
+        "date": "2026-08-19",
+        "size": "약 22.4MB",
+        "url": "https://github.com/wandererB/wanderer-arbor/releases/download/psp_ippo-v1.0/PSP_Ippo_KR_v1.0.zip",
+        "bg": "images/psp_ippo.jpg",
+        "bgPos": "center 54%"
+      },
+      {
         "title": "시작의 일보[PS2] 한글패치",
         "subtitle": "はじめの一歩2 VICTORIOUS ROAD",
         "version": "1.0",
@@ -247,26 +257,6 @@
         "partsNote": "용량이 커서 3개로 나눠 올렸습니다. 파트 3개를 모두 같은 폴더에 받은 뒤 7-Zip·반디집 같은 압축 프로그램으로 여세요. 윈도우 기본 '압축 풀기'로는 열리지 않습니다.",
         "bg": "images/the_fighting.webp",
         "bgPos": "center 40%"
-      },
-      {
-        "title": "시작의 일보[PSP] 한글패치",
-        "subtitle": "Hajime no Ippo Portable - Victorious Spirits",
-        "version": "1.0",
-        "date": "2026-08-19",
-        "size": "약 22.4MB",
-        "url": "https://github.com/wandererB/wanderer-arbor/releases/download/psp_ippo-v1.0/PSP_Ippo_KR_v1.0.zip",
-        "bg": "images/psp_ippo.jpg",
-        "bgPos": "center 54%"
-      },
-      {
-        "title": "테니스의 왕자 스매시 히트 2[PS2] 한글패치",
-        "subtitle": "テニスの王子様 Smash Hit! 2",
-        "version": "1.0",
-        "date": "2026-10-15",
-        "size": "약 3.8MB",
-        "url": "https://github.com/wandererB/wanderer-arbor/releases/download/TOSH2/tennis-sh2-korean-v1.0.zip",
-        "bg": "images/TOSH2.webp",
-        "bgPos": "center 69%"
       },
       {
         "title": "뷰티풀 죠1[PS2] 한글패치",
@@ -310,6 +300,16 @@
         "bg": "images/FM5.webp",
         "bgPos": "center 57%",
         "bgPosGrid": "center 47%"
+      },
+      {
+        "title": "테니스의 왕자 스매시 히트 2[PS2] 한글패치",
+        "subtitle": "テニスの王子様 Smash Hit! 2",
+        "version": "1.0",
+        "date": "2026-10-15",
+        "size": "약 3.8MB",
+        "url": "https://github.com/wandererB/wanderer-arbor/releases/download/TOSH2/tennis-sh2-korean-v1.0.zip",
+        "bg": "images/TOSH2.webp",
+        "bgPos": "center 69%"
       },
       {
         "title": "428 봉쇄된 시부야에서[PSP] 한글패치",
