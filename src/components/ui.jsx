@@ -96,6 +96,78 @@ export function Stat({ label, v, color }) {
   );
 }
 
+// ---- 쪽 넘김 (방명록·제보) ----
+// 휴대폰 폭에서도 한 줄에 들어가게 처음·끝과 현재 쪽 앞뒤 하나만 번호로 보이고 나머지는 … 로 줄인다.
+// 예) ‹ 1 … 5 6 7 … 27 ›
+export function Pager({ page, pageCount, onChange }) {
+  if (pageCount <= 1) return null;
+  const nums = [];
+  for (let p = 1; p <= pageCount; p++) {
+    if (p === 1 || p === pageCount || Math.abs(p - page) <= 1) nums.push(p);
+    else if (nums[nums.length - 1] !== "…") nums.push("…");
+  }
+  const btn = (on) => ({
+    minWidth: 34,
+    height: 34,
+    padding: "0 6px",
+    borderRadius: 8,
+    border: `1px solid ${on ? C.gold : C.line}`,
+    background: on ? C.gold : "transparent",
+    color: on ? C.ink : C.sepia,
+    fontFamily: sans,
+    fontSize: 14,
+    fontWeight: on ? 700 : 400,
+    cursor: on ? "default" : "pointer",
+  });
+  const arrow = (to, label, text) => (
+    <button
+      onClick={() => onChange(to)}
+      disabled={to < 1 || to > pageCount}
+      aria-label={label}
+      style={{ ...btn(false), opacity: to < 1 || to > pageCount ? 0.35 : 1 }}
+    >
+      {text}
+    </button>
+  );
+  return (
+    <nav
+      aria-label="쪽 넘김"
+      style={{
+        display: "flex",
+        flexWrap: "wrap",
+        justifyContent: "center",
+        alignItems: "center",
+        gap: 4,
+        marginTop: 22,
+      }}
+    >
+      {arrow(page - 1, "이전 쪽", "‹")}
+      {nums.map((p, i) =>
+        p === "…" ? (
+          <span key={`gap${i}`} style={{ color: C.textDim, minWidth: 18, textAlign: "center" }}>
+            …
+          </span>
+        ) : (
+          <button
+            key={p}
+            onClick={() => p !== page && onChange(p)}
+            aria-current={p === page ? "page" : undefined}
+            style={btn(p === page)}
+          >
+            {p}
+          </button>
+        )
+      )}
+      {arrow(page + 1, "다음 쪽", "›")}
+    </nav>
+  );
+}
+
+// 쪽을 넘기면 목록 첫 줄로 올린다. 위에 붙은 네비(약 70px)에 가리지 않게 조금 띄운다.
+export function scrollToList(el) {
+  if (el) window.scrollTo(0, el.getBoundingClientRect().top + window.scrollY - 90);
+}
+
 // ---- 공통 입력창 스타일 ----
 export const inputStyle = {
   width: "100%",

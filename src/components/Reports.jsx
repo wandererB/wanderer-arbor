@@ -1,6 +1,6 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useRef } from "react";
 import { C, serif } from "../theme.js";
-import { Section, inputStyle } from "./ui.jsx";
+import { Section, inputStyle, Pager, scrollToList } from "./ui.jsx";
 import content from "../content.json";
 import { db, firebaseReady } from "../firebase.js";
 import {
@@ -35,6 +35,7 @@ const STATUS_COLOR = {
 const STATUSES = Object.keys(STATUS_COLOR);
 const FIRST_STATUS = "접수";
 const DEFAULT_NICK = "나그네"; // 나그네 쉼터라서
+const PER_PAGE = 10;
 
 const COOLDOWN_MS = 60 * 1000; // 같은 브라우저에서 1분에 1건
 const COOLDOWN_KEY = "wanderer:report:last";
@@ -142,6 +143,8 @@ export default function Reports() {
 
   const [items, setItems] = useState(null); // null = 로딩
   const [filter, setFilter] = useState("전체");
+  const [page, setPage] = useState(1);
+  const listTop = useRef(null);
   const [game, setGame] = useState("");
   const [type, setType] = useState(TYPES[0].value);
   const [title, setTitle] = useState("");
@@ -167,10 +170,12 @@ export default function Reports() {
       setItems([]);
       return;
     }
+    // 게임별 필터와 건수가 맞으려면 전부 받아야 해서 쪽은 화면에서 나눈다.
+    // 아직 수십 건이라 괜찮다. 수백 건이 되면 방명록처럼 서버에서 쪽 단위로 받게 바꿀 것.
     const q = query(
       collection(db, "reports"),
       orderBy("createdAt", "desc"),
-      limit(100)
+      limit(500)
     );
     const unsub = onSnapshot(
       q,
@@ -299,6 +304,7 @@ export default function Reports() {
     setSaves([]);
     setFileKey((k) => k + 1); // 파일 칸 비우기
     setSending(false);
+    setPage(1); // 방금 보낸 제보가 보이게
     if (failed) {
       setError(
         `제보는 접수됐어요. 다만 첨부 ${failed}개를 올리지 못했어요. 첨부 링크 칸으로 보내주시면 됩니다.`
@@ -333,6 +339,13 @@ export default function Reports() {
 
   const shown =
     items && filter !== "전체" ? items.filter((r) => r.game === filter) : items;
+  const pageCount = shown ? Math.ceil(shown.length / PER_PAGE) : 0;
+  const cur = Math.min(page, Math.max(1, pageCount)); // 지워서 쪽이 줄어든 경우
+  const pageItems = shown && shown.slice((cur - 1) * PER_PAGE, cur * PER_PAGE);
+  function goTo(p) {
+    setPage(p);
+    scrollToList(listTop.current);
+  }
   const label = {
     display: "block",
     color: C.sepia,
@@ -534,12 +547,16 @@ export default function Reports() {
         )}
       </div>
 
+      <div ref={listTop} />
       {/* 게임별 필터 */}
       {items && items.length > 0 && (
         <div style={{ marginBottom: 14 }}>
           <select
             value={filter}
-            onChange={(e) => setFilter(e.target.value)}
+            onChange={(e) => {
+              setFilter(e.target.value);
+              setPage(1);
+            }}
             style={{ ...inputStyle, width: "auto", minWidth: 200 }}
           >
             <option value="전체">전체 ({items.length}건)</option>
@@ -571,7 +588,7 @@ export default function Reports() {
         </p>
       ) : (
         <div style={{ display: "grid", gap: 12 }}>
-          {shown.map((r) => {
+          {pageItems.map((r) => {
             const sc = STATUS_COLOR[r.status] || STATUS_COLOR[FIRST_STATUS];
             return (
               <div
@@ -802,6 +819,7 @@ export default function Reports() {
           })}
         </div>
       )}
+      <Pager page={cur} pageCount={pageCount} onChange={goTo} />
 
       <AdminFooter admin={admin} hint="관리자 모드 · 상태를 누르면 바꿀 수 있어요" />
     </Section>
