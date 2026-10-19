@@ -7,6 +7,7 @@ import {
   collection,
   addDoc,
   doc,
+  updateDoc,
   deleteDoc,
   query,
   orderBy,
@@ -38,6 +39,8 @@ export default function Guestbook() {
   const admin = useAdmin();
   const { isAdmin, setMsg: setAdminMsg } = admin;
   const [busyId, setBusyId] = useState("");
+  const [replyFor, setReplyFor] = useState(""); // 답글 쓰는 중인 글 id
+  const [replyText, setReplyText] = useState("");
   const [page, setPage] = useState(1);
   const [total, setTotal] = useState(null); // 전체 글 수 (쪽 번호용)
   const listTop = useRef(null);
@@ -97,6 +100,22 @@ export default function Guestbook() {
     } finally {
       setSending(false);
     }
+  }
+
+  // 제보 답글과 같은 방식. 방명록 규칙은 빈 답글을 받지 않아서(firestore.rules) 비우면 저장을 막는다.
+  async function saveReply(m) {
+    const t = replyText.trim().slice(0, 500);
+    if (!t) return;
+    setBusyId(m.id);
+    setAdminMsg("");
+    try {
+      await updateDoc(doc(db, "guestbook", m.id), { reply: t, replyAt: serverTimestamp() });
+      setReplyFor("");
+      setReplyText("");
+    } catch {
+      setAdminMsg("답글을 저장하지 못했어요. 보안 규칙에 관리자 UID가 들어갔는지 확인해 주세요.");
+    }
+    setBusyId("");
   }
 
   async function remove(m) {
@@ -258,13 +277,25 @@ export default function Guestbook() {
                   {fmt(m.createdAt)}
                 </span>
                 {isAdmin && (
-                  <button
-                    onClick={() => remove(m)}
-                    disabled={busyId === m.id}
-                    style={{ ...textBtn, color: "#d98a6a", marginLeft: "auto" }}
-                  >
-                    삭제
-                  </button>
+                  <span style={{ marginLeft: "auto", display: "flex", gap: 14 }}>
+                    <button
+                      onClick={() => {
+                        const open = replyFor === m.id;
+                        setReplyFor(open ? "" : m.id);
+                        setReplyText(open ? "" : m.reply || "");
+                      }}
+                      style={textBtn}
+                    >
+                      {replyFor === m.id ? "답글 접기" : m.reply ? "답글 고치기" : "답글"}
+                    </button>
+                    <button
+                      onClick={() => remove(m)}
+                      disabled={busyId === m.id}
+                      style={{ ...textBtn, color: "#d98a6a" }}
+                    >
+                      삭제
+                    </button>
+                  </span>
                 )}
               </div>
               <p
@@ -306,6 +337,38 @@ export default function Guestbook() {
                     </p>
                   </div>
                 )}
+              {isAdmin && replyFor === m.id && (
+                <div style={{ marginTop: 10 }}>
+                  <textarea
+                    value={replyText}
+                    onChange={(e) => setReplyText(e.target.value)}
+                    placeholder="방랑자로 답글을 남겨주세요."
+                    rows={3}
+                    maxLength={500}
+                    style={{ ...inputStyle, resize: "vertical" }}
+                  />
+                  <div style={{ display: "flex", alignItems: "center", gap: 12, marginTop: 6 }}>
+                    <span style={{ color: C.textDim, fontSize: 12 }}>{replyText.length}/500</span>
+                    <button
+                      onClick={() => saveReply(m)}
+                      disabled={busyId === m.id || !replyText.trim()}
+                      style={{
+                        marginLeft: "auto",
+                        padding: "6px 14px",
+                        borderRadius: 7,
+                        border: "none",
+                        background: busyId === m.id || !replyText.trim() ? C.line : C.gold,
+                        color: C.ink,
+                        fontSize: 13,
+                        fontWeight: 600,
+                        cursor: busyId === m.id || !replyText.trim() ? "default" : "pointer",
+                      }}
+                    >
+                      저장
+                    </button>
+                  </div>
+                </div>
+              )}
             </div>
           ))}
         </div>
@@ -326,7 +389,7 @@ export default function Guestbook() {
           {admin.msg}
         </p>
       )}
-      <AdminFooter admin={admin} hint="관리자 모드 · 글마다 삭제가 보여요" />
+      <AdminFooter admin={admin} hint="관리자 모드 · 글마다 답글·삭제가 보여요" />
     </Section>
   );
 }
