@@ -212,6 +212,12 @@ GitHub Releases 는 **에셋 1개당 2GiB** 가 플랫폼 하드 리밋입니다
 > `vite.config.js` 의 `base: "./"` 덕분에 저장소 이름과 무관하게(서브경로 포함) 동작합니다.
 > Vercel 등 다른 정적 호스팅에 올려도 그대로 동작합니다.
 
+### `package.json` 의 `overrides` (grpc-js)
+
+Firebase 가 Node 서버용으로만 쓰는 `@grpc/grpc-js` 를 취약한 1.9 대로 묶어 둬서 `npm audit` 에 high 가 뜹니다.
+브라우저 빌드에는 들어가지 않는 코드라 `overrides` 로 고쳐진 버전만 쓰게 했습니다 (빌드 결과는 그대로).
+Firebase 가 이 의존성을 1.14 이상으로 올리면 `overrides` 항목을 지워도 됩니다.
+
 ---
 
 ## 데이터·개인정보 원칙
