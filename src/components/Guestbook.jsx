@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { C, serif } from "../theme.js";
-import { Section, inputStyle } from "./ui.jsx";
+import { Section, inputStyle, Pager, scrollToList } from "./ui.jsx";
 import content from "../content.json";
 import { db, firebaseReady } from "../firebase.js";
 import {
@@ -13,8 +13,11 @@ import {
   limit,
   onSnapshot,
   serverTimestamp,
+  getCountFromServer,
 } from "firebase/firestore";
 import { useAdmin, AdminFooter, textBtn } from "../admin.jsx";
+
+const PER_PAGE = 10;
 
 function fmt(ts) {
   if (!ts || !ts.toDate) return "";
@@ -35,24 +38,42 @@ export default function Guestbook() {
   const admin = useAdmin();
   const { isAdmin, setMsg: setAdminMsg } = admin;
   const [busyId, setBusyId] = useState("");
+  const [page, setPage] = useState(1);
+  const [total, setTotal] = useState(null); // 전체 글 수 (쪽 번호용)
+  const listTop = useRef(null);
 
   useEffect(() => {
     if (!firebaseReady) {
       setMessages([]);
       return;
     }
-    const q = query(
-      collection(db, "guestbook"),
-      orderBy("createdAt", "desc"),
-      limit(100)
-    );
+    // 최신순으로 지금 쪽까지만 받아 그 쪽 몫만 보여준다. 웹 SDK 엔 offset 이 없어 앞 쪽도 같이 받지만,
+    // 대부분 1쪽만 보므로 예전(늘 100개)보다 읽기가 적고, 100개 넘은 옛 글도 끝 쪽에서 보인다.
+    const base = query(collection(db, "guestbook"), orderBy("createdAt", "desc"));
     const unsub = onSnapshot(
-      q,
-      (snap) => setMessages(snap.docs.map((d) => ({ id: d.id, ...d.data() }))),
+      query(base, limit(page * PER_PAGE)),
+      (snap) => {
+        if (page > 1 && snap.size <= (page - 1) * PER_PAGE) {
+          // 쪽을 넘기면 앞 쪽 글만 든 캐시 결과가 먼저 와서 이 쪽이 빈 것처럼 보인다 → 서버 결과를 기다린다.
+          // 서버 결과인데도 비었으면(지우기 등) 남은 마지막 쪽으로 옮긴다.
+          if (!snap.metadata.fromCache) setPage(Math.max(1, Math.ceil(snap.size / PER_PAGE)));
+          return;
+        }
+        setMessages(
+          snap.docs.slice((page - 1) * PER_PAGE).map((d) => ({ id: d.id, ...d.data() }))
+        );
+        // 글이 늘거나 줄면 쪽 수도 바뀌므로 다시 센다 (집계 1번 = 읽기 1회)
+        getCountFromServer(base).then((c) => setTotal(c.data().count), () => {});
+      },
       () => setError("메시지를 불러오지 못했습니다.")
     );
     return () => unsub();
-  }, []);
+  }, [page]);
+
+  function goTo(p) {
+    setPage(p);
+    scrollToList(listTop.current);
+  }
 
   async function send() {
     const m = msg.trim();
@@ -70,6 +91,7 @@ export default function Guestbook() {
         createdAt: serverTimestamp(),
       });
       setMsg("");
+      setPage(1); // 방금 남긴 글이 보이게
     } catch (e) {
       setError("전송에 실패했습니다. 잠시 후 다시 시도해 주세요.");
     } finally {
@@ -193,6 +215,7 @@ export default function Guestbook() {
       </div>
 
       {/* 메시지 목록 */}
+      <div ref={listTop} />
       {messages === null ? (
         <p style={{ color: C.textDim, textAlign: "center", padding: 30 }}>
           불러오는 중…
@@ -286,6 +309,9 @@ export default function Guestbook() {
             </div>
           ))}
         </div>
+      )}
+      {total !== null && (
+        <Pager page={page} pageCount={Math.ceil(total / PER_PAGE)} onChange={goTo} />
       )}
 
       {admin.msg && (
