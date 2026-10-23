@@ -1,7 +1,7 @@
 {
   "notice": {
     "show": true,
-    "text": "카마이타치의 밤x3 스위치 v1.15, PS2 v1.0.5 업데이트, PS2 테니스의 왕자 스매시 히트 2 v1.0 배포",
+    "text": "카마이타치의 밤x3 스위치 v1.16, PS2 v1.0.6 업데이트, PS2 테니스의 왕자 스매시 히트 2 v1.0 배포",
     "link": "",
     "linkLabel": ""
   },
@@ -357,19 +357,19 @@
       {
         "title": "카마이타치의 밤 ×3[PS2·Switch] 한글패치",
         "subtitle": "かまいたちの夜×3",
-        "version": "1.15",
-        "date": "2026-10-22",
-        "note": "PS2판 정식(v1.0.5)입니다. PS2판 약 9.1MB · 스위치판 약 45.1MB.",
+        "version": "1.16",
+        "date": "2026-10-23",
+        "note": "PS2판 정식(v1.0.6)입니다. PS2판 약 9.1MB · 스위치판 약 45.1MB.",
         "variants": [
           {
             "label": "PS2판",
             "size": "약 9.1MB",
-            "url": "https://github.com/wandererB/wanderer-arbor/releases/download/KM3-v1.0/Kamaitachi3-PS2-KO-1.0.5.zip"
+            "url": "https://github.com/wandererB/wanderer-arbor/releases/download/KM3-v1.0/Kamaitachi3-PS2-KO-1.0.6.zip"
           },
           {
             "label": "스위치판",
             "size": "약 45.1MB",
-            "url": "https://github.com/wandererB/wanderer-arbor/releases/download/KM3-v1.0/Kama3_Switch_KO_v1.15_SD.zip"
+            "url": "https://github.com/wandererB/wanderer-arbor/releases/download/KM3-v1.0/Kama3_Switch_KO_v1.16_SD.zip"
           }
         ],
         "bg": "images/kamaitachi3.webp",
