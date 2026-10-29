@@ -63,6 +63,9 @@ export default function NoticeBanner() {
           color: C.sepia,
           fontSize: 14,
           lineHeight: 1.6,
+          // 휴대폰에서 두 줄이 될 때 "PSP/판" 처럼 낱말 중간에서 끊기지 않게 (다운로드 카드와 같은 방식)
+          wordBreak: "keep-all",
+          overflowWrap: "anywhere",
         }}
       >
         {text}
