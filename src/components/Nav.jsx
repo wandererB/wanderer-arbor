@@ -22,6 +22,7 @@ export default function Nav({ view, setView }) {
         onClick={() => setView("home")}
         aria-label="홈으로"
         title="홈으로"
+        className="nav-home"
         style={{
           display: "flex",
           alignItems: "center",
@@ -36,6 +37,7 @@ export default function Nav({ view, setView }) {
         <img
           src={asset("images/logo.webp")}
           alt="방랑자"
+          className="nav-logo"
           style={{ width: 38, height: 38, borderRadius: "50%" }}
         />
         {/* 사이트명: 데스크톱은 한 줄, 모바일은 공백에서 두 줄(방랑자의 / 그늘쉼터).
