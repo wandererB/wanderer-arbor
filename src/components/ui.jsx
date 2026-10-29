@@ -237,12 +237,22 @@ export function GlobalStyle() {
         /* "V1 스팀 번역판" 같은 판본 이름이 두 줄로 안 갈라지게 버튼 좌우 여백을 줄인다 */
         .dl-fill:not(.dl-parts) > * { padding-left: 8px !important; padding-right: 8px !important; }
       }
-      /* 아주 좁은 폰(≤400px). 360px 안드로이드에서 버튼이 화면 끝에 붙어서
+      /* 좁은 폰(≤420px). 414px 아이폰도 메뉴가 화면 끝을 1px 넘어서 400 → 420 으로 넓혔다.
          사이트명 글자를 조금 줄여 자리를 만든다(인라인 fontSize 를 덮어야 해서 !important) */
-      @media (max-width: 400px) {
+      @media (max-width: 420px) {
         .site-name { font-size: 16px !important; }
         .nav-links { gap: 3px !important; }
         .nav-links button { padding: 5px 6px; font-size: 12px; }
+      }
+      /* 아주 좁은 폰(<375px: 360px 갤럭시, 344px 폴드 바깥 화면). 위 크기로도 「원기옥」이 화면 밖으로
+         나가서(360px 8px, 344px 24px) 로고·간격·버튼 여백을 조금씩 더 줄인다. 글자 크기는 그대로. */
+      @media (max-width: 374px) {
+        nav { padding-left: 10px !important; padding-right: 10px !important; }
+        .nav-home { gap: 7px !important; }
+        .nav-logo { width: 32px !important; height: 32px !important; }
+        .site-name { font-size: 15px !important; }
+        .nav-links { gap: 2px !important; }
+        .nav-links button { padding: 5px 4px; }
       }
     `}</style>
   );
