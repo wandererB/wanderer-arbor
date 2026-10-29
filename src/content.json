@@ -40,9 +40,23 @@
       "title": "마장기신 한글패치 (NDS)",
       "subtitle": "Masou Kishin · The Lord of Elemental",
       "version": "1.0",
+      "date": "2026-10-29",
+      "note": "음성추가판은 PSP판 전투 음성을 넣은 판(v1.0 RC)입니다. 한글패치 약 2.1MB · 음성추가판 약 22MB.",
+      "variants": [
+        {
+          "label": "한글패치 v1.0",
+          "size": "약 2.1MB",
+          "url": "https://github.com/wandererB/wanderer-arbor/releases/download/MK1_NDS/MasouKishin_NDS_KR_v1.0.zip"
+        },
+        {
+          "label": "음성추가판 v1.0 RC",
+          "size": "약 22MB",
+          "url": "https://github.com/wandererB/wanderer-arbor/releases/download/MK1_NDS/MasouKishin_NDS_KR_voice_v1.0-RC.zip"
+        }
+      ],
       "bg": "images/mk_nds.webp",
       "bgPos": "center 68%",
-      "bgPosMobile": "center 77%"
+      "bgPosMobile": "center 66%"
     },
     {
       "title": "마장기신 1 한글패치",
