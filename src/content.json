@@ -1,7 +1,7 @@
 {
   "notice": {
     "show": true,
-    "text": "마장기신 NDS 한글패치 v1.01 업데이트 (PSP판 전투 음성을 넣은 음성추가판 v1.01 RC2-프리징 수정)",
+    "text": "PSP 카마이타치의 밤2 v1.32 업데이트",
     "link": "",
     "linkLabel": ""
   },
@@ -372,10 +372,10 @@
       {
         "title": "카마이타치의 밤 2 특별편[PSP] 한글패치",
         "subtitle": "かまいたちの夜2 特別篇",
-        "version": "1.31",
-        "date": "2026-10-28",
+        "version": "1.32",
+        "date": "2026-11-04",
         "size": "약 65MB",
-        "url": "https://github.com/wandererB/wanderer-arbor/releases/download/KM2-v1.0/Kamaitachi2-PSP-KO-1.31.zip",
+        "url": "https://github.com/wandererB/wanderer-arbor/releases/download/KM2-v1.0/Kamaitachi2-PSP-KO-1.32.zip",
         "bg": "images/kamaitachi2.webp",
         "bgPos": "center 28%",
         "bgPosMobile": "center 22%"
@@ -383,8 +383,8 @@
       {
         "title": "카마이타치의 밤 ×3[PS2·Switch] 한글패치",
         "subtitle": "かまいたちの夜×3",
-        "version": "1.17",
-        "date": "2026-10-28",
+        "version": "1.18",
+        "date": "2026-11-04",
         "note": "PS2판 정식(v1.0.7)입니다. PS2판 약 9.1MB · 스위치판 약 45.1MB.",
         "variants": [
           {
@@ -395,7 +395,7 @@
           {
             "label": "스위치판",
             "size": "약 45.1MB",
-            "url": "https://github.com/wandererB/wanderer-arbor/releases/download/KM3-v1.0/Kama3_Switch_KO_v1.17_SD.zip"
+            "url": "https://github.com/wandererB/wanderer-arbor/releases/download/KM3-v1.0/Kama3_Switch_KO_v1.18_SD.zip"
           }
         ],
         "bg": "images/kamaitachi3.webp",
