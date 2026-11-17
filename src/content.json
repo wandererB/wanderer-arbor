@@ -1,7 +1,7 @@
 {
   "notice": {
     "show": true,
-    "text": "PSP 카마이타치의 밤2 특별편 v1.32 업데이트",
+    "text": "PS3 시작의 일보 업데이트 한글 v1.3(내용같음_ISO 제자리 전체패치 추가), 음성더빙 v1.1(미야타, 센도, 볼그, 마모루 음성 추가)",
     "link": "",
     "linkLabel": ""
   },
@@ -276,11 +276,11 @@
         "date": "2026-08-25",
         "size": "약 5.17GB (분할 3개)",
         "parts": [
-          { "label": "파트 1/3", "url": "https://github.com/wandererB/wanderer-arbor/releases/download/ippo-v1.01/PS3.The.Fighting.KR_v1.2.z01", "size": "약 1.95GB" },
-          { "label": "파트 2/3", "url": "https://github.com/wandererB/wanderer-arbor/releases/download/ippo-v1.01/PS3.The.Fighting.KR_v1.2.z02", "size": "약 1.95GB" },
-          { "label": "파트 3/3", "url": "https://github.com/wandererB/wanderer-arbor/releases/download/ippo-v1.01/PS3.The.Fighting.KR_v1.2.zip", "size": "약 1.27GB" }
+          { "label": "파트 1/3", "url": "https://github.com/wandererB/wanderer-arbor/releases/download/ippo-v1.0/PS3.The.Fighting.KR.z01", "size": "약 1.95GB" },
+          { "label": "파트 2/3", "url": "https://github.com/wandererB/wanderer-arbor/releases/download/ippo-v1.0/PS3.The.Fighting.KR.z02", "size": "약 1.95GB" },
+          { "label": "파트 3/3", "url": "https://github.com/wandererB/wanderer-arbor/releases/download/ippo-v1.0/PS3.The.Fighting.KR.zip", "size": "약 1.27GB" }
         ],
-        "partsNote": "용량이 커서 3개로 나눠 올렸습니다. 파트 3개를 모두 같은 폴더에 받은 뒤 7-Zip·반디집 같은 압축 프로그램으로 여세요. 윈도우 기본 '압축 풀기'로는 열리지 않습니다.",
+        "partsNote": "용량이 커서 3개로 나눠 올렸습니다. 파트 3개를 모두 같은 폴더에 받은 뒤 7-Zip·반디집 같은 압축 프로그램으로 여세요.",
         "bg": "images/the_fighting.webp",
         "bgPos": "center 40%"
       },
