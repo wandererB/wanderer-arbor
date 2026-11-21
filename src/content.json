@@ -344,7 +344,7 @@
         "version": "1.11",
         "date": "2026-10-05",
         "size": "약 89MB",
-        "note": "V1은 스팀 번역판(v1.0), V2는 자체 번역판(v1.11)입니다.",
+        "note": "V1은 스팀 번역판(v1.0), V2는 자체 번역판(v1.11)입니다. 3DS 변환기는 V2 번역판을 먼저 생성해주세요.",
         "variants": [
           {
             "label": "V1 스팀 번역판",
@@ -353,6 +353,10 @@
           {
             "label": "V2 자체 번역판",
             "url": "https://github.com/wandererB/wanderer-arbor/releases/download/428S/428_Shibuya_KR_V2_v1.11.zip"
+          },
+          {
+            "label": "3DS 변환기",
+            "url": "https://github.com/wandererB/wanderer-arbor/releases/download/428S/Wanderer428-converter-0.1.zip"
           }
         ],
         "bg": "images/428.webp",
